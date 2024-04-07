@@ -1,0 +1,667 @@
+1
+00:00:07,270 --> 00:00:15,040
+Now is a next step, we're going to configure federal rules for our Ishita instance, so when we deploy
+
+2
+00:00:15,040 --> 00:00:20,430
+our virtual machine in the subnet, we want to be able to S.H. into it.
+
+3
+00:00:20,440 --> 00:00:29,170
+So we want to open Port 22 as well as we want to be accessing the Ingenix Web server that we deploy
+
+4
+00:00:29,170 --> 00:00:31,690
+as a container through the Web browser.
+
+5
+00:00:31,700 --> 00:00:38,070
+So we want to open port irritating so that we can access from the Web browser.
+
+6
+00:00:38,560 --> 00:00:45,090
+So we're going to create a security group and open those two ports on our server.
+
+7
+00:00:45,550 --> 00:00:53,860
+And in order to create a security group, we can use resource type Adewusi Security
+
+8
+00:00:56,230 --> 00:01:05,100
+Group and let's call it my EP is G, and we're going to have a bunch of attributes in here.
+
+9
+00:01:05,470 --> 00:01:14,950
+First of all, we have the name, which we can call it the same, I assume then we have the VPC ID,
+
+10
+00:01:14,950 --> 00:01:23,140
+so we have to associate the security group with the VPC so that the servers inside that VPC can be associated
+
+11
+00:01:23,140 --> 00:01:28,540
+with the security group and VPC Edem.
+
+12
+00:01:30,250 --> 00:01:39,760
+We're going to get, as always from referencing our VPC and this is the main or the interesting part
+
+13
+00:01:40,060 --> 00:01:43,990
+where we define the rules, the federal rules of the security group.
+
+14
+00:01:44,650 --> 00:01:49,260
+So generally, we have two types of rules, right?
+
+15
+00:01:49,480 --> 00:01:56,200
+We have traffic that is coming inside the VPC and entering the servers.
+
+16
+00:01:56,380 --> 00:02:03,940
+So the incoming traffic, for example, when we S.H. into the server, when we exit from the browser,
+
+17
+00:02:04,090 --> 00:02:12,070
+we're basically sending traffic inside the VPC into our easy to instant's right into our server.
+
+18
+00:02:12,730 --> 00:02:20,740
+And the incoming traffic or incoming traffic rules are configured using an attribute called ingress.
+
+19
+00:02:21,280 --> 00:02:26,080
+So ingress for incoming and inside ingress block.
+
+20
+00:02:26,080 --> 00:02:33,850
+We have configuration for one firewall rule and we have a couple of attributes here.
+
+21
+00:02:34,030 --> 00:02:43,270
+First of all, we have from port and for SSA each port for 22, we're going to define it to be twenty
+
+22
+00:02:43,270 --> 00:02:49,180
+two and then we have to port and we're going to also say to twenty two.
+
+23
+00:02:49,210 --> 00:02:52,000
+So why do we have two ports from.
+
+24
+00:02:52,000 --> 00:02:55,310
+And two is because we can actually configure a range.
+
+25
+00:02:55,540 --> 00:03:01,600
+Right now we're just setting it to one specific port, but we can also configure a range of ports to
+
+26
+00:03:01,600 --> 00:03:03,670
+open in a security group.
+
+27
+00:03:03,880 --> 00:03:12,040
+So if you want, for example, to open ports from zero to 1000 on a single server, then we can have
+
+28
+00:03:12,040 --> 00:03:14,680
+a range instead of one specific port.
+
+29
+00:03:15,580 --> 00:03:18,020
+In our case, we just need Port 22.
+
+30
+00:03:18,040 --> 00:03:19,390
+So let's leave it at that.
+
+31
+00:03:20,170 --> 00:03:26,980
+And then we have the protocol, which is just simple TCP and then we have the source.
+
+32
+00:03:27,130 --> 00:03:36,400
+So basically who is allowed or which IP addresses are allowed to access port or port range defined here?
+
+33
+00:03:37,270 --> 00:03:39,160
+And this is going to be seiter block.
+
+34
+00:03:43,670 --> 00:03:52,250
+So this is an IP address range or a list of IP addresses or site blocks that are allowed to access port
+
+35
+00:03:52,250 --> 00:04:02,120
+defined in here, and for SSA, as you know, accessing a server on S.H. should be secure and not everyone
+
+36
+00:04:02,120 --> 00:04:03,460
+should be allowed to do it.
+
+37
+00:04:03,650 --> 00:04:08,960
+So you can have a handful of IP addresses that are permitted to do that.
+
+38
+00:04:09,140 --> 00:04:17,030
+For example, if you have a team of three developers, engineers who are all accessing or SSA into that
+
+39
+00:04:17,030 --> 00:04:23,210
+server, you can define their IP addresses as at least here in your case, we just have one, which
+
+40
+00:04:23,210 --> 00:04:25,480
+is our local machine.
+
+41
+00:04:25,790 --> 00:04:34,040
+So we're going to define here our own IP address and you can actually check that out very easily using
+
+42
+00:04:34,280 --> 00:04:42,240
+a website or also just checking in your operating system and set it as a value here.
+
+43
+00:04:42,590 --> 00:04:44,540
+But remember, this is not an IP address.
+
+44
+00:04:44,540 --> 00:04:45,800
+It's a site or blog.
+
+45
+00:04:45,950 --> 00:04:46,280
+Right.
+
+46
+00:04:46,490 --> 00:04:48,970
+So you are defining a range of IP addresses.
+
+47
+00:04:49,340 --> 00:04:57,190
+And since we just want one single IP address, not a range, we are going to fixated at 32.
+
+48
+00:04:57,650 --> 00:05:00,870
+So this will map to this specific IP address.
+
+49
+00:05:01,280 --> 00:05:07,850
+Now, if your IP address is dynamic, so if this actually changes a lot, you can configure it as a
+
+50
+00:05:07,850 --> 00:05:15,110
+variable and exit or reference it from the variable value instead of hard coding it here.
+
+51
+00:05:15,380 --> 00:05:23,540
+Or you can also have the whole list as a variable if you have a list of IP addresses that are also dynamic.
+
+52
+00:05:24,320 --> 00:05:31,490
+But again, because we have just one, I'm going to extract this value here and I'm going to access
+
+53
+00:05:31,490 --> 00:05:39,980
+it from a variable and let's actually call it my IP so that I don't forget to declare and assign this
+
+54
+00:05:39,980 --> 00:05:40,460
+value.
+
+55
+00:05:40,610 --> 00:05:53,540
+I'm going to immediately define it here, my IP, and let's also set it as a value in here.
+
+56
+00:05:55,040 --> 00:05:55,800
+And there you go.
+
+57
+00:05:55,820 --> 00:06:03,740
+So if this value changes, basically, I can simply change it here instead of going through the configuration
+
+58
+00:06:03,740 --> 00:06:06,980
+file and scrolling through to see where I set it.
+
+59
+00:06:07,280 --> 00:06:14,900
+And also, I don't have to check this into the repository because this is the local variables file that
+
+60
+00:06:14,900 --> 00:06:17,930
+we ignored, as you remember, in the get ignore.
+
+61
+00:06:17,960 --> 00:06:25,850
+We just excluded it from being checked in because everyone can have their own copy of Variables File
+
+62
+00:06:26,060 --> 00:06:33,080
+and set their own IP address, as well as other variable values here and have a local copy of the variables.
+
+63
+00:06:33,470 --> 00:06:39,430
+So that basically configures one incoming rule for Port is S.H..
+
+64
+00:06:40,730 --> 00:06:50,090
+Now we need a second one for Port Eighty and I'm just going to copy this one and we're going to set
+
+65
+00:06:50,150 --> 00:06:52,070
+the port to eighty eighty.
+
+66
+00:06:53,840 --> 00:07:00,110
+It's going to be TCP protocol and here we don't want to restrict it to any IP address because anyone
+
+67
+00:07:00,110 --> 00:07:02,540
+can access it from the browser.
+
+68
+00:07:02,810 --> 00:07:03,980
+So we're going to set.
+
+69
+00:07:05,930 --> 00:07:16,220
+Sadr block to be any IP address that can access the server on Port 80 80, and this basically takes
+
+70
+00:07:16,220 --> 00:07:17,990
+care of the incoming traffic rules.
+
+71
+00:07:18,200 --> 00:07:26,540
+But we also have the outgoing traffic rules and the exiting traffic can be configured using an attribute
+
+72
+00:07:26,750 --> 00:07:28,520
+called egress.
+
+73
+00:07:29,630 --> 00:07:33,200
+So ingress for incoming egress for exiting.
+
+74
+00:07:33,620 --> 00:07:37,100
+And the attributes for this are actually the same.
+
+75
+00:07:37,700 --> 00:07:44,510
+The values are, however, different because we don't want to restrict the existing traffic to the Internet
+
+76
+00:07:44,810 --> 00:07:52,820
+from the server and examples of traffic that is leaving the server or leaving the BPC.
+
+77
+00:07:52,820 --> 00:07:57,650
+Our private network is basically when you have to install something on the server.
+
+78
+00:07:57,650 --> 00:08:05,600
+For example, when we install Docker or some other tools on our server, these binaries need to be fetched
+
+79
+00:08:05,600 --> 00:08:06,620
+from Internet, right.
+
+80
+00:08:06,620 --> 00:08:12,710
+Or when we installed some Linux packages, they have to be fetched and downloaded on the server from
+
+81
+00:08:12,720 --> 00:08:13,250
+Internet.
+
+82
+00:08:13,700 --> 00:08:20,900
+Or for example, when we started Docker Container of Ingenix Image, for example, the Ingenix image
+
+83
+00:08:20,900 --> 00:08:23,440
+has to be fetched from Docker Hub.
+
+84
+00:08:23,450 --> 00:08:23,750
+Right.
+
+85
+00:08:23,960 --> 00:08:31,520
+So this means that the request is going outside to the Internet in order to fetch some resource.
+
+86
+00:08:32,060 --> 00:08:39,450
+And of course, we want to allow that request to be able to leave the VPC and go get something from
+
+87
+00:08:39,470 --> 00:08:39,980
+Internet.
+
+88
+00:08:40,310 --> 00:08:43,870
+But we don't want to restrict it on any port IP address.
+
+89
+00:08:44,060 --> 00:08:49,370
+So we're going to send it to any port by sending this to zero.
+
+90
+00:08:49,730 --> 00:08:52,130
+And we also don't want to restrict the protocol.
+
+91
+00:08:52,130 --> 00:09:01,840
+We just going to configure for any and any IP address, as well as just an empty prefix list.
+
+92
+00:09:01,890 --> 00:09:02,550
+It is.
+
+93
+00:09:03,050 --> 00:09:06,700
+It's just for allowing access to VPC endpoints.
+
+94
+00:09:06,920 --> 00:09:08,390
+It's not very interesting for us.
+
+95
+00:09:09,380 --> 00:09:18,560
+This will just allow any traffic to leave the PC and the server itself, and this will configure all
+
+96
+00:09:18,560 --> 00:09:20,540
+the rules in our security group.
+
+97
+00:09:20,540 --> 00:09:28,460
+And finally, we can have the name tag that's actually just copied from here and let's call it security
+
+98
+00:09:28,460 --> 00:09:32,310
+group, S.G. and that's it.
+
+99
+00:09:32,690 --> 00:09:39,450
+So now we can apply this configuration and create a new security group inside our VPC.
+
+100
+00:09:40,100 --> 00:09:44,390
+So first, let's do terraform plan.
+
+101
+00:09:46,540 --> 00:09:54,730
+And terraformed plan actually shows us an error on each line, and this is actually one very good feature
+
+102
+00:09:54,730 --> 00:09:59,560
+of terraformed, that it has an inbuilt validation, right.
+
+103
+00:09:59,710 --> 00:10:07,150
+So if I make some syntax error, if the attribute name isn't defined correctly or maybe I am referencing
+
+104
+00:10:07,150 --> 00:10:14,200
+a variable that hasn't been declared or if something is wrong, basically terraformed validates this
+
+105
+00:10:14,200 --> 00:10:19,270
+input and tells me exactly on which line, what error I have.
+
+106
+00:10:19,390 --> 00:10:26,230
+So in this case, I apparently forgot the S or the plural inside or blocks.
+
+107
+00:10:26,770 --> 00:10:29,780
+So let's go back to configuration file.
+
+108
+00:10:30,550 --> 00:10:40,270
+I have to specify Seiter blocks instead of Cita Block because it is a list, so let's save it and I'm
+
+109
+00:10:40,270 --> 00:10:41,890
+going to do plen again.
+
+110
+00:10:45,720 --> 00:10:46,200
+And.
+
+111
+00:10:47,550 --> 00:10:55,100
+This time, the file is valid and I see that security group will be created with all this configuration
+
+112
+00:10:55,680 --> 00:10:58,110
+so we can actually apply this.
+
+113
+00:11:05,390 --> 00:11:16,070
+And it got executed, so now in the VPC section, let's actually find security groups, it's right here.
+
+114
+00:11:17,790 --> 00:11:20,590
+And as I see, we have three security groups here.
+
+115
+00:11:21,300 --> 00:11:25,930
+One of them belongs to our default VPC of the region.
+
+116
+00:11:26,520 --> 00:11:33,390
+The second one is the default security group of the VPC that we created.
+
+117
+00:11:34,080 --> 00:11:34,410
+Right.
+
+118
+00:11:34,800 --> 00:11:44,040
+So remember, I said that we create some default components for VPC whenever we create one security
+
+119
+00:11:44,040 --> 00:11:45,150
+group is one of them.
+
+120
+00:11:45,180 --> 00:11:54,420
+So whenever we create a new VPC, a default security group gets created for that specific VPC with default
+
+121
+00:11:54,420 --> 00:11:59,150
+configuration and by default, security group is blocked.
+
+122
+00:11:59,160 --> 00:12:04,950
+So all the ports are basically closed, so no traffic is allowed in.
+
+123
+00:12:05,730 --> 00:12:13,320
+So this is the default security group of our VPC and this is the security group we just created.
+
+124
+00:12:13,710 --> 00:12:18,020
+And this is the name that we defined here.
+
+125
+00:12:18,750 --> 00:12:25,590
+We have the name for the security group name column and then we have the name tag, which is what we
+
+126
+00:12:25,590 --> 00:12:26,970
+define in the text.
+
+127
+00:12:28,670 --> 00:12:33,050
+And now let's actually check the Enron rules for that, and there you go.
+
+128
+00:12:33,080 --> 00:12:44,690
+We have the Secich type Port 20 to my IP address and we have TCP IP custom DP for Port, AT&amp;T from all
+
+129
+00:12:44,690 --> 00:12:45,350
+the sources.
+
+130
+00:12:45,860 --> 00:12:50,210
+And outbound rule is what we configured here.
+
+131
+00:12:50,660 --> 00:12:58,910
+And this basically maps to this entry, which basically says all traffic allowed, all protocols allowed,
+
+132
+00:12:58,940 --> 00:13:02,330
+all port ranges for all IP addresses.
+
+133
+00:13:02,720 --> 00:13:06,420
+This is what we configured with these attributes here.
+
+134
+00:13:07,160 --> 00:13:10,370
+So security group is created.
+
+135
+00:13:10,730 --> 00:13:17,930
+It is correctly configured and ready to be used and assigned to InSitu instance that we're going to
+
+136
+00:13:17,930 --> 00:13:18,370
+deploy.
+
+137
+00:13:18,830 --> 00:13:28,460
+Now, again, you may be wondering what if we wanted to use the existing default security group because
+
+138
+00:13:28,730 --> 00:13:31,320
+it comes out of the box when we create a new book.
+
+139
+00:13:31,340 --> 00:13:33,430
+So can we reuse it?
+
+140
+00:13:33,710 --> 00:13:36,730
+And the answer is yes, we can reuse the default one.
+
+141
+00:13:37,100 --> 00:13:38,720
+We don't have to create a new one.
+
+142
+00:13:39,050 --> 00:13:46,070
+And I'm going to show you the syntax for configuring default security group instead of creating a new
+
+143
+00:13:46,070 --> 00:13:46,310
+one.
+
+144
+00:13:50,680 --> 00:13:59,380
+So let's go back to our configuration, and it's actually very easy to switch from creating a new security
+
+145
+00:13:59,380 --> 00:14:01,910
+group to default on a security group.
+
+146
+00:14:02,350 --> 00:14:10,900
+So in the research definition right here, we're going to define a default security group, resource
+
+147
+00:14:10,900 --> 00:14:11,380
+type.
+
+148
+00:14:11,920 --> 00:14:20,440
+So since there is just one default security group or default rule table in a VPC terraform and everybody
+
+149
+00:14:20,480 --> 00:14:29,390
+will know which specific security group that is, and we can also call it default security group.
+
+150
+00:14:29,710 --> 00:14:34,780
+And as you saw, the name of the security group name is also default.
+
+151
+00:14:35,020 --> 00:14:41,310
+We can actually remove it and the rest of the configuration is actually exactly the same.
+
+152
+00:14:41,890 --> 00:14:48,510
+We have the BBC ID ingress rules, egress rules and the tag.
+
+153
+00:14:48,520 --> 00:14:54,210
+We can actually default in here and call it debt default security group.
+
+154
+00:14:54,610 --> 00:14:58,510
+And let's now execute TerraForm PLEN.
+
+155
+00:15:01,290 --> 00:15:03,090
+And see our changes.
+
+156
+00:15:08,130 --> 00:15:09,300
+And as you see.
+
+157
+00:15:12,170 --> 00:15:15,680
+One resource will be created and one will be destroyed.
+
+158
+00:15:16,100 --> 00:15:23,270
+So basically we have removed one resource from the configuration file and we are defining a default
+
+159
+00:15:23,270 --> 00:15:25,290
+security group, a new resource.
+
+160
+00:15:26,390 --> 00:15:32,300
+So let's do terraform, applied or approve.
+
+161
+00:15:40,520 --> 00:15:45,620
+And let us check this out, going to refresh and there you go.
+
+162
+00:15:46,130 --> 00:15:53,660
+And if I click inside and see the outbound rules are basically allowing any traffic and inbound rules
+
+163
+00:15:54,110 --> 00:15:54,830
+we have.
+
+164
+00:15:56,150 --> 00:16:05,960
+Our custom Tsipi and as a Sage Por 22, the group name is Default, as it was previously, and we have
+
+165
+00:16:05,960 --> 00:16:07,720
+the tech name here.
+
+166
+00:16:08,450 --> 00:16:16,400
+So that's how we can adjust an existing default security group or basically just recreate or replace
+
+167
+00:16:16,400 --> 00:16:21,800
+it instead of creating a new known default security group in the VPC.

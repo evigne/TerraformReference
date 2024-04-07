@@ -1,0 +1,215 @@
+1
+00:00:03,570 --> 00:00:12,660
+Now, there is an important point to be made here, because we just created infrastructure or configure
+
+2
+00:00:12,670 --> 00:00:21,060
+the networking around the server and then provisioned a server, is it, for instance, in that network
+
+3
+00:00:21,060 --> 00:00:24,330
+configuration, all using terraform?
+
+4
+00:00:24,360 --> 00:00:24,740
+Right.
+
+5
+00:00:25,170 --> 00:00:31,500
+And then once the infrastructure is actually ready and it's time to deploy applications and install
+
+6
+00:00:31,500 --> 00:00:35,460
+stuff on it, we actually switched back to Shell script.
+
+7
+00:00:35,460 --> 00:00:35,750
+Right?
+
+8
+00:00:36,000 --> 00:00:41,970
+We just executing very normal commands which have nothing to do with TerraForm.
+
+9
+00:00:42,150 --> 00:00:50,550
+So the point here is that once the server is created, once the infrastructure is there, TerraForm
+
+10
+00:00:50,550 --> 00:00:59,430
+doesn't help further with installing the tools or in this case, installing Docker and configuring our
+
+11
+00:00:59,430 --> 00:01:01,140
+server any further.
+
+12
+00:01:01,750 --> 00:01:06,270
+It gives us the possibility to execute a script by giving the attribute.
+
+13
+00:01:06,720 --> 00:01:09,630
+But we can't debug, for example.
+
+14
+00:01:09,630 --> 00:01:09,870
+Right?
+
+15
+00:01:09,880 --> 00:01:16,380
+So if something goes wrong here in this command execution, we won't get a message or we won't get a
+
+16
+00:01:16,380 --> 00:01:16,830
+feedback.
+
+17
+00:01:16,830 --> 00:01:22,610
+We will still have to S.H. into it and we will have to see what happened, why doesn't work, et cetera.
+
+18
+00:01:22,800 --> 00:01:26,010
+And also, you need to know shell scripting.
+
+19
+00:01:26,010 --> 00:01:26,250
+Right.
+
+20
+00:01:26,270 --> 00:01:31,770
+So this is basically terraformed syntax, but you still have to know how to write shell scripts and
+
+21
+00:01:31,770 --> 00:01:33,630
+how to execute shell commands.
+
+22
+00:01:33,990 --> 00:01:39,470
+So there is no terraform command or config on a higher level.
+
+23
+00:01:39,600 --> 00:01:39,940
+Right.
+
+24
+00:01:40,130 --> 00:01:43,350
+So we still have to work with lower level commands.
+
+25
+00:01:43,650 --> 00:01:51,060
+We don't have something like install Docker on easy to resource, for example, or start Ingenix container
+
+26
+00:01:51,060 --> 00:01:52,770
+with these parameters resource.
+
+27
+00:01:53,130 --> 00:01:59,790
+And that's where it's important to know what Terraformed should be used for and where terraform usage
+
+28
+00:01:59,790 --> 00:02:01,680
+or use case actually stops.
+
+29
+00:02:01,860 --> 00:02:10,710
+And I think this is a perfect example that makes it clear that terraform is a tool for creating, configuring
+
+30
+00:02:10,710 --> 00:02:12,530
+and managing infrastructure.
+
+31
+00:02:12,750 --> 00:02:19,530
+So the underlying hardware like networking configuration, the server creating the key here, etc. But
+
+32
+00:02:19,530 --> 00:02:26,820
+once the servers are provisioned, the firewall rules are sets, et cetera, deploying the application
+
+33
+00:02:26,850 --> 00:02:33,870
+or configuring the server itself, installing packages or updating their versions and so on should be
+
+34
+00:02:33,870 --> 00:02:35,910
+done with another tool.
+
+35
+00:02:36,300 --> 00:02:40,070
+This is where TerraForm doesn't help us that much, right?
+
+36
+00:02:40,290 --> 00:02:47,390
+It gives us these ways of doing it, but it's not actually made for these use cases.
+
+37
+00:02:47,790 --> 00:02:54,540
+So the question is, what are alternatives or do you have to use shell scripting and you have to know
+
+38
+00:02:54,540 --> 00:02:55,980
+how to write shell scripts?
+
+39
+00:02:55,980 --> 00:03:00,150
+And there are actually other infrastructure as code tools.
+
+40
+00:03:00,390 --> 00:03:06,470
+They're specifically made for deploying applications and configuring existing servers.
+
+41
+00:03:06,690 --> 00:03:12,450
+So once the infrastructure is provisioned with a tool like TerraForm, for example, then tools like
+
+42
+00:03:12,630 --> 00:03:21,690
+Ansible Puppet or chef, which are configuration management tools, come in to automate deploying the
+
+43
+00:03:21,690 --> 00:03:28,800
+application, configuring the server, installing different packages, updating the versions of applications
+
+44
+00:03:28,950 --> 00:03:29,780
+and so on.
+
+45
+00:03:30,060 --> 00:03:33,150
+And this is also something that terraformed documentation.
+
+46
+00:03:33,450 --> 00:03:37,740
+States that terraform should be used for provisioning infrastructure.
+
+47
+00:03:37,980 --> 00:03:45,450
+And if you want to then automate the further steps of deploying applications on that provision infrastructure,
+
+48
+00:03:45,780 --> 00:03:52,980
+then you should do that with tools like Ansible, which is one of the most popular configuration tools
+
+49
+00:03:52,980 --> 00:03:55,440
+out there for such use cases.
+
+50
+00:03:56,040 --> 00:04:02,940
+So as you see, in an ideal case, we have lots of infrastructure provision and maybe you have very
+
+51
+00:04:02,940 --> 00:04:10,290
+complex application configuration on the provision infrastructure then in these type of projects.
+
+52
+00:04:10,290 --> 00:04:18,330
+Actually, it's very common that people use TerraForm and then Ansible together to cover or to automate
+
+53
+00:04:18,330 --> 00:04:26,700
+these two parts or two levels of configuration on infrastructure and then application level.
+
+54
+00:04:27,210 --> 00:04:30,510
+And as I said, this example makes it very clear.

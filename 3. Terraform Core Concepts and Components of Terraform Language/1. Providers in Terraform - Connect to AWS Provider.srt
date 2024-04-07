@@ -1,0 +1,1031 @@
+1
+00:00:07,160 --> 00:00:15,050
+So the first thing we need to do is connect to our account and in terror form, whenever you want to
+
+2
+00:00:15,050 --> 00:00:23,990
+connect to a technology and start using its API to create resources inside, to configure it, to add
+
+3
+00:00:23,990 --> 00:00:31,160
+some stuff, etc., basically just interact with this technology, you know, as Jenkins database,
+
+4
+00:00:31,160 --> 00:00:34,850
+whatever it may be, first thing you need is a provider.
+
+5
+00:00:35,330 --> 00:00:45,680
+So provider in tier form is basically a program or code that knows how to talk to that specific technology.
+
+6
+00:00:46,070 --> 00:00:55,910
+And if we go to a TerraForm main page Embrose providers, here you see a list of providers that TerraForm
+
+7
+00:00:55,910 --> 00:00:56,330
+has.
+
+8
+00:00:56,900 --> 00:01:03,650
+And as I mentioned previously, TerraForm actually works well and integrates with lots of lots of different
+
+9
+00:01:03,650 --> 00:01:04,310
+technologies.
+
+10
+00:01:04,670 --> 00:01:09,890
+And this is basically how TerraForm integrates with them using providers.
+
+11
+00:01:10,220 --> 00:01:16,370
+And here you are going to see the list of all the providers TerraForm supports for all the different
+
+12
+00:01:16,370 --> 00:01:19,190
+technologies, and this is an interesting part here.
+
+13
+00:01:19,460 --> 00:01:26,240
+First of all, we see the most commonly used ones, as is obviously something that's tier form is widely
+
+14
+00:01:26,240 --> 00:01:34,070
+used for a very obvious reason for that is because working with A.W. is through command line or management.
+
+15
+00:01:34,070 --> 00:01:41,810
+Console is hard because it is so granular and modular and powerful that it's really difficult to work
+
+16
+00:01:41,810 --> 00:01:42,620
+with it manually.
+
+17
+00:01:42,620 --> 00:01:48,620
+So automating it over us makes perfect sense as well as we have every Google Cloud, Kubernetes and
+
+18
+00:01:48,620 --> 00:01:48,980
+so on.
+
+19
+00:01:49,400 --> 00:01:57,530
+Now, if we scroll down here, you see a bunch of other providers that are old by Hashi Corp, right?
+
+20
+00:01:57,710 --> 00:02:06,440
+So these are basically the providers again code program that knows how to talk to that specific technology,
+
+21
+00:02:06,440 --> 00:02:06,710
+right?
+
+22
+00:02:06,950 --> 00:02:14,480
+So this code here is written so that it can talk to Kubernetes so that you don't have to know how to
+
+23
+00:02:14,510 --> 00:02:15,860
+talk to Kubernetes API.
+
+24
+00:02:16,130 --> 00:02:17,550
+Same goes with us.
+
+25
+00:02:17,570 --> 00:02:19,650
+You don't have to know how to talk to either.
+
+26
+00:02:19,660 --> 00:02:20,450
+We use API.
+
+27
+00:02:20,810 --> 00:02:29,000
+This provider translates your TerraForm configuration to something that is API understand so we can
+
+28
+00:02:29,000 --> 00:02:30,740
+talk to AWB for you.
+
+29
+00:02:30,980 --> 00:02:38,990
+And as I was saying, these are basically bunch of providers talking to helm, talking to HDP, GitHub
+
+30
+00:02:39,170 --> 00:02:46,040
+console, lots of different technologies, all maintained and created by Harsha Corp and if I scroll
+
+31
+00:02:46,040 --> 00:02:46,910
+further down.
+
+32
+00:02:48,590 --> 00:02:55,160
+Here we have verified providers, and these are third party technology partners that have created these
+
+33
+00:02:55,160 --> 00:02:58,160
+providers and also actively maintain them.
+
+34
+00:02:58,520 --> 00:03:03,830
+And you also have community providers that are basically created by community members.
+
+35
+00:03:03,860 --> 00:03:10,460
+This could be teams of developers or individual developers that publish their providers to terraform
+
+36
+00:03:10,460 --> 00:03:12,830
+registry for others to use them as well.
+
+37
+00:03:13,160 --> 00:03:16,400
+This is also a huge list of different technologies.
+
+38
+00:03:16,700 --> 00:03:24,140
+And here it always says who is maintaining it or who is creating and very logically enough.
+
+39
+00:03:24,170 --> 00:03:30,110
+There are lots of different technologies that also want to be integrated in TerraForm.
+
+40
+00:03:30,410 --> 00:03:37,970
+So they create their own providers for their own projects or products so that TerraForm users can talk
+
+41
+00:03:37,970 --> 00:03:39,350
+to that API.
+
+42
+00:03:39,920 --> 00:03:44,930
+So we have artifact theory from JFrog itself because it's the product from them.
+
+43
+00:03:45,320 --> 00:03:49,670
+We have Heroku, Griffen, Lee nodes and so on.
+
+44
+00:03:49,790 --> 00:03:50,120
+Right.
+
+45
+00:03:50,210 --> 00:03:56,750
+But you also have providers that are just developed by some developers or DevOps engineers who want
+
+46
+00:03:56,840 --> 00:03:58,220
+integration with the tool.
+
+47
+00:03:58,580 --> 00:04:07,490
+For example, if we look for jenkyns provider, you see three different ones that are developed by different
+
+48
+00:04:07,520 --> 00:04:08,840
+companies or people.
+
+49
+00:04:09,050 --> 00:04:16,160
+So basically, this means that whenever you decide to use TerraForm for a specific technology, for
+
+50
+00:04:16,160 --> 00:04:20,870
+example, we want to use TerraForm to connect to AWG and create resources inside.
+
+51
+00:04:20,990 --> 00:04:23,300
+You can come here and provider section.
+
+52
+00:04:23,570 --> 00:04:30,050
+You can look up the provider for that technology and start using it.
+
+53
+00:04:30,140 --> 00:04:32,780
+So in this case, we are going to need us.
+
+54
+00:04:33,080 --> 00:04:36,530
+We're going to see other providers and how to use them later.
+
+55
+00:04:36,710 --> 00:04:38,090
+Let's actually click inside.
+
+56
+00:04:38,450 --> 00:04:40,400
+And here we have overview.
+
+57
+00:04:40,400 --> 00:04:44,090
+And what's also more important is documentation.
+
+58
+00:04:44,480 --> 00:04:51,980
+So here basically you have a bunch of examples and documentation of how to use the provider.
+
+59
+00:04:52,250 --> 00:04:59,270
+So, for example, because Jenkins isn't officially from Hoshi Corp, again, let's look for one.
+
+60
+00:04:59,600 --> 00:05:01,280
+Let's choose this one.
+
+61
+00:05:01,280 --> 00:05:02,750
+For example, you see the.
+
+62
+00:05:04,130 --> 00:05:10,490
+Statistics of how much it has been used, which versions, et cetera.
+
+63
+00:05:11,210 --> 00:05:17,540
+So, for example, if we go with this one, we can check the documentation for how to use a provider
+
+64
+00:05:17,540 --> 00:05:20,600
+as well as which resources are available.
+
+65
+00:05:20,870 --> 00:05:26,450
+Now I want to note here that TerraForm is really, really well documented.
+
+66
+00:05:26,690 --> 00:05:35,420
+So whenever you're looking for an example to create to orchestrate or automate some technology with
+
+67
+00:05:35,420 --> 00:05:41,870
+TerraForm, you can actually just look it up here and you will for sure find a documentation for it,
+
+68
+00:05:42,170 --> 00:05:48,380
+as well as to Google search, because they also have all of these very highly search optimized.
+
+69
+00:05:48,590 --> 00:05:50,840
+So you can directly Google all this stuff.
+
+70
+00:05:51,080 --> 00:05:59,870
+For example, if you want to create EC2 instance in TerraForm, you can basically search it in Google
+
+71
+00:06:00,080 --> 00:06:02,090
+and here you get immediately.
+
+72
+00:06:02,630 --> 00:06:09,110
+The first result is documentation to how to create, you know, use instance.
+
+73
+00:06:09,440 --> 00:06:13,580
+So they're very well documented as well as search, optimize.
+
+74
+00:06:13,850 --> 00:06:20,030
+So this is actually one of the best things about any technology if they have good documentation because
+
+75
+00:06:20,030 --> 00:06:26,180
+it makes using that technology way easier when they provide examples and explanation.
+
+76
+00:06:26,390 --> 00:06:33,110
+So we're going to be working a lot with the documentation itself and seeing example usages here.
+
+77
+00:06:33,350 --> 00:06:37,790
+And just so, you know, this is not a case with many different technologies.
+
+78
+00:06:37,970 --> 00:06:41,180
+So this is already an advantage that TerraForm has.
+
+79
+00:06:41,420 --> 00:06:48,740
+So let's actually close all this and let's go back to our first provider documentation.
+
+80
+00:06:53,040 --> 00:06:59,240
+So Somalis is actually use the A.W. as provider in our main road, TFR.
+
+81
+00:07:00,300 --> 00:07:10,950
+So first, I'm going to open the folder that we created tearful folder so that we have a view of all
+
+82
+00:07:10,950 --> 00:07:12,860
+the files inside that folder.
+
+83
+00:07:12,870 --> 00:07:15,240
+So this is going to be our working directory.
+
+84
+00:07:16,740 --> 00:07:22,740
+And in the main DOD file, we're going to write following code.
+
+85
+00:07:23,040 --> 00:07:24,210
+First of all, provider.
+
+86
+00:07:28,400 --> 00:07:37,580
+You know, you ask and you see the syntax highlighting already, and we're going to pass in configuration
+
+87
+00:07:37,880 --> 00:07:42,080
+that will allow TerraForm to connect to our IWC account.
+
+88
+00:07:42,740 --> 00:07:44,930
+So first of all, we're going to define the region.
+
+89
+00:07:45,950 --> 00:07:49,820
+And you can choose one of the regions from the list right here.
+
+90
+00:07:50,240 --> 00:07:56,450
+So this part is the name of the region, and you should choose the one which is closest to your geographic
+
+91
+00:07:56,450 --> 00:07:57,050
+location.
+
+92
+00:07:57,350 --> 00:08:00,620
+So I'm going to go with E.U.'S three for my case.
+
+93
+00:08:02,570 --> 00:08:05,240
+And we're going to define our exes key.
+
+94
+00:08:07,730 --> 00:08:08,390
+And.
+
+95
+00:08:12,320 --> 00:08:13,130
+Secret key.
+
+96
+00:08:17,870 --> 00:08:24,080
+Right here, and we're going to hardcoded for no later, I'm going to show you a best practice of how
+
+97
+00:08:24,080 --> 00:08:31,190
+to actually set the credentials in not having them directly in the code, because TerraForm being an
+
+98
+00:08:31,190 --> 00:08:39,980
+infrastructure is code tool basically will be used in its files will be checked in into a code repository
+
+99
+00:08:39,980 --> 00:08:43,400
+like it, for example, just like application code.
+
+100
+00:08:43,850 --> 00:08:49,190
+So we don't want the sensitive data hardcoded in there, but for now, we're going to write it directly
+
+101
+00:08:49,190 --> 00:08:49,490
+here.
+
+102
+00:08:50,180 --> 00:08:56,530
+And these are the X's key and secret key of the admin user that we created in our account.
+
+103
+00:08:56,780 --> 00:09:04,160
+And you remember that we downloaded the credentials file for that user and we have access key and secret
+
+104
+00:09:04,160 --> 00:09:08,330
+key in that credentials file so we can basically just copy directly from here.
+
+105
+00:09:08,990 --> 00:09:11,210
+So this is the access key.
+
+106
+00:09:13,550 --> 00:09:24,020
+And the secret key, so now using TerraForm will connect to the IWC programmatically using our admin
+
+107
+00:09:24,020 --> 00:09:26,300
+user with these credentials.
+
+108
+00:09:27,050 --> 00:09:27,400
+Of course.
+
+109
+00:09:27,400 --> 00:09:35,960
+So now we have basically told TerraForm with this code that we want to use A.W. as provider because
+
+110
+00:09:35,960 --> 00:09:38,300
+we are going to be working with IWC.
+
+111
+00:09:38,660 --> 00:09:47,570
+And we're telling TerraForm that in order to be able to connect to our IWC account, it will need these
+
+112
+00:09:47,930 --> 00:09:48,770
+credentials.
+
+113
+00:09:49,340 --> 00:09:52,130
+And this is the region that we are working in.
+
+114
+00:09:53,000 --> 00:09:58,040
+So no, that IWC is the name of the provider, so it has to be IWC.
+
+115
+00:09:58,370 --> 00:10:04,400
+And you may be wondering where I got these valleys from and how do I know what these attributes are
+
+116
+00:10:04,400 --> 00:10:05,590
+called again?
+
+117
+00:10:05,600 --> 00:10:06,410
+Is I told you?
+
+118
+00:10:06,590 --> 00:10:09,470
+You can find all of this document it in here.
+
+119
+00:10:09,800 --> 00:10:16,220
+For example, here we see the usage with credentials, access key and secret key.
+
+120
+00:10:16,820 --> 00:10:21,410
+So you can find the attribute names and all of this in the documentation.
+
+121
+00:10:22,460 --> 00:10:26,600
+No, as I told you, provider is basically a program.
+
+122
+00:10:26,600 --> 00:10:29,720
+It's a code that knows how to talk to IWC.
+
+123
+00:10:30,050 --> 00:10:35,000
+And when we install TerraForm, it doesn't come with this code automatically.
+
+124
+00:10:35,810 --> 00:10:41,780
+Simple reason is that because it has so many providers and you're just going to be using just a handful
+
+125
+00:10:41,780 --> 00:10:42,470
+of them, right?
+
+126
+00:10:43,520 --> 00:10:50,900
+You don't want your terraform to have all of these included because it's just going to be a lot of wasted
+
+127
+00:10:50,900 --> 00:10:51,750
+resources, right?
+
+128
+00:10:51,780 --> 00:10:56,000
+You're going to need a lot of space storage for all of this code.
+
+129
+00:10:56,120 --> 00:10:58,160
+So instead, it's actually modular.
+
+130
+00:10:58,160 --> 00:11:04,640
+So you, as a TerraForm user, decide, you know what I want to work with A.W. is incurring 80s and
+
+131
+00:11:04,640 --> 00:11:05,540
+maybe Jenkins.
+
+132
+00:11:05,540 --> 00:11:12,020
+So I'm going to install these three providers and I'm going to be working only with those three.
+
+133
+00:11:13,340 --> 00:11:19,670
+So that means that whenever we define a provider here, we need to install that code right because it
+
+134
+00:11:19,670 --> 00:11:22,830
+is currently not available locally.
+
+135
+00:11:22,850 --> 00:11:23,120
+Right.
+
+136
+00:11:23,420 --> 00:11:27,680
+You can compare it to the dependencies in programming languages, right?
+
+137
+00:11:27,690 --> 00:11:35,150
+We define dependency inside a build tools mean build configuration file, and then we actually need
+
+138
+00:11:35,150 --> 00:11:43,580
+to install the dependency by executing a command of the built all right, like npm install, for example.
+
+139
+00:11:43,700 --> 00:11:45,590
+So the same goes with TerraForm.
+
+140
+00:11:45,980 --> 00:11:49,700
+We have just defined which provider we want.
+
+141
+00:11:49,940 --> 00:11:53,300
+Now it's time to install that provider locally.
+
+142
+00:11:53,630 --> 00:11:57,830
+So the way we do that is using TerraForm in its comment.
+
+143
+00:11:57,950 --> 00:12:07,490
+So let's go back to the ED and I am inside the TerraForm folder, where mean door taf is.
+
+144
+00:12:09,770 --> 00:12:18,400
+So when I do terraform in it, TerraForm will look inside that folder where it makes including the comment
+
+145
+00:12:18,410 --> 00:12:24,230
+in and see that I have defined a provider, so it needs to install it.
+
+146
+00:12:24,450 --> 00:12:31,040
+So and that's also an important part because as you see, we need to execute this command inside that
+
+147
+00:12:31,040 --> 00:12:31,640
+folder.
+
+148
+00:12:31,790 --> 00:12:37,130
+So it is it actually matters where we execute terraform commands for right.
+
+149
+00:12:37,520 --> 00:12:43,700
+For example, if we have multiple projects with multiple terraform files or separate from each other,
+
+150
+00:12:43,910 --> 00:12:48,380
+then you have to go into the one that you want to execute the TerraForm comments.
+
+151
+00:12:48,800 --> 00:12:50,810
+So let's do TerraForm in it.
+
+152
+00:12:50,810 --> 00:12:51,170
+No.
+
+153
+00:12:51,500 --> 00:12:58,610
+And you see initializing the backend and provider plugins, and here you see finding latest version
+
+154
+00:12:58,610 --> 00:13:00,370
+of Harshit Corp IWC.
+
+155
+00:13:00,860 --> 00:13:06,710
+This is actually the provider name that we have defined, and because it is from Hoshi Corp itself,
+
+156
+00:13:06,920 --> 00:13:15,560
+we don't have to provide this Corp. slash before it is by default, and it just install the latest version
+
+157
+00:13:15,560 --> 00:13:20,320
+of that specific provider successfully initialized in no.
+
+158
+00:13:20,330 --> 00:13:28,190
+If we go back to our editor and here you see, we just had Maynard Taf in that folder, right?
+
+159
+00:13:28,520 --> 00:13:33,680
+And now we have two files that have been generated by TerraForm.
+
+160
+00:13:33,980 --> 00:13:35,390
+These are dot files.
+
+161
+00:13:35,540 --> 00:13:41,150
+So the hidden files, basically, you can see it here as well in the File Explorer.
+
+162
+00:13:41,570 --> 00:13:49,610
+If we do show hidden files this to God generated and this is actually a hidden folder.
+
+163
+00:13:49,910 --> 00:13:56,360
+So if we expand it, you see TerraForm provider IWC with the version that got installed.
+
+164
+00:13:56,690 --> 00:14:04,730
+So this is actually the code that has been downloaded that will then be talking to us for us.
+
+165
+00:14:05,060 --> 00:14:13,030
+So this is the provider code and this is a file that basically keeps track of which providers are in.
+
+166
+00:14:13,120 --> 00:14:16,660
+Stored locally, which versions we have and so on.
+
+167
+00:14:17,200 --> 00:14:25,360
+So if we add another provider, then it will appear in here and another entry will be made in this file.
+
+168
+00:14:25,630 --> 00:14:27,480
+And these are managed by TerraForm.
+
+169
+00:14:27,490 --> 00:14:28,900
+We don't do anything in there.
+
+170
+00:14:32,910 --> 00:14:39,000
+Now there is one more thing we need to do here and here, as you see in the interviews provided documentation,
+
+171
+00:14:39,300 --> 00:14:42,970
+we have a new syntax for TerraForm version.
+
+172
+00:14:42,990 --> 00:14:51,480
+Starting from zero point to 13, where we define globally in the TerraForm configuration, which providers
+
+173
+00:14:51,480 --> 00:14:56,670
+our TerraForm project uses, as well as defined the version of each provider.
+
+174
+00:14:57,210 --> 00:15:00,300
+And if I click on the use provider button here.
+
+175
+00:15:01,650 --> 00:15:08,190
+It gives me the actual code with the specific version of that provider, which is always the latest
+
+176
+00:15:08,190 --> 00:15:09,720
+version of the provider.
+
+177
+00:15:09,900 --> 00:15:17,160
+And I can basically copy and use this configuration in my TerraForm project, so I'll copy that part.
+
+178
+00:15:19,160 --> 00:15:27,680
+Go back to the project where we already have the provider configuration defined and pasted in here and
+
+179
+00:15:27,680 --> 00:15:28,040
+safe.
+
+180
+00:15:28,520 --> 00:15:34,490
+So now if we have multiple providers that we use in our TerraForm project, we can actually list all
+
+181
+00:15:34,490 --> 00:15:39,800
+of them here within the required providers block with their specific versions.
+
+182
+00:15:40,010 --> 00:15:45,020
+Now this is not required because as you saw, it works without this code as well.
+
+183
+00:15:45,290 --> 00:15:51,800
+Right, we were able to actually initialize our project and download the provider without having this
+
+184
+00:15:51,800 --> 00:15:52,580
+configuration.
+
+185
+00:15:53,000 --> 00:15:57,200
+However, it is a good practice to define this explicitly.
+
+186
+00:15:57,710 --> 00:16:05,140
+Another common thing related to this configuration is to create a separate file called Providers Dot,
+
+187
+00:16:05,500 --> 00:16:06,290
+for example.
+
+188
+00:16:11,810 --> 00:16:13,430
+And have these configuration.
+
+189
+00:16:16,980 --> 00:16:18,660
+Defined in these providers file.
+
+190
+00:16:21,910 --> 00:16:27,190
+And again, if we use multiple providers basically have them all listed here, and it makes perfect
+
+191
+00:16:27,190 --> 00:16:33,760
+sense, especially if you're using 10 or 20 providers in your project, so you can extract that whole
+
+192
+00:16:33,760 --> 00:16:38,200
+configuration into a separate file to keep your code clean.
+
+193
+00:16:38,270 --> 00:16:43,540
+Right, because this is basically the logic where you provision infrastructure and this is going to
+
+194
+00:16:43,540 --> 00:16:49,390
+be just the place where you define which providers your project is using with which versions.
+
+195
+00:16:49,600 --> 00:16:55,120
+So you have this separation in your code, and there is one more thing to understand regarding this
+
+196
+00:16:55,120 --> 00:16:56,260
+provider definition.
+
+197
+00:16:56,410 --> 00:16:59,320
+I mentioned that it works without this code as well.
+
+198
+00:16:59,500 --> 00:17:04,540
+And we saw that we could use the A-to-B as provider without explicitly defining it here.
+
+199
+00:17:04,990 --> 00:17:10,790
+However, it only works for providers which are part of the TerraForm registry.
+
+200
+00:17:10,810 --> 00:17:17,590
+So again, if we go back to the documentation, you see that this provider actually is hosted by Hashi
+
+201
+00:17:17,590 --> 00:17:20,560
+Corp itself and its official registry.
+
+202
+00:17:20,560 --> 00:17:27,040
+And Harshaw Corp has a list of official providers which are marked using this icon here.
+
+203
+00:17:27,490 --> 00:17:31,690
+However, there are other providers which are community providers.
+
+204
+00:17:31,900 --> 00:17:34,210
+There are not part of the TerraForm registry.
+
+205
+00:17:34,240 --> 00:17:40,630
+And for them, we would actually have to explicitly define this configuration.
+
+206
+00:17:40,900 --> 00:17:41,410
+Why?
+
+207
+00:17:41,590 --> 00:17:49,840
+Because this configuration actually defines the source or the location where TerraForm should look for
+
+208
+00:17:49,840 --> 00:17:51,850
+the provider code to download.
+
+209
+00:17:52,030 --> 00:17:58,240
+So we need to tell TerraForm this is the provider and please downloaded from this location, which in
+
+210
+00:17:58,240 --> 00:18:00,820
+this case for us is Hoshi Corp itself.
+
+211
+00:18:01,210 --> 00:18:08,020
+However, let's see what happens if we try to use a provider which is not in the TerraForm registry.
+
+212
+00:18:08,200 --> 00:18:15,280
+Let's say you want to provision infrastructure on Lenart platform instead of us, which is another cloud
+
+213
+00:18:15,280 --> 00:18:15,790
+provider.
+
+214
+00:18:16,090 --> 00:18:22,570
+And for that, of course, you go to terraform documentation and you search for Lenard Provider.
+
+215
+00:18:23,670 --> 00:18:27,630
+Which is a verified provider and not an official one, as you see with the.
+
+216
+00:18:28,020 --> 00:18:28,710
+I can hear.
+
+217
+00:18:29,630 --> 00:18:36,530
+And let's switch to the documentation and copy the code for using the provider itself.
+
+218
+00:18:37,910 --> 00:18:43,190
+So we have a little old provider defined, you know, if I try to do TerraForm in it.
+
+219
+00:18:45,290 --> 00:18:51,950
+You see an error message that says failed to query available provider packages, and right here you
+
+220
+00:18:51,950 --> 00:18:57,770
+see that it tries to find a leaner provider in Hershey Corp. registry.
+
+221
+00:18:58,100 --> 00:19:01,760
+And it says that it doesn't have such a provider in that registry.
+
+222
+00:19:02,000 --> 00:19:05,320
+And that's the error message because Lehnert provider isn't hosted there.
+
+223
+00:19:05,360 --> 00:19:12,770
+So exactly for that case, we need to explicitly define the source or location of the provider.
+
+224
+00:19:13,430 --> 00:19:19,970
+And again, moving back to the documentation, you see the code of how that can be defined either here
+
+225
+00:19:19,970 --> 00:19:21,080
+or in the U.S.
+
+226
+00:19:21,200 --> 00:19:27,260
+Provider Link We also get the latest version later specific version.
+
+227
+00:19:27,440 --> 00:19:28,040
+Copy that?
+
+228
+00:19:28,790 --> 00:19:29,450
+Find it here.
+
+229
+00:19:29,750 --> 00:19:36,770
+So now you see Lynn Code isn't in the Hershey core registry, but in a registry called Lehnert, and
+
+230
+00:19:36,770 --> 00:19:37,910
+we have a version as well.
+
+231
+00:19:38,150 --> 00:19:46,340
+And now if I do terraform in it again, TerraForm will be able to find that lehnert provider in the
+
+232
+00:19:46,340 --> 00:19:54,230
+correct location and then download the provider code for this version inside the TerraForm project.
+
+233
+00:19:54,740 --> 00:20:01,220
+So if I expand this now, we have Lehnert Providers code available locally, so that's basically what
+
+234
+00:20:01,220 --> 00:20:05,120
+you need to know about this specific definition of providers.
+
+235
+00:20:05,720 --> 00:20:13,100
+It is optional for official Hasher Corp providers, and it is mandatory for non-official ones.
+
+236
+00:20:13,310 --> 00:20:16,220
+However, it is a recommended way of defining providers.
+
+237
+00:20:16,550 --> 00:20:17,920
+Now a quick note here.
+
+238
+00:20:18,140 --> 00:20:19,970
+This is an updated part.
+
+239
+00:20:20,120 --> 00:20:27,050
+So in the next demos, you will not see these providers dot your file because we're not using any providers
+
+240
+00:20:27,050 --> 00:20:28,550
+from an official registry.
+
+241
+00:20:28,970 --> 00:20:34,610
+So don't let it confuse you and be aware that generally it's a good practice to have this defined.
+
+242
+00:20:38,720 --> 00:20:44,530
+So now that we have provider installed locally, what can we do with IWC?
+
+243
+00:20:45,020 --> 00:20:48,320
+How we can interact with IWC using provider?
+
+244
+00:20:48,950 --> 00:20:52,370
+And this is another important and interesting part.
+
+245
+00:20:52,670 --> 00:20:58,370
+Provider actually gives us access to the entire whole API of IWC.
+
+246
+00:20:58,610 --> 00:21:07,970
+So basically, whatever is possible to do with an API of a technology provider is giving us that possibility.
+
+247
+00:21:07,970 --> 00:21:17,120
+So if it is exposes different services and resources in those services, then we can interact with all
+
+248
+00:21:17,120 --> 00:21:18,890
+of them using the provider.
+
+249
+00:21:19,310 --> 00:21:27,290
+So through a robust provider, we actually now have access to every single service in IWC and the resources
+
+250
+00:21:27,290 --> 00:21:32,720
+of those services so we can do whatever we want in our account.
+
+251
+00:21:33,230 --> 00:21:44,930
+And if we go back to the documentation of provider of provider, in this case, here you see which resources
+
+252
+00:21:44,930 --> 00:21:51,890
+of IWC are actually exposed and which resources we can work with is a list right here.
+
+253
+00:21:52,370 --> 00:21:57,440
+So you have different services and different features here.
+
+254
+00:21:57,440 --> 00:22:01,720
+You see, we have SC, two SC are all of them listed here.
+
+255
+00:22:01,730 --> 00:22:06,890
+And if I expand this inside of the service, we have a bunch of resources.
+
+256
+00:22:07,220 --> 00:22:08,840
+We have the aim.
+
+257
+00:22:08,840 --> 00:22:11,230
+I have snapshots volumes.
+
+258
+00:22:11,240 --> 00:22:15,530
+So basically we can do whatever we want for easy to service.

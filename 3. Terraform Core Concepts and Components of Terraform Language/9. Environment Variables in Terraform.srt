@@ -1,0 +1,423 @@
+1
+00:00:03,360 --> 00:00:09,750
+Now, as I mentioned at the beginning, writing the credentials directly in the configuration file is
+
+2
+00:00:09,750 --> 00:00:16,470
+actually not a good security practice because you're going to be checking this file into a git repository,
+
+3
+00:00:16,470 --> 00:00:17,010
+probably.
+
+4
+00:00:17,130 --> 00:00:23,670
+So you don't want your credentials to be checked in into a git repository so you can hard code these
+
+5
+00:00:23,670 --> 00:00:24,640
+values in here.
+
+6
+00:00:24,930 --> 00:00:28,030
+So first of all, let's actually remove them from here.
+
+7
+00:00:28,050 --> 00:00:29,530
+Let's just leave region.
+
+8
+00:00:29,670 --> 00:00:37,440
+And there are two ways that we can set these credentials for any user so that Terraformed can pick it
+
+9
+00:00:37,440 --> 00:00:37,710
+up.
+
+10
+00:00:38,070 --> 00:00:42,950
+The first one is setting these credentials as environmental variables.
+
+11
+00:00:43,530 --> 00:00:45,540
+So let's go back to the terminal.
+
+12
+00:00:45,810 --> 00:00:51,070
+And here we're going to set environmental variables that terraform then will pick up.
+
+13
+00:00:51,240 --> 00:00:56,990
+So the first variable is A.W. is secret exos key.
+
+14
+00:00:57,510 --> 00:01:04,650
+And this is, by the way, the same exact environmental variable that we need to set for using a command
+
+15
+00:01:04,650 --> 00:01:05,640
+line interface.
+
+16
+00:01:05,850 --> 00:01:08,370
+So this is the same for NWC itself.
+
+17
+00:01:09,360 --> 00:01:11,970
+And the value for this is.
+
+18
+00:01:15,350 --> 00:01:24,290
+We don't need the quotes, and the second one is eight of us excess key Edem.
+
+19
+00:01:27,820 --> 00:01:31,630
+And no, if we do terraform play.
+
+20
+00:01:37,440 --> 00:01:45,750
+You see, the terraformed was able to connect to us, even though we don't have credentials in the configuration
+
+21
+00:01:45,750 --> 00:01:50,400
+file for provider block here so we can actually report this.
+
+22
+00:01:51,450 --> 00:01:51,990
+I have to, right?
+
+23
+00:01:51,990 --> 00:01:54,250
+No, it can be anything other than.
+
+24
+00:01:54,270 --> 00:01:55,800
+Yes, so.
+
+25
+00:01:57,280 --> 00:02:04,990
+This is basically one way of setting credentials for us in this case specifically so that Terraformed
+
+26
+00:02:04,990 --> 00:02:06,640
+can authenticate with us.
+
+27
+00:02:07,090 --> 00:02:17,450
+However, if I now switched to another terminal window and did exporting environmental variables and
+
+28
+00:02:17,450 --> 00:02:27,040
+let's grab us, you see that those two environmental variables are not set here because they are only
+
+29
+00:02:27,430 --> 00:02:30,220
+accessible or available in this context.
+
+30
+00:02:30,220 --> 00:02:30,470
+Right.
+
+31
+00:02:30,670 --> 00:02:35,730
+So I have this environmental variable set here, but they're not available here anymore.
+
+32
+00:02:36,070 --> 00:02:44,440
+So if you want to have a globally configured in credentials, then you need to configure them in the
+
+33
+00:02:45,550 --> 00:02:52,000
+home directory, DOT AWB directory and you have credentials.
+
+34
+00:02:52,270 --> 00:02:52,610
+Right.
+
+35
+00:02:52,780 --> 00:03:01,450
+So so basically, if you have your credentials here, which is where AWB stores them, which is a default
+
+36
+00:03:01,450 --> 00:03:08,320
+location for storing it, credentials on any operating system, then TerraForm can also pick it up.
+
+37
+00:03:08,440 --> 00:03:12,400
+And the way to set these credentials is using it as configure.
+
+38
+00:03:13,960 --> 00:03:24,450
+And then you can basically type in the existing ID here, then secret key ID as well as default region.
+
+39
+00:03:24,670 --> 00:03:26,410
+I already have set these values.
+
+40
+00:03:26,410 --> 00:03:30,730
+So they're basically the existing values that I'm seeing here.
+
+41
+00:03:30,910 --> 00:03:33,190
+If you're doing it for the first time, there will be empty.
+
+42
+00:03:33,400 --> 00:03:35,530
+So you have to provide some value.
+
+43
+00:03:37,630 --> 00:03:45,460
+And when you do configure and enter all these values, this DOT NWS directory will automatically get
+
+44
+00:03:45,460 --> 00:03:54,460
+generated with credentials and config files inside and there will be basically your global energy user
+
+45
+00:03:54,700 --> 00:03:56,000
+credential configuration.
+
+46
+00:03:56,500 --> 00:04:02,020
+So if I did terraformed apply with a variable file.
+
+47
+00:04:05,430 --> 00:04:09,290
+Therefore, they've thought to was.
+
+48
+00:04:11,820 --> 00:04:19,920
+TerraForm should be able to use the credentials in area with US credentials file and still be able to
+
+49
+00:04:19,950 --> 00:04:22,530
+authenticate with eyewitness account.
+
+50
+00:04:23,190 --> 00:04:23,930
+And there you go.
+
+51
+00:04:23,940 --> 00:04:25,540
+We see that output.
+
+52
+00:04:25,670 --> 00:04:26,490
+Let's actually do.
+
+53
+00:04:26,610 --> 00:04:27,210
+Yes.
+
+54
+00:04:30,280 --> 00:04:37,030
+So if TerraForm can connect to the airwaves account, it will not be able to refresh the state because
+
+55
+00:04:37,030 --> 00:04:43,360
+it needs to fetch the state, the current state from the eatery's account to compare it to our desired
+
+56
+00:04:43,690 --> 00:04:46,810
+state and decide what action needs to be taken.
+
+57
+00:04:47,290 --> 00:04:49,450
+So here you see it play complete.
+
+58
+00:04:49,840 --> 00:04:51,580
+The changes were applied.
+
+59
+00:04:52,510 --> 00:05:02,110
+So you should use one of these two ways to configure credentials for AWEX or any other technology that
+
+60
+00:05:02,110 --> 00:05:08,190
+you are connecting with could be Google Cloud or it could be a jenkins' server or communities.
+
+61
+00:05:08,440 --> 00:05:15,850
+So instead of typing it or hard coding it into the config file, you should set it either as environmental
+
+62
+00:05:15,850 --> 00:05:26,620
+variables and you will see in the documentation of each provider which environmental variables supported,
+
+63
+00:05:26,800 --> 00:05:34,310
+as well as which are the ways of setting the credentials from outside is supported.
+
+64
+00:05:34,570 --> 00:05:38,440
+So, for example, let's look up Jenkins' here.
+
+65
+00:05:41,850 --> 00:05:43,110
+And documentation.
+
+66
+00:05:45,920 --> 00:05:52,670
+And there you go, for example, you have the server, your username and password, and you have again
+
+67
+00:05:52,940 --> 00:06:00,230
+enviromental variable names that you can set as an alternative to hard coding the values here.
+
+68
+00:06:00,470 --> 00:06:09,590
+So that terraformed can pick up these values to authenticate with Jenkins', as well as some detailed
+
+69
+00:06:09,920 --> 00:06:11,790
+documentation about the authentication.
+
+70
+00:06:12,440 --> 00:06:16,160
+So it should work the same no matter which provider you're using.
+
+71
+00:06:16,520 --> 00:06:21,140
+And also know that you can also configure region by setting environmental variable.
+
+72
+00:06:21,380 --> 00:06:27,320
+Because in my account on my laptop locally, I have also configured the default region.
+
+73
+00:06:27,560 --> 00:06:36,260
+So if I'm using the default one, I can just basically just leave it empty and basically have the users
+
+74
+00:06:36,440 --> 00:06:44,300
+who are using this terraformed configuration set the region by setting the default region in order to
+
+75
+00:06:44,300 --> 00:06:44,720
+variable.
+
+76
+00:06:48,950 --> 00:06:54,800
+Now, what if you wanted to define your own custom environmental variables, can you do that in TerraForm?
+
+77
+00:06:55,370 --> 00:07:03,530
+In fact, TerraForm lets you set global environmental variables using T.F. underscore var prefix.
+
+78
+00:07:03,980 --> 00:07:10,490
+So let's say we want to work in one specific availability zone and we want that value to be set as a
+
+79
+00:07:10,490 --> 00:07:12,200
+global environmental variable.
+
+80
+00:07:12,230 --> 00:07:12,510
+Right.
+
+81
+00:07:12,710 --> 00:07:25,400
+So you could set environmental variable called T.F. Underscore for underscore and this could be any
+
+82
+00:07:25,400 --> 00:07:27,020
+name that we want to give that variable.
+
+83
+00:07:27,260 --> 00:07:32,210
+Let's say this is availability zone.
+
+84
+00:07:34,050 --> 00:07:41,400
+And this is the value and know that there should not be space around this equals sign when setting environmental
+
+85
+00:07:41,400 --> 00:07:41,850
+variables.
+
+86
+00:07:42,810 --> 00:07:49,170
+So this will now give us environmental variable called TFR and we'll zone.
+
+87
+00:07:49,530 --> 00:07:56,280
+And the way we can now reference that environmental variable inside terraformed configuration file is
+
+88
+00:07:56,310 --> 00:07:58,270
+using this part right here.
+
+89
+00:07:58,680 --> 00:08:01,740
+So this prefix basically tells terraformed.
+
+90
+00:08:01,740 --> 00:08:06,270
+This is a global variable and this is the name of the variable we can reference.
+
+91
+00:08:06,300 --> 00:08:07,380
+So I'm going to copy that.
+
+92
+00:08:07,380 --> 00:08:14,600
+Just the name of the variable without the prefix and we're going to declare it is a variable right here.
+
+93
+00:08:16,230 --> 00:08:17,930
+And let's just leave it empty.
+
+94
+00:08:18,870 --> 00:08:26,160
+No description or type, and we can now reference it and its value using a normal variable.
+
+95
+00:08:26,670 --> 00:08:33,480
+So var levels on and we're setting this value basically using.
+
+96
+00:08:34,320 --> 00:08:40,820
+Custom environments, a variable of terraform and know if we do terraform, apply again.
+
+97
+00:08:42,340 --> 00:08:49,990
+You see the terraformed got that variable from here, and since we didn't make a change, nothing got
+
+98
+00:08:49,990 --> 00:08:50,420
+applied.
+
+99
+00:08:50,770 --> 00:08:59,290
+Now let's actually set the variable value to three B, so this will basically tell terraformed to create
+
+100
+00:08:59,290 --> 00:09:06,400
+a subnet in availability zone three B, so that's, you know, terraformed play.
+
+101
+00:09:08,200 --> 00:09:18,310
+And and here you see that Dev summit one will be moved from three a availabilities on to three B C,
+
+102
+00:09:18,790 --> 00:09:20,170
+we can confirm that.
+
+103
+00:09:23,200 --> 00:09:27,490
+If we go back to our comment line and refresh the subnet.
+
+104
+00:09:32,390 --> 00:09:42,440
+You see that it's now in AISI three peat, so basically this is how you can also use custom tear form
+
+105
+00:09:42,440 --> 00:09:51,200
+in order to be able to set terraformed variable from outside and then reference it like a regular variable.
+
+106
+00:09:51,800 --> 00:09:57,320
+Or we could also say this is another way of setting a variable value in terraform.

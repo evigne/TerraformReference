@@ -1,0 +1,91 @@
+1
+00:00:06,930 --> 00:00:07,360
+Great.
+
+2
+00:00:07,680 --> 00:00:15,810
+So we basically created a structure in our TerraForm project, which is actually a structure, a common
+
+3
+00:00:15,810 --> 00:00:18,670
+standard way of structuring your TerraForm project.
+
+4
+00:00:19,110 --> 00:00:28,500
+We have created modules where we logically grouped similar resources that belong together into own modules
+
+5
+00:00:28,830 --> 00:00:31,510
+while still creating one of the resources outside.
+
+6
+00:00:31,800 --> 00:00:39,480
+We also learned how to use those modules, how to reference them and pass on different values that we
+
+7
+00:00:39,720 --> 00:00:46,740
+configured inside the modules themselves, as well as we learn how to reference the resource objects
+
+8
+00:00:46,980 --> 00:00:54,150
+inside the modules itself, using this module reference and then basically just access any attributes
+
+9
+00:00:54,150 --> 00:00:54,930
+of their object.
+
+10
+00:00:55,050 --> 00:00:57,470
+So our project looks great.
+
+11
+00:00:57,510 --> 00:01:01,700
+We have all the resources parameterized, which is actually a best practice.
+
+12
+00:01:01,980 --> 00:01:08,400
+So all the values are set in one place in the TFN file.
+
+13
+00:01:08,610 --> 00:01:14,490
+So if something changes, we just adjust in one place and we don't need to worry about adjusting the
+
+14
+00:01:14,490 --> 00:01:15,660
+rest of the configuration.
+
+15
+00:01:16,350 --> 00:01:24,120
+And as the last part, we can just commit everything to get let's actually see the status of all the
+
+16
+00:01:24,120 --> 00:01:24,710
+changes.
+
+17
+00:01:25,230 --> 00:01:25,650
+There you go.
+
+18
+00:01:25,680 --> 00:01:30,180
+We have modules and we have basically adjusted everything.
+
+19
+00:01:31,830 --> 00:01:34,290
+So I'm going to add all the changes.
+
+20
+00:01:34,780 --> 00:01:41,610
+Let's commit modularize terraform project.
+
+21
+00:01:47,690 --> 00:01:56,010
+The reform push will give us said upstream for our branch, which doesn't exist remotely yet, and we
+
+22
+00:01:56,010 --> 00:01:59,330
+can just push the whole branch and there you go.
+
+23
+00:01:59,340 --> 00:02:06,420
+We have our module configuration in the remote branch, if you want to reference it later.

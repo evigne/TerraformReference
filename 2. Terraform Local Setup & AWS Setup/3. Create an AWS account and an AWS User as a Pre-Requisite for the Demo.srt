@@ -1,0 +1,439 @@
+1
+00:00:04,770 --> 00:00:11,970
+For this course, you're going to need an eyewitness account, and in order to create an account, you
+
+2
+00:00:11,970 --> 00:00:18,660
+basically just have to fill out some forms, including your address, information, credit card information
+
+3
+00:00:18,660 --> 00:00:27,210
+and so on, because AWB wants to make sure that people who are creating accounts are verified and are
+
+4
+00:00:27,210 --> 00:00:28,880
+registering with valid data.
+
+5
+00:00:29,190 --> 00:00:34,910
+And I will put a link below for a guide of how to create an account that you can follow.
+
+6
+00:00:35,130 --> 00:00:40,530
+And once you have an account, you get a free tier offer from either.
+
+7
+00:00:40,600 --> 00:00:40,880
+Yes.
+
+8
+00:00:41,160 --> 00:00:46,500
+So what does it actually mean on AWB documentation?
+
+9
+00:00:46,510 --> 00:00:54,630
+You have this free page that basically lists all the components, all the services of AWB that you can
+
+10
+00:00:54,630 --> 00:00:59,610
+use for free for one year after registering an account.
+
+11
+00:01:00,180 --> 00:01:06,720
+And some of them or some of the most important ones are the easy to instance, which is the virtual
+
+12
+00:01:06,720 --> 00:01:13,340
+server, which we're going to be creating on areas as well as some storage and so on.
+
+13
+00:01:13,650 --> 00:01:17,890
+So you can take advantage of that, free your account on areas.
+
+14
+00:01:18,600 --> 00:01:24,840
+Now, by default, when you create an account on us, you have a route user.
+
+15
+00:01:25,110 --> 00:01:32,730
+This user gets created automatically and this user has access to all the services and all the features.
+
+16
+00:01:33,190 --> 00:01:40,350
+So it has unlimited privileges to do whatever you want in your account, including the billing Pardes
+
+17
+00:01:40,710 --> 00:01:42,430
+account settings and so on.
+
+18
+00:01:42,660 --> 00:01:50,640
+So the first thing we want to do when the account is registered is create an admin user that has less
+
+19
+00:01:50,640 --> 00:01:55,650
+privileges than route user, but it will have all the privileges that we need to create.
+
+20
+00:01:55,650 --> 00:01:59,090
+Easy to instance, deploy some applications on that.
+
+21
+00:01:59,370 --> 00:02:05,020
+And this is the first thing that Adewusi also advises to do for security reasons.
+
+22
+00:02:05,580 --> 00:02:13,590
+So if you go inside the I am service, you will see the configuration dashboard so we can create users,
+
+23
+00:02:13,920 --> 00:02:17,940
+groups and permissions here and manage all the stuff here.
+
+24
+00:02:18,210 --> 00:02:26,720
+Now, admin user can also have permission to create users, assign the roles to them and so on, so
+
+25
+00:02:26,730 --> 00:02:34,230
+you can have one admin user to manage and administer the whole account, but it will still have less
+
+26
+00:02:34,230 --> 00:02:35,940
+privileges than the road user.
+
+27
+00:02:36,120 --> 00:02:41,070
+For example, it will not be able to access the billing and credit card information.
+
+28
+00:02:41,580 --> 00:02:47,850
+And then using that admin user, you can actually create other users and give them other permissions
+
+29
+00:02:48,660 --> 00:02:50,310
+for team members.
+
+30
+00:02:50,310 --> 00:02:57,600
+For example, if you have a database team that all use NWS and configure stuff in there, obviously
+
+31
+00:02:57,600 --> 00:03:05,580
+you need to give them all permissions and access to AC2 and maybe some other services so the admin user
+
+32
+00:03:05,580 --> 00:03:08,310
+can be the one that administers all of this.
+
+33
+00:03:13,100 --> 00:03:23,000
+So now let's create a user admin that has admin privileges to do stuff on Aiwass services, we don't
+
+34
+00:03:23,000 --> 00:03:28,600
+need a group for that because it's just going to be one user and the only one with admin access.
+
+35
+00:03:29,300 --> 00:03:30,320
+So let's create it.
+
+36
+00:03:30,710 --> 00:03:32,890
+So here we have an end user button.
+
+37
+00:03:33,710 --> 00:03:38,630
+Let's call it admin and we can give the user two types of access.
+
+38
+00:03:39,010 --> 00:03:42,230
+Could be either Xs through the console in the UI.
+
+39
+00:03:42,710 --> 00:03:50,360
+So basically you can log in on the UI and then do stuff through the UI like configure stuff, change
+
+40
+00:03:50,360 --> 00:03:51,290
+stuff and so on.
+
+41
+00:03:51,710 --> 00:03:54,700
+And you can also have programmatic access.
+
+42
+00:03:55,100 --> 00:04:02,000
+This is when you can execute different tasks from your command line and this can be either through a
+
+43
+00:04:02,540 --> 00:04:08,170
+command line interface or in our case, we're going to use terraformed commands to access HWC.
+
+44
+00:04:08,300 --> 00:04:14,090
+So we need programmatic access for the admin user to execute terraformed commands.
+
+45
+00:04:14,720 --> 00:04:21,430
+And you can decide whether a user has one of those EXIS types or maybe both.
+
+46
+00:04:21,440 --> 00:04:29,630
+In this case, we can give admin both types of access because we want to be able to access the UI console
+
+47
+00:04:29,630 --> 00:04:29,980
+with it.
+
+48
+00:04:29,990 --> 00:04:35,840
+So we want to be able to log in with this user but also execute things from command line.
+
+49
+00:04:35,990 --> 00:04:43,130
+And as you see, the management console EXIS display some other options, because if we are going to
+
+50
+00:04:43,130 --> 00:04:49,990
+log in with this user, we need a password for the user as well, and we can let it all generate a password.
+
+51
+00:04:50,360 --> 00:04:58,730
+And with this option, we can force the user, the admin user on the first login to reset their password.
+
+52
+00:04:59,030 --> 00:05:07,430
+So the UI access will basically be through username and password username here, password, auto generated
+
+53
+00:05:07,910 --> 00:05:11,320
+and the programatic access will be the keys.
+
+54
+00:05:11,390 --> 00:05:19,040
+So from the command line, we're going to need exis keys or secret access key to log into Adewusi and
+
+55
+00:05:19,040 --> 00:05:20,480
+then execute some commands.
+
+56
+00:05:21,260 --> 00:05:22,550
+Let's go to next.
+
+57
+00:05:22,670 --> 00:05:27,200
+Now here we can create a group that the user can be part of.
+
+58
+00:05:27,560 --> 00:05:33,860
+It is actually the best practice to have all the users in a group and then to assign the permissions
+
+59
+00:05:33,860 --> 00:05:36,650
+to the group rather than directly to user.
+
+60
+00:05:37,130 --> 00:05:42,350
+But the admin user is going to be the only one in the group so we can actually skip creation of group
+
+61
+00:05:42,500 --> 00:05:46,030
+so we can assign a permission to the user directly.
+
+62
+00:05:46,370 --> 00:05:50,950
+And for that we are going to go to attach existing policies directly.
+
+63
+00:05:52,130 --> 00:05:58,600
+And this is a list of all the permissions or all the policies that we can choose from.
+
+64
+00:05:59,270 --> 00:06:05,960
+And this is a pretty long list because you have granular permission policies in us.
+
+65
+00:06:06,470 --> 00:06:15,610
+So you can basically decide for each single service what type of Xs you want to grant a user.
+
+66
+00:06:16,340 --> 00:06:23,120
+And this actually is good because it supports the best practice of giving the user the least privilege
+
+67
+00:06:23,120 --> 00:06:23,520
+they need.
+
+68
+00:06:23,720 --> 00:06:30,950
+So if a user needs the Read-Only permission for a service, you can give a user read-only permission
+
+69
+00:06:30,950 --> 00:06:32,360
+rather than full access.
+
+70
+00:06:33,080 --> 00:06:41,180
+So admin user is going to get administrator access, which basically includes all the policies and all
+
+71
+00:06:41,180 --> 00:06:48,280
+the permissions that are needed for administering your account.
+
+72
+00:06:48,950 --> 00:06:55,490
+So we're going to choose administrator access policy and go to the next page.
+
+73
+00:06:56,910 --> 00:07:03,480
+You can also add text to the user, which is basically additional information like metadata about the
+
+74
+00:07:03,480 --> 00:07:07,630
+user, if these are individual team members in your organization.
+
+75
+00:07:07,650 --> 00:07:14,100
+This could be an email address, description or job title, name, surname, etc..
+
+76
+00:07:14,550 --> 00:07:15,570
+It's optional, though.
+
+77
+00:07:15,570 --> 00:07:17,790
+And we're going to skip this for admin user.
+
+78
+00:07:18,510 --> 00:07:22,700
+And next and this is our summary page.
+
+79
+00:07:23,070 --> 00:07:25,210
+So we have created an admin user.
+
+80
+00:07:25,510 --> 00:07:29,300
+We're giving it access to login through a Web console.
+
+81
+00:07:29,670 --> 00:07:38,280
+The password will be generated as well as programmatic access from the command line interface, and
+
+82
+00:07:38,280 --> 00:07:41,010
+it has administrator access privileges.
+
+83
+00:07:42,060 --> 00:07:47,940
+So all the permissions it needs to administer the account, let's create the user.
+
+84
+00:07:50,470 --> 00:07:56,920
+And here you have all the information, all the secret information as well for the user, so password,
+
+85
+00:07:57,400 --> 00:08:00,900
+you're going to need this one to log in to the console.
+
+86
+00:08:01,540 --> 00:08:11,320
+And these two are the keys to access the US account and the services from EDWYN user from your command
+
+87
+00:08:11,320 --> 00:08:11,590
+line.
+
+88
+00:08:11,830 --> 00:08:16,750
+So save all this information and those keys securely.
+
+89
+00:08:17,170 --> 00:08:20,700
+So download this file and we're going to reference that later.
+
+90
+00:08:21,610 --> 00:08:27,520
+And as a next step, we're going to log into UI using this password and change the password because
+
+91
+00:08:27,520 --> 00:08:29,050
+we have configured it this way.
+
+92
+00:08:31,680 --> 00:08:36,410
+So let's sign out as a road user and log in with the Edman user again.
+
+93
+00:08:39,750 --> 00:08:47,280
+Log back in and in the signing page, you have a selection between route user and I am user, let's
+
+94
+00:08:47,280 --> 00:08:48,090
+choose this one.
+
+95
+00:08:48,630 --> 00:08:54,180
+The ID or account idea of your user is also in this downloaded file.
+
+96
+00:08:54,450 --> 00:09:01,050
+If you open it in the console, in link, you have this ID here, you can use a link directly to go
+
+97
+00:09:01,050 --> 00:09:02,190
+to the login page.
+
+98
+00:09:04,310 --> 00:09:10,790
+Like this and this I.D. is going to be filled automatically, so this is the account, Edem.
+
+99
+00:09:11,710 --> 00:09:19,070
+And here you have the username, we called it admin and the password, which is also in this file.
+
+100
+00:09:23,160 --> 00:09:26,880
+And since we've configured it, we have to change the password.
+
+101
+00:09:35,690 --> 00:09:43,190
+And as you see, we're locked in as admin user and we can configure services and do stuff now with admin
+
+102
+00:09:43,190 --> 00:09:43,580
+user.
+
+103
+00:09:46,290 --> 00:09:54,480
+A quick note here that AWB is actually changing the UI very often, also in real time for different
+
+104
+00:09:54,480 --> 00:09:55,050
+users.
+
+105
+00:09:55,260 --> 00:10:01,890
+So the UI that you are seeing in my video can actually be different from what you are seeing right now,
+
+106
+00:10:02,580 --> 00:10:04,620
+but most of the structure should be the same.
+
+107
+00:10:04,650 --> 00:10:12,020
+So, for example, if I go into easy to you see that I have this toggle new, easy to experience enabled.
+
+108
+00:10:12,150 --> 00:10:17,620
+So a couple of things have changed in this UI and it may look different from yours.
+
+109
+00:10:17,640 --> 00:10:20,210
+So do not get confused by that.
+
+110
+00:10:20,400 --> 00:10:22,050
+It may happen pretty often.

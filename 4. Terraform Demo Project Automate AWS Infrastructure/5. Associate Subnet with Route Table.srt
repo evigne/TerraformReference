@@ -1,0 +1,151 @@
+1
+00:00:07,090 --> 00:00:14,380
+Now, there's one more thing we need to configure with our round table, and that is if I actually click
+
+2
+00:00:14,380 --> 00:00:19,870
+in this one, for example, we have a tab called subnet associations.
+
+3
+00:00:20,290 --> 00:00:25,930
+And basically this means that we have created a round table inside our VPC.
+
+4
+00:00:26,290 --> 00:00:34,810
+However, we need to associate subnets with the round table so the traffic within the subnet can also
+
+5
+00:00:34,810 --> 00:00:36,770
+be handled by the round table.
+
+6
+00:00:37,450 --> 00:00:42,900
+So if I click inside here, you see that there is no association defined here.
+
+7
+00:00:42,910 --> 00:00:53,250
+However, we have a note that by default, when you do not associate subnets to a round table, they're
+
+8
+00:00:53,260 --> 00:00:57,750
+automatically assigned or associated to the main road table.
+
+9
+00:00:57,790 --> 00:01:00,250
+Of course, in that VPC where the subnet is running.
+
+10
+00:01:00,550 --> 00:01:05,540
+So the main row table is basically the one that says yes in the main column.
+
+11
+00:01:06,130 --> 00:01:08,660
+So this is the default row table.
+
+12
+00:01:08,680 --> 00:01:09,530
+This is not ours.
+
+13
+00:01:09,550 --> 00:01:11,380
+This is from the default VPC.
+
+14
+00:01:11,740 --> 00:01:19,690
+And this is actually our two round tables in our boxes, and this is the main one.
+
+15
+00:01:19,720 --> 00:01:26,830
+However, we want the subnet to be associated with the table that we created because this is the one
+
+16
+00:01:26,830 --> 00:01:35,470
+that has Internet gateway configured and we want our subnet to be connected to the Internet gateway
+
+17
+00:01:35,500 --> 00:01:35,950
+as well.
+
+18
+00:01:36,190 --> 00:01:36,520
+Right.
+
+19
+00:01:36,760 --> 00:01:44,680
+So right now, subnet is associated with the main or this round table that doesn't have Internet gateway
+
+20
+00:01:44,680 --> 00:01:45,000
+here.
+
+21
+00:01:45,310 --> 00:01:47,620
+So let's actually change that.
+
+22
+00:01:47,620 --> 00:01:50,310
+And we're going to do that also in TerraForm.
+
+23
+00:01:50,650 --> 00:01:54,660
+It's a very straightforward and simple resource.
+
+24
+00:01:54,910 --> 00:02:04,930
+It's called A.W. s Round Table Association.
+
+25
+00:02:06,250 --> 00:02:13,480
+And let's actually call it association round table subnet maybe.
+
+26
+00:02:15,700 --> 00:02:20,640
+And we just have two parameters, which is the subnet, Edem.
+
+27
+00:02:23,680 --> 00:02:33,580
+Which we can grab right here from the subnets resource and also don't forget, we always have to use
+
+28
+00:02:33,580 --> 00:02:36,190
+the ID and the attribute of that object.
+
+29
+00:02:36,640 --> 00:02:43,360
+And the second attribute, which is the round table, is pretty straightforward.
+
+30
+00:02:43,900 --> 00:02:45,510
+We're associating this, too.
+
+31
+00:02:45,520 --> 00:02:52,870
+So we just need IDs of the both and row table ID we can grab here.
+
+32
+00:02:57,680 --> 00:03:04,370
+My table and also don't forget, I did a tribute, so let's play that.
+
+33
+00:03:11,680 --> 00:03:19,000
+And one resource God created and if I refresh the page, no.
+
+34
+00:03:20,450 --> 00:03:28,960
+And go to some associations, you see that now we have an explicit summit association with our roundtable,
+
+35
+00:03:29,330 --> 00:03:37,610
+so our summit or all the resources, including Ishita that we're going to deploy into our summit will
+
+36
+00:03:37,610 --> 00:03:41,870
+be or all of these requests will be handled by this roundtable.
+
+37
+00:03:42,440 --> 00:03:49,330
+So we can SFH into the issue, for instance, as well as Access Ingenix Web server through the browser.
+
+38
+00:03:49,880 --> 00:03:51,740
+So all of that is configured.

@@ -1,0 +1,927 @@
+1
+00:00:06,840 --> 00:00:14,520
+Another interesting concept of terraform is variables, so you can actually use variables inside the
+
+2
+00:00:14,520 --> 00:00:15,630
+configuration file.
+
+3
+00:00:15,900 --> 00:00:22,830
+So, for example, let's say we want a value of site or blog not to be hard coded here, but we want
+
+4
+00:00:22,830 --> 00:00:24,480
+to pass it as a parameter.
+
+5
+00:00:24,630 --> 00:00:30,180
+In this case, we can actually define a variable for this site or blog and then reference that variable
+
+6
+00:00:30,360 --> 00:00:32,340
+and its value right here.
+
+7
+00:00:32,590 --> 00:00:38,190
+And this can be pretty handy, especially if you have values that are used multiple times for different
+
+8
+00:00:38,190 --> 00:00:45,660
+resources or if you want to reuse the configuration files of terraform for multiple different environments
+
+9
+00:00:45,660 --> 00:00:50,780
+and you want to pass in different parameters for different use cases.
+
+10
+00:00:50,800 --> 00:00:51,070
+Right.
+
+11
+00:00:51,270 --> 00:00:58,680
+For example, have the same template for development and production environments where you can basically
+
+12
+00:00:58,680 --> 00:01:05,520
+just define all these values like naming, etc. as parameters and proceed from outside.
+
+13
+00:01:05,880 --> 00:01:09,770
+So what we're going to do is to make it very simple.
+
+14
+00:01:09,960 --> 00:01:14,670
+We're going to use a variable for site or block of the subnet.
+
+15
+00:01:15,000 --> 00:01:17,250
+So I'm going to remove it right here.
+
+16
+00:01:17,790 --> 00:01:26,280
+And the variables in TerraForm are defined with a variable keyword and we're going to name the variable
+
+17
+00:01:26,460 --> 00:01:27,450
+whatever we want.
+
+18
+00:01:27,840 --> 00:01:34,140
+Let's actually call it subnet, slider, block.
+
+19
+00:01:37,590 --> 00:01:44,730
+And inside that variable definition, we have a possibility to define several attributes.
+
+20
+00:01:44,970 --> 00:01:51,180
+And we're just going to go with the description that basically describes what the variable is about.
+
+21
+00:01:52,650 --> 00:02:02,520
+And we can basically just repeat that slider block and this defines our variable.
+
+22
+00:02:02,910 --> 00:02:09,780
+And now we can use that variable as a value right here in the way we do that is using VAR.
+
+23
+00:02:11,290 --> 00:02:19,510
+Dot and the variable name, so as I see, the syntax is really consistent throughout, so whether we're
+
+24
+00:02:19,510 --> 00:02:26,080
+defining resource or data or variable, the actual syntax is actually pretty similar.
+
+25
+00:02:26,080 --> 00:02:26,340
+Right.
+
+26
+00:02:26,350 --> 00:02:35,860
+We have the key word and have the name and we have this block where we pass in parameters and and also
+
+27
+00:02:35,860 --> 00:02:39,880
+referencing resources or data or variables.
+
+28
+00:02:40,000 --> 00:02:42,650
+It's all pretty consistent, right, for data.
+
+29
+00:02:42,670 --> 00:02:48,040
+We had data dot name of that data for variable.
+
+30
+00:02:48,040 --> 00:02:50,320
+We have our dot variable name.
+
+31
+00:02:50,890 --> 00:02:57,070
+So we have defined a variable and we have referenced that variable right here.
+
+32
+00:02:57,340 --> 00:03:04,870
+However, we haven't assigned a value to our variable and this should actually be equals sine.
+
+33
+00:03:08,850 --> 00:03:14,410
+Now, there are three ways of assigning a value to a variable.
+
+34
+00:03:14,850 --> 00:03:23,510
+So the first way to assign a variable value is when we do terraform a play,
+
+35
+00:03:26,340 --> 00:03:31,590
+we get a prompt for entering the slider block.
+
+36
+00:03:31,590 --> 00:03:31,880
+Right.
+
+37
+00:03:32,070 --> 00:03:37,380
+So this is the variable name reference and we're expected to enter a value.
+
+38
+00:03:38,220 --> 00:03:43,410
+Let's actually do 10 dot zero.
+
+39
+00:03:43,420 --> 00:03:44,880
+Dot 20.
+
+40
+00:03:54,150 --> 00:04:00,280
+And here you see the changes that will be made, because we actually have both of these resources,
+
+41
+00:04:00,280 --> 00:04:05,340
+VPC and subunit existing, so we are making a change to the site or blog.
+
+42
+00:04:05,760 --> 00:04:13,740
+So what we see in terraform output is that the subnet will get removed and then recreated because we
+
+43
+00:04:13,740 --> 00:04:16,340
+are making change to the site block.
+
+44
+00:04:16,740 --> 00:04:17,730
+And if we do.
+
+45
+00:04:18,060 --> 00:04:18,570
+Yes.
+
+46
+00:04:20,810 --> 00:04:28,310
+The old subnet got destroyed because you can change the cinder block on an existing subnet, so it removed
+
+47
+00:04:28,310 --> 00:04:31,500
+the old one and create a new one with a new idea.
+
+48
+00:04:31,970 --> 00:04:40,160
+And if we go to us, this was the old subnet and refresh.
+
+49
+00:04:40,520 --> 00:04:43,760
+This is the new one with a new Seiter block.
+
+50
+00:04:44,450 --> 00:04:46,670
+So this is one way to assign variable.
+
+51
+00:04:46,680 --> 00:04:49,030
+But this is obviously not an efficient way.
+
+52
+00:04:49,250 --> 00:04:53,540
+This could be for testing or just trying out a new value.
+
+53
+00:04:53,550 --> 00:05:01,280
+However, for long term, if you want to automate your processes, we have to define the variables without
+
+54
+00:05:01,280 --> 00:05:02,640
+having a user prompt.
+
+55
+00:05:03,110 --> 00:05:11,350
+So the second way of passing in a variable is using command line argument in TerraForm Applied.
+
+56
+00:05:11,930 --> 00:05:18,140
+So if we do terraform apply and we're leaving the configuration as is because the variable is still
+
+57
+00:05:18,140 --> 00:05:29,990
+not assigned, so we can actually assign it again with terror from a play minus four and is an argument
+
+58
+00:05:29,990 --> 00:05:39,900
+we can pass in the name of the variable, which is this name right here, and the value which let's
+
+59
+00:05:39,920 --> 00:05:42,730
+agree to something different, let's do 30 zero.
+
+60
+00:05:42,740 --> 00:05:44,540
+And now if I execute this.
+
+61
+00:05:46,380 --> 00:05:47,770
+We see the same output.
+
+62
+00:05:48,030 --> 00:05:56,340
+So basically the site or blog needs to be changed from this to the new one that we defined.
+
+63
+00:05:56,490 --> 00:05:59,530
+So the subnet will be destroyed and a new one will be created.
+
+64
+00:06:00,000 --> 00:06:02,480
+So this time we're not prompted for an input.
+
+65
+00:06:03,390 --> 00:06:05,070
+And if we do, yes.
+
+66
+00:06:07,490 --> 00:06:09,350
+And refresh.
+
+67
+00:06:10,640 --> 00:06:20,150
+There you go, a new subnet got created with a new block and there is a lust and actually the most efficient
+
+68
+00:06:20,150 --> 00:06:24,370
+or the most correct way of assigning values to variables.
+
+69
+00:06:24,380 --> 00:06:28,760
+And this is actually a best practice that you should be using most of the time.
+
+70
+00:06:28,780 --> 00:06:37,340
+And the third way is defining variables file and assigning values to all the variables for your terraform
+
+71
+00:06:37,340 --> 00:06:39,680
+configuration inside that file.
+
+72
+00:06:39,830 --> 00:06:48,940
+And that file in TerraForm actually has its own naming convention and file ending.
+
+73
+00:06:49,340 --> 00:06:57,470
+So let's create this file and the name, the default name which Terraformed will automatically find
+
+74
+00:06:57,740 --> 00:07:04,280
+and recognize is a variables file is terraform dot T.F. Varas.
+
+75
+00:07:05,300 --> 00:07:13,950
+So let's enter so the file ending or extension must be to force, and if we name file terraformed,
+
+76
+00:07:14,080 --> 00:07:20,050
+telephone will be able to automatically find and recognize it as a force or variables file.
+
+77
+00:07:20,570 --> 00:07:25,940
+And inside this file, we can define key value pairs for our variables.
+
+78
+00:07:26,180 --> 00:07:32,900
+So we have the variable name equals the value of that variable.
+
+79
+00:07:33,170 --> 00:07:46,040
+And in this case, let's actually set it to zero 40 zero twenty four and save it and know if we apply
+
+80
+00:07:46,040 --> 00:07:46,460
+that.
+
+81
+00:07:47,000 --> 00:07:55,430
+And we don't need to pass in a variable option or enter a value as a prompt telephone will basically
+
+82
+00:07:55,430 --> 00:08:05,110
+automatically find that variables file and read the variable value from that file and set it here.
+
+83
+00:08:06,110 --> 00:08:07,090
+So let's see.
+
+84
+00:08:07,830 --> 00:08:08,540
+There you go.
+
+85
+00:08:08,540 --> 00:08:16,190
+We have the review that the Seiter blog is getting changed from this to this value that we have defined
+
+86
+00:08:16,490 --> 00:08:19,130
+in the T.F. versus file.
+
+87
+00:08:19,520 --> 00:08:22,340
+And we can confirm.
+
+88
+00:08:26,130 --> 00:08:27,210
+And there you go.
+
+89
+00:08:27,420 --> 00:08:31,670
+Let's refresh here we have the new site or blog.
+
+90
+00:08:31,950 --> 00:08:39,120
+So as I said, this is actually the correct way or a way that you should be using in most of the cases
+
+91
+00:08:39,420 --> 00:08:40,950
+for assigning variables.
+
+92
+00:08:41,400 --> 00:08:45,000
+And obviously, you can define multiple variables in here.
+
+93
+00:08:45,360 --> 00:08:49,800
+Let's actually extract this as well as a variable.
+
+94
+00:08:56,220 --> 00:09:00,510
+And let's call it VPC cinder block.
+
+95
+00:09:09,910 --> 00:09:18,910
+And we're going to reference it again with four VPC spider blog and by the way, this autocomplete that
+
+96
+00:09:18,910 --> 00:09:26,800
+I get here is from the plug in, the terraformed plug in that I have installed in my visual code, which
+
+97
+00:09:26,830 --> 00:09:28,680
+helps a lot in typing.
+
+98
+00:09:29,200 --> 00:09:33,490
+So we have a second variable, which is called VPC Spider Block.
+
+99
+00:09:34,450 --> 00:09:44,450
+So PC Spider Block, we can assign a value that was originally stated, but set it here instead.
+
+100
+00:09:44,530 --> 00:09:51,340
+And this way we can actually make the whole configuration or almost all of the configuration parameterized
+
+101
+00:09:51,610 --> 00:09:57,520
+and reuseable so that depending on the use case, we can pass in the respective values.
+
+102
+00:10:01,070 --> 00:10:09,140
+One of the cases for that is if we have a configuration file or multiple configuration files that create
+
+103
+00:10:09,140 --> 00:10:16,160
+a bunch of resources and basically just create the whole infrastructure with the VPC and security groups,
+
+104
+00:10:16,160 --> 00:10:16,820
+et cetera.
+
+105
+00:10:17,090 --> 00:10:23,690
+And if we want to replicate the same exact infrastructure is, let's say, a development environment,
+
+106
+00:10:23,690 --> 00:10:30,230
+a staging environment and production environment, we can have this configuration files for all three
+
+107
+00:10:30,230 --> 00:10:38,090
+environments and then change parameters based on which environment we are in, for example, names.
+
+108
+00:10:38,120 --> 00:10:42,670
+So basically just referencing as environment.
+
+109
+00:10:43,190 --> 00:10:49,490
+So we would have a variable called environment and.
+
+110
+00:10:51,370 --> 00:10:55,930
+We can describe it is, let's say, deployment.
+
+111
+00:11:01,660 --> 00:11:12,880
+Environment and then define these values in the variables file, and you would do the same for all the
+
+112
+00:11:12,880 --> 00:11:21,070
+other techs and also make the resource names more generic, like my PC instead of development PC, so
+
+113
+00:11:21,070 --> 00:11:24,850
+that the configuration is reusable for different environments.
+
+114
+00:11:25,270 --> 00:11:32,420
+And based on which environment you're applying to, you would basically substitute the value.
+
+115
+00:11:32,590 --> 00:11:38,300
+Now, in this case, you would have variable files for all three environments, right?
+
+116
+00:11:38,320 --> 00:11:42,620
+You would have variables file for development, production and staging.
+
+117
+00:11:42,790 --> 00:11:44,980
+So this would be terraformed.
+
+118
+00:11:45,000 --> 00:11:49,890
+Dev, for example, and all the values for development environment will be set here.
+
+119
+00:11:50,080 --> 00:11:56,800
+And then you would have terraform productive workers, for example, with all the product values.
+
+120
+00:11:57,070 --> 00:12:03,580
+Now, if we change the name of these variables, file from terraformed to something else.
+
+121
+00:12:03,580 --> 00:12:11,440
+In this case, terraform dash dev, then we need to pass the filename as a parameter when we apply.
+
+122
+00:12:11,800 --> 00:12:20,800
+So now if we do terraform a play without passing in the file name, see, it prompts us for the variable
+
+123
+00:12:21,040 --> 00:12:22,060
+value, right?
+
+124
+00:12:22,300 --> 00:12:28,560
+Because TerraForm cannot find a variables file because it's looking for terraformed or worse.
+
+125
+00:12:28,900 --> 00:12:33,490
+So let's actually just break it and import the apply.
+
+126
+00:12:33,820 --> 00:12:46,000
+So instead we do that by setting a flag for file and the name of the file that we are passing in our
+
+127
+00:12:46,000 --> 00:12:50,850
+case, terraformed Dev thought T.F. words and apply.
+
+128
+00:12:51,930 --> 00:13:00,390
+And as you see, terraformed was able to get the variables defined here, so it didn't prompt us for
+
+129
+00:13:00,570 --> 00:13:05,700
+input, and since we didn't make any changes, there is nothing to apply.
+
+130
+00:13:05,730 --> 00:13:08,470
+So, like, complete with no changes.
+
+131
+00:13:09,330 --> 00:13:15,570
+So this is how you can use variables in your configuration file and how you can make your configuration
+
+132
+00:13:15,570 --> 00:13:22,800
+of resources reusable for different environments, for different use cases by passing in variables,
+
+133
+00:13:23,100 --> 00:13:25,590
+using these variables file.
+
+134
+00:13:31,280 --> 00:13:38,810
+So I have removed all the variables except for the subnet cinder block, and there are two more characteristics
+
+135
+00:13:38,810 --> 00:13:40,390
+or things to explain about variables.
+
+136
+00:13:40,610 --> 00:13:44,930
+The first one is that we can assign variables, default values.
+
+137
+00:13:45,200 --> 00:13:50,000
+So inside this block here, we can do default.
+
+138
+00:13:53,210 --> 00:13:59,640
+And default attributes will get a value, let's say, three to zero, 10 zero.
+
+139
+00:14:00,710 --> 00:14:11,060
+Let's say this is the default value and here we have a value defined for Seiter blog is 10 zero, 15
+
+140
+00:14:11,600 --> 00:14:11,960
+zero.
+
+141
+00:14:12,410 --> 00:14:21,380
+Now, the default value will kick in if TerraForm cannot find value defined for that variable either
+
+142
+00:14:21,380 --> 00:14:25,570
+in the variables file or is a command line parameter.
+
+143
+00:14:25,580 --> 00:14:28,970
+In this case, it will not prompt you for a value.
+
+144
+00:14:29,120 --> 00:14:30,670
+It will just take the default.
+
+145
+00:14:30,920 --> 00:14:31,220
+Right.
+
+146
+00:14:31,400 --> 00:14:39,890
+So if we remove it here or basically we just didn't provide the terraform def file name, then this
+
+147
+00:14:39,890 --> 00:14:41,180
+value will be taken.
+
+148
+00:14:41,330 --> 00:14:48,230
+And this is also pretty handy if you have the configuration that should work is a default set up and
+
+149
+00:14:48,230 --> 00:14:55,700
+then you allow different users for different use cases to pass in parameters to override the default.
+
+150
+00:14:55,730 --> 00:15:02,120
+So for example, development configuration could be the default and then you would have variable files
+
+151
+00:15:02,120 --> 00:15:08,720
+for other environments or it could be production and then you have development and staging variable
+
+152
+00:15:08,720 --> 00:15:09,110
+files.
+
+153
+00:15:12,810 --> 00:15:17,730
+And the second thing you can do with variables is set a variable type, right?
+
+154
+00:15:17,780 --> 00:15:21,670
+So we have the type attribute which can have multiple different values.
+
+155
+00:15:21,690 --> 00:15:24,760
+It could be a boolean, it could be string, it could be a number.
+
+156
+00:15:24,960 --> 00:15:28,770
+So, for example, for the site or blog, it is a string.
+
+157
+00:15:29,250 --> 00:15:34,500
+And maybe for most of the cases you will need a type or you may just leave it blank.
+
+158
+00:15:34,740 --> 00:15:42,690
+However, if you have some value that has to be of a certain type and you want the users of your configuration
+
+159
+00:15:42,840 --> 00:15:50,610
+files that basically pass in values through the variables file, for example, or as command line option,
+
+160
+00:15:50,820 --> 00:15:55,070
+you want them to know that this variable has to have this type.
+
+161
+00:15:55,260 --> 00:15:58,160
+So you kind of enforce that for the users.
+
+162
+00:15:58,770 --> 00:16:02,550
+So you have the option of setting a type for your variables.
+
+163
+00:16:03,450 --> 00:16:12,900
+So in this case, if someone passed in an array, for example, instead like this, then TerraForm will
+
+164
+00:16:12,900 --> 00:16:15,380
+give an error because it expects string.
+
+165
+00:16:15,660 --> 00:16:16,920
+Let's actually try this out.
+
+166
+00:16:19,880 --> 00:16:27,410
+And there you go, invalided valley for input variable because it needs to be a string, so string required,
+
+167
+00:16:27,650 --> 00:16:38,030
+but we are passing it right, or at least so let's say that we want this variable to be at least that
+
+168
+00:16:38,030 --> 00:16:39,950
+contains multiple CITA blocks.
+
+169
+00:16:40,310 --> 00:16:40,640
+Right.
+
+170
+00:16:40,790 --> 00:16:49,310
+In this case, we can define the type is a list of strings and let's actually remove the defaults.
+
+171
+00:16:50,450 --> 00:16:59,150
+And let's say these are just seiter blocks for VPC and subnets.
+
+172
+00:17:01,810 --> 00:17:03,580
+And let's call it Spider Block's.
+
+173
+00:17:05,110 --> 00:17:13,150
+And no, it expects us to give a list of cinderblocks, so I'm going to copy the name that said it here
+
+174
+00:17:13,450 --> 00:17:15,310
+and we can pass in.
+
+175
+00:17:17,180 --> 00:17:26,930
+The values, right, let's say the first one is 10 zero zero zero, that's what we had for.
+
+176
+00:17:28,020 --> 00:17:36,420
+The VPC, and this is for each one of its subnets and let's actually set it to 10 and now we have a
+
+177
+00:17:36,420 --> 00:17:43,610
+variable which holds a list, so we have to change how we reference that variable.
+
+178
+00:17:43,620 --> 00:17:45,080
+First of all, let's change the name.
+
+179
+00:17:45,660 --> 00:17:49,200
+And second of all, this will basically give us the whole list.
+
+180
+00:17:49,200 --> 00:17:49,540
+Right.
+
+181
+00:17:49,740 --> 00:17:54,350
+So insider blog in subnet, we need the second element.
+
+182
+00:17:54,960 --> 00:17:58,710
+So with Vado outsider blogs, we're referencing the whole list.
+
+183
+00:17:58,710 --> 00:17:58,970
+Right.
+
+184
+00:17:58,980 --> 00:18:09,030
+But we just need the second element of that list so we can access it by using very simple list syntax
+
+185
+00:18:09,300 --> 00:18:11,320
+with an index of one.
+
+186
+00:18:11,340 --> 00:18:12,600
+This is the second element.
+
+187
+00:18:12,780 --> 00:18:18,270
+And then we're going to have cinderblocks, blocks, index of zero.
+
+188
+00:18:18,630 --> 00:18:22,870
+This is the first element is a VPC block, right.
+
+189
+00:18:23,220 --> 00:18:24,550
+So the first one is VPC.
+
+190
+00:18:24,660 --> 00:18:26,100
+Second one is subnet.
+
+191
+00:18:27,300 --> 00:18:29,160
+And let's execute it.
+
+192
+00:18:36,240 --> 00:18:37,950
+And there you go, we see that.
+
+193
+00:18:39,030 --> 00:18:47,190
+Subnets will get replaced because we didn't change the IP range of VPC, so it will stay the same and
+
+194
+00:18:48,300 --> 00:18:49,740
+we can confirm it.
+
+195
+00:18:52,400 --> 00:18:58,190
+So now our subnet has a new Seiter block.
+
+196
+00:18:59,240 --> 00:19:02,540
+We can also have objects as variables in terraform.
+
+197
+00:19:02,550 --> 00:19:08,570
+So for example, here, instead of strings or instead of list of strings, we can actually have a list
+
+198
+00:19:08,570 --> 00:19:09,600
+of objects as well.
+
+199
+00:19:09,950 --> 00:19:19,880
+So let's say this is a cinder block attribute and then we have name attribute, for example, and let's
+
+200
+00:19:19,880 --> 00:19:23,510
+call it the VPC.
+
+201
+00:19:25,950 --> 00:19:27,000
+And the same here.
+
+202
+00:19:40,790 --> 00:19:42,350
+Dave Subnet.
+
+203
+00:19:50,990 --> 00:19:58,820
+So basically, we have a list of objects right here, and each object here has seiter block, attribute
+
+204
+00:19:58,820 --> 00:20:08,030
+and name attribute and of course now we have to adjust the usage of this variable in May not T.F. So
+
+205
+00:20:08,030 --> 00:20:16,300
+first of all, we could also validate a list of objects using a list of object type like this.
+
+206
+00:20:16,790 --> 00:20:20,750
+So obviously, if you just had object, you could do this.
+
+207
+00:20:21,080 --> 00:20:26,460
+But we have a list of objects and you can validate the object attributes inside as well.
+
+208
+00:20:26,720 --> 00:20:29,960
+So you could do this.
+
+209
+00:20:30,260 --> 00:20:39,800
+And then we have two attributes set a block and we can say this needs to be a string and we have a name
+
+210
+00:20:40,190 --> 00:20:43,020
+which also needs to be a string.
+
+211
+00:20:43,340 --> 00:20:50,390
+So this way we can actually validate the whole object and we can say this should be a list of objects
+
+212
+00:20:50,600 --> 00:20:54,410
+with these attributes which have string type.
+
+213
+00:20:54,620 --> 00:21:01,700
+Again, a use case for this is if you are creating configuration files and then you let other team members
+
+214
+00:21:01,700 --> 00:21:07,940
+maybe use those configuration files by passing in different parameters as variables.
+
+215
+00:21:08,120 --> 00:21:15,560
+So you may want to restrict or give them guidelines to what values they can pass in as parameters.
+
+216
+00:21:15,890 --> 00:21:20,670
+So basically you can define this type here if you just leave it empty.
+
+217
+00:21:20,690 --> 00:21:24,020
+Basically, they can put in whatever type they want.
+
+218
+00:21:24,530 --> 00:21:26,420
+So let's set the type for it.
+
+219
+00:21:26,690 --> 00:21:32,200
+And now we have to access the variable values differently.
+
+220
+00:21:32,330 --> 00:21:35,690
+So accessing the first element will be done with this.
+
+221
+00:21:35,900 --> 00:21:38,250
+So say blocks index zero.
+
+222
+00:21:38,270 --> 00:21:42,790
+So basically we're fetching the first element, which is the whole object here.
+
+223
+00:21:42,800 --> 00:21:43,070
+Right.
+
+224
+00:21:43,220 --> 00:21:47,040
+It's not just citable value, but it's the whole object.
+
+225
+00:21:47,240 --> 00:21:52,570
+So in order to get the cinder block value out of it, we have to reference the object attributes.
+
+226
+00:21:53,030 --> 00:21:55,640
+So we're going to do dot site block.
+
+227
+00:21:55,940 --> 00:21:58,610
+And then we also have name defined.
+
+228
+00:21:58,610 --> 00:22:02,030
+Right, so we can access the name.
+
+229
+00:22:04,960 --> 00:22:12,560
+Using the name attributes like this, and we could do the same right here.
+
+230
+00:22:13,040 --> 00:22:22,390
+So, look, you see, I have autocomplete suggestion as well as name attribute right here.
+
+231
+00:22:23,050 --> 00:22:33,040
+And this will be a variable that has seiter blocks and names or name tags for VPC and subnet.
+
+232
+00:22:33,280 --> 00:22:38,020
+So these are a couple of different ways of how to use variables in TerraForm.

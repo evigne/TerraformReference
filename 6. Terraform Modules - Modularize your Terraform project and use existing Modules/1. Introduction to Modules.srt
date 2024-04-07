@@ -1,0 +1,443 @@
+1
+00:00:07,230 --> 00:00:15,180
+So now we have written a configuration for pretty basic use case of just creating and is a two instance
+
+2
+00:00:15,480 --> 00:00:17,520
+and deploying it into a subnet.
+
+3
+00:00:17,880 --> 00:00:24,530
+However, still, with this simple configuration, we have over 100 lines of code, all in one file,
+
+4
+00:00:24,540 --> 00:00:24,870
+right?
+
+5
+00:00:25,080 --> 00:00:30,540
+And the more resources we aired and the more complex our infrastructure gets, we're going to end up
+
+6
+00:00:30,540 --> 00:00:38,400
+with a huge file where we just have an endless scroll of different resources and outputs and data and
+
+7
+00:00:38,400 --> 00:00:40,050
+all of these components.
+
+8
+00:00:40,380 --> 00:00:46,230
+And obviously, now if you want to change something or adjust or find some resource definition, it's
+
+9
+00:00:46,230 --> 00:00:47,490
+going to be very difficult.
+
+10
+00:00:47,820 --> 00:00:57,180
+So in TerraForm, we have a concept of modules to make our configuration not monolithic like we have
+
+11
+00:00:57,570 --> 00:00:58,080
+here.
+
+12
+00:00:58,410 --> 00:01:02,100
+So everything in one file, but rather more modular, right?
+
+13
+00:01:02,280 --> 00:01:10,530
+So we basically break up parts of our configuration into logical groups and repackage them together
+
+14
+00:01:10,770 --> 00:01:15,000
+in folders, and these folders then represent modules, right?
+
+15
+00:01:15,210 --> 00:01:21,570
+For example, logical grouping of resources could be that every resource that we need in order to create
+
+16
+00:01:21,570 --> 00:01:25,620
+an ISA to instance, will be packaged in one module, right?
+
+17
+00:01:25,800 --> 00:01:33,000
+The instance itself, the IWC instance, the keep your creation because we need to keep here, for that
+
+18
+00:01:33,000 --> 00:01:36,090
+instance, to get the most recent image.
+
+19
+00:01:37,260 --> 00:01:43,110
+And also security group, because we're assigning the security group to eschew incidents, so this could
+
+20
+00:01:43,110 --> 00:01:51,210
+be one logical grouping of the resources, and we can call that a web server instance or just virtual
+
+21
+00:01:51,210 --> 00:01:56,040
+machine or whatever, and that will be basically a one module that we can reuse.
+
+22
+00:01:56,310 --> 00:02:02,910
+So if we're deploying an infrastructure with multiple instances, for example in different regions,
+
+23
+00:02:02,910 --> 00:02:09,900
+different availability zones, we can reuse that same web server module in multiple different places.
+
+24
+00:02:10,140 --> 00:02:16,080
+And the good thing is that whenever we define a module, we can pass in whatever parameters we want,
+
+25
+00:02:16,080 --> 00:02:16,320
+right?
+
+26
+00:02:16,320 --> 00:02:21,630
+We can parameter rise any values that we want to pass from outside dynamically.
+
+27
+00:02:21,810 --> 00:02:25,740
+And also, we can access the output of the module, right?
+
+28
+00:02:25,860 --> 00:02:32,940
+So whenever the resources get created that are part of a module, we can actually access the objects
+
+29
+00:02:33,270 --> 00:02:35,470
+and its attributes up towards, right?
+
+30
+00:02:35,520 --> 00:02:41,850
+So if you're familiar with programming, actually think about modules as defining functions, right?
+
+31
+00:02:42,120 --> 00:02:49,380
+So we write function once and we can reuse it in multiple different places in the configuration, and
+
+32
+00:02:49,380 --> 00:02:54,480
+we can pass in parameters to that function and we can decide what these parameters are going to be.
+
+33
+00:02:54,720 --> 00:02:58,220
+And we can return some values from the function right.
+
+34
+00:02:58,230 --> 00:03:05,880
+We can return an object with a bunch of attributes and modules make the configuration much cleaner.
+
+35
+00:03:06,000 --> 00:03:14,220
+It will make it easier to find the parts of configuration and resources that you have defined much easier
+
+36
+00:03:14,220 --> 00:03:16,050
+because they're not logically grouped.
+
+37
+00:03:16,230 --> 00:03:24,540
+One thing to note about modules is that whenever we are creating a module, it should be a proper abstraction
+
+38
+00:03:24,540 --> 00:03:33,330
+of our resources, meaning it doesn't make sense to just have a module for creating an IWC instance.
+
+39
+00:03:33,450 --> 00:03:34,590
+Just one resource.
+
+40
+00:03:34,950 --> 00:03:35,270
+Right?
+
+41
+00:03:35,280 --> 00:03:41,610
+Because then we just have an overhead of creating this whole new folder in a configuration file just
+
+42
+00:03:41,610 --> 00:03:42,780
+for one resource, right?
+
+43
+00:03:42,990 --> 00:03:49,920
+So it only makes sense to create a module when you want to group a couple of resources together into
+
+44
+00:03:49,920 --> 00:03:51,090
+a logical group, right?
+
+45
+00:03:51,270 --> 00:03:57,540
+As I said, creating a web server with all the configuration around it, like the firewall rules with
+
+46
+00:03:57,660 --> 00:04:03,990
+security group the key pair belonging to it, maybe the volumes that will be attached to it and so on.
+
+47
+00:04:04,020 --> 00:04:04,290
+Right.
+
+48
+00:04:04,530 --> 00:04:06,690
+Same thing with network configuration.
+
+49
+00:04:06,690 --> 00:04:10,380
+For example, when we create a VPC, it needs some inside.
+
+50
+00:04:10,380 --> 00:04:12,570
+It needs the internet gateway, the row table.
+
+51
+00:04:12,750 --> 00:04:16,620
+So all of this could be one module called VPC.
+
+52
+00:04:16,770 --> 00:04:22,620
+So that's important to note that you should actually be grouping several resources together so that
+
+53
+00:04:22,620 --> 00:04:24,150
+creating a module makes sense.
+
+54
+00:04:24,600 --> 00:04:31,290
+Now we can create our own modules, however, for very common use cases.
+
+55
+00:04:31,620 --> 00:04:39,720
+There are already modules created by TerraForm or other companies or individual developers that we can
+
+56
+00:04:39,720 --> 00:04:40,740
+re-use, right?
+
+57
+00:04:41,220 --> 00:04:41,790
+So they're not.
+
+58
+00:04:41,790 --> 00:04:50,960
+Everybody has to create their own VPC module or their own IEM module for IWC specifically and so on.
+
+59
+00:04:50,970 --> 00:04:53,790
+So for different technologies, not just IWC.
+
+60
+00:04:54,000 --> 00:04:55,830
+There are multiple modules.
+
+61
+00:04:56,040 --> 00:05:02,880
+So if we go to TerraForm Registry, this is actually where the list of providers can be browsed.
+
+62
+00:05:03,150 --> 00:05:08,820
+So we have seen E.W. in a bunch of other cloud providers, communities and so on.
+
+63
+00:05:09,150 --> 00:05:13,830
+So these are the providers, and right next to it you have a tip for modules.
+
+64
+00:05:14,070 --> 00:05:22,870
+If I click inside, I have a list of modules that we can reuse instead of having to create them ourselves.
+
+65
+00:05:22,890 --> 00:05:23,190
+Right?
+
+66
+00:05:23,430 --> 00:05:32,190
+And if we scroll here, we have a bunch of A.W. modules that groups basically resources together.
+
+67
+00:05:32,550 --> 00:05:36,870
+And we also have Google Cloud modules and so on.
+
+68
+00:05:37,050 --> 00:05:41,880
+And if we actually click in one of those, let's actually go with VPC module.
+
+69
+00:05:42,270 --> 00:05:50,400
+You have a very nice documentation of what this module actually creates or which resources it groups
+
+70
+00:05:50,400 --> 00:05:50,970
+together.
+
+71
+00:05:51,120 --> 00:05:56,940
+So this will be the Resources tab here that you can configure in this module, right?
+
+72
+00:05:57,180 --> 00:06:00,690
+So basically, it will create everything for you.
+
+73
+00:06:00,930 --> 00:06:07,140
+You just have to provide the parameters for all those resources and the parameters that you can provide
+
+74
+00:06:07,140 --> 00:06:09,180
+are defined in Inputs tab.
+
+75
+00:06:10,170 --> 00:06:11,460
+That you can pass in.
+
+76
+00:06:11,760 --> 00:06:17,730
+And here's a list of definitions, obviously, in most of the cases, you would just need a couple of
+
+77
+00:06:17,730 --> 00:06:20,010
+them and not all of them, obviously.
+
+78
+00:06:20,250 --> 00:06:27,660
+However, you have a possibility to define basically every single value of the resources defined in
+
+79
+00:06:27,660 --> 00:06:28,260
+that module.
+
+80
+00:06:28,620 --> 00:06:30,510
+And you also have the outputs.
+
+81
+00:06:30,960 --> 00:06:38,340
+So basically, this is what the resulting objects are resources that are creating using this module
+
+82
+00:06:38,760 --> 00:06:39,360
+return.
+
+83
+00:06:39,630 --> 00:06:43,800
+So you can use all of these values as an output, right?
+
+84
+00:06:43,950 --> 00:06:50,910
+For example, when you create VPC with subnets, you need the VPC, ID and subnet ID, maybe to create
+
+85
+00:06:50,910 --> 00:06:54,120
+other resources like ISA, to instance and so on.
+
+86
+00:06:54,330 --> 00:06:56,850
+And there will be in another module, right?
+
+87
+00:06:56,850 --> 00:07:03,720
+So you have to use the outputs of one module in another by referencing those IDs read.
+
+88
+00:07:03,870 --> 00:07:10,620
+And you can do that because those values will be exposed and you see those values and list of attributes
+
+89
+00:07:10,620 --> 00:07:13,530
+in outputs and you also have dependency.
+
+90
+00:07:13,530 --> 00:07:21,720
+Section and dependency basically describes whether this module contains or references other modules.
+
+91
+00:07:21,840 --> 00:07:23,400
+In our case, it doesn't.
+
+92
+00:07:23,430 --> 00:07:27,600
+So it basically creates everything from scratch with resources.
+
+93
+00:07:27,690 --> 00:07:35,670
+However, it depends on a provider of IWC, which is logical because it creates a bunch of IWC resources,
+
+94
+00:07:35,910 --> 00:07:38,640
+so it needs to have IWC provider.
+
+95
+00:07:38,910 --> 00:07:45,690
+And that means that whenever you are using that module and you do terraform in it, all the providers,
+
+96
+00:07:45,710 --> 00:07:49,800
+they're defined inside the module will be automatically installed, right?
+
+97
+00:07:50,040 --> 00:07:54,600
+So you don't have to define those providers in your main config file.
+
+98
+00:07:54,660 --> 00:07:57,060
+You just reference the module and we terraform.
+
+99
+00:07:57,060 --> 00:08:00,600
+You need the providers in the module gets installed.
+
+100
+00:08:01,080 --> 00:08:09,870
+And in other example, if we go into Ekeus, you see again description of what these modules actually
+
+101
+00:08:10,020 --> 00:08:12,900
+does and the resources that it groups together.
+
+102
+00:08:13,230 --> 00:08:19,800
+And here we have a longer list of providers that this module actually uses.
+
+103
+00:08:20,040 --> 00:08:25,800
+So under the hood, it uses all of those providers and resources from those providers.
+
+104
+00:08:26,130 --> 00:08:29,220
+And when we do terraform, you need all of them will be installed.
+
+105
+00:08:29,670 --> 00:08:38,430
+And if you want to use that module, you also have the basic usage example right here where you can
+
+106
+00:08:38,430 --> 00:08:42,000
+reference the source of the module like this.
+
+107
+00:08:42,360 --> 00:08:48,420
+Now, this is just a conceptual overview to understand what the modules are in that you can create your
+
+108
+00:08:48,420 --> 00:08:57,180
+own modules, but also reuse the ones that IWC or TerraForm created and reuse them to make it much easier.
+
+109
+00:08:57,630 --> 00:09:02,220
+And in the next part, we are actually going to see all of these in action.
+
+110
+00:09:02,490 --> 00:09:08,400
+We're going to be creating modules ourselves, you know, project, as well as using the existing ones
+
+111
+00:09:08,670 --> 00:09:10,560
+from the TerraForm registry.

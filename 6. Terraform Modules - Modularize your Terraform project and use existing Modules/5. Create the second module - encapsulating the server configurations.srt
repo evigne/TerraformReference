@@ -1,0 +1,867 @@
+1
+00:00:06,840 --> 00:00:15,960
+And now is a next step, let's actually extract this whole configuration that is related to the Web
+
+2
+00:00:15,960 --> 00:00:19,380
+server, also to each separate module.
+
+3
+00:00:19,770 --> 00:00:23,010
+So basically we have the instance itself.
+
+4
+00:00:23,370 --> 00:00:25,620
+We have the key here that is being created.
+
+5
+00:00:25,620 --> 00:00:32,130
+For the instance we have the aim, I query from the US, which is also relevant for the instance, and
+
+6
+00:00:32,130 --> 00:00:38,100
+we have the security group, which also configures the firewalls for the instance.
+
+7
+00:00:38,310 --> 00:00:41,040
+So basically, again, you see a pattern here.
+
+8
+00:00:41,220 --> 00:00:49,770
+We have for resources or three resources and one data that are all needed in order to create an instance.
+
+9
+00:00:49,770 --> 00:00:50,030
+Right.
+
+10
+00:00:50,040 --> 00:00:54,510
+So they basically all directly relate to that specific instance.
+
+11
+00:00:54,690 --> 00:00:59,010
+So it makes sense to group them and make them into own module.
+
+12
+00:00:59,790 --> 00:01:02,520
+So I'm going to copy all of this.
+
+13
+00:01:03,800 --> 00:01:10,820
+And in the website Remaindered TAF, I'm going to paste it in and we're going to go through the same
+
+14
+00:01:10,820 --> 00:01:11,440
+changes.
+
+15
+00:01:11,750 --> 00:01:21,200
+So basically we need to fix the references to all the values here, like the VPC ID that is not available
+
+16
+00:01:21,890 --> 00:01:26,600
+in this mean T.F. But rather has to be said from outside.
+
+17
+00:01:28,100 --> 00:01:36,640
+So far, vpc id we have a variable for my IP already here.
+
+18
+00:01:36,860 --> 00:01:45,320
+We can leave all of these fixed coded values if they don't change or we can also promontories them if
+
+19
+00:01:45,320 --> 00:01:47,900
+we want to pass in different values.
+
+20
+00:01:48,110 --> 00:01:56,320
+So for example, if we want to be able to decide which operating system image should be used for that
+
+21
+00:01:56,330 --> 00:01:59,800
+instance, we can also extract this value actually here.
+
+22
+00:02:00,170 --> 00:02:03,380
+So let's make it into a variable as well.
+
+23
+00:02:04,190 --> 00:02:11,450
+Image name, let's say, and we are going to need to pass that on from outside.
+
+24
+00:02:13,240 --> 00:02:20,560
+We also have the Saraki and the public relocation is already parameterized, we have the instance Taib
+
+25
+00:02:20,560 --> 00:02:26,590
+also is a variable and for Aimi we are actually referencing the data which is fine because we have the
+
+26
+00:02:26,590 --> 00:02:28,630
+data in the same configuration.
+
+27
+00:02:28,900 --> 00:02:30,800
+So that reference works fine.
+
+28
+00:02:31,240 --> 00:02:38,880
+Now, we don't have access to the module anymore because this module is actually defined outside.
+
+29
+00:02:39,160 --> 00:02:41,820
+So we're going to parameterize that as well.
+
+30
+00:02:42,220 --> 00:02:46,200
+So we are going to do for subnet Edem.
+
+31
+00:02:46,510 --> 00:02:57,140
+We also have the default security group ID default is G IP.
+
+32
+00:02:57,970 --> 00:02:58,750
+What else do we have?
+
+33
+00:02:58,750 --> 00:03:01,210
+We have the availability zone as a variable.
+
+34
+00:03:01,420 --> 00:03:05,260
+The key name is again a resource in the same module.
+
+35
+00:03:05,260 --> 00:03:08,640
+So we can reference it like this just like before.
+
+36
+00:03:09,040 --> 00:03:12,550
+And finally we have the entry script on S.H..
+
+37
+00:03:12,550 --> 00:03:12,840
+Right.
+
+38
+00:03:13,060 --> 00:03:17,170
+And this is basically a file that we are executing on the server.
+
+39
+00:03:17,380 --> 00:03:23,920
+We can leave it outside and reference it using a relative path or actually it makes sense to have it
+
+40
+00:03:23,920 --> 00:03:25,590
+in the same folder.
+
+41
+00:03:25,600 --> 00:03:32,760
+So I'm just going to move it to Web server and we can reference it like this is previously.
+
+42
+00:03:33,460 --> 00:03:37,360
+So we have parameterized most of the stuff.
+
+43
+00:03:37,420 --> 00:03:42,880
+Again, if you want to hardcoded some of the values because, you know, they are always going to stay
+
+44
+00:03:42,880 --> 00:03:50,410
+basically the same, then you can leave them hardcoded if you want to provide value for them, dynamically
+
+45
+00:03:50,650 --> 00:03:56,860
+different values like image, name, et cetera, then you can set them as variables.
+
+46
+00:03:56,860 --> 00:04:00,730
+And then we're going to have to pass those variables when we declare the module.
+
+47
+00:04:00,940 --> 00:04:08,650
+So we have parameterized all the values we need and now it's time to declare all those variables in
+
+48
+00:04:08,650 --> 00:04:09,400
+the variables.
+
+49
+00:04:09,400 --> 00:04:10,890
+Start T.F. File.
+
+50
+00:04:10,900 --> 00:04:12,820
+So let's go ahead and do that.
+
+51
+00:04:13,270 --> 00:04:15,990
+So let's start from the top variables.
+
+52
+00:04:16,210 --> 00:04:21,400
+T.F. Here variable VPC ID.
+
+53
+00:04:22,690 --> 00:04:27,250
+We can actually specify the types for all the variables as well description.
+
+54
+00:04:27,250 --> 00:04:30,460
+But I'm going to leave those configuration empty for all variables.
+
+55
+00:04:30,640 --> 00:04:32,620
+I'm just for simplicity.
+
+56
+00:04:35,400 --> 00:04:38,700
+So my IP.
+
+57
+00:04:41,830 --> 00:04:45,190
+Then we have in prefix.
+
+58
+00:04:49,000 --> 00:04:50,410
+We have the image name.
+
+59
+00:04:54,790 --> 00:04:56,290
+Public key location.
+
+60
+00:05:04,930 --> 00:05:06,550
+So we have a lot of.
+
+61
+00:05:08,310 --> 00:05:10,050
+Fellows here to set.
+
+62
+00:05:15,910 --> 00:05:22,000
+Which is actually very typical for module's, because you're usually abstracting away a bunch of resources
+
+63
+00:05:22,030 --> 00:05:28,030
+or packaging together a bunch of resources, and they have all these attributes, so modules usually
+
+64
+00:05:28,030 --> 00:05:32,980
+end up having a huge list of parameters that you can pass in.
+
+65
+00:05:33,370 --> 00:05:37,920
+So I think we have said all the or declared all the variables here.
+
+66
+00:05:38,050 --> 00:05:43,270
+If we missed something, we basically know it when we execute terraformed terraform.
+
+67
+00:05:43,650 --> 00:05:47,290
+So I think we have the whole list declared here.
+
+68
+00:05:47,740 --> 00:05:55,980
+So, no, actually, it's time to reference that module in the main dot file.
+
+69
+00:05:56,380 --> 00:06:02,620
+So just like we did with the subnet, we can reference it here.
+
+70
+00:06:03,130 --> 00:06:04,330
+Say my app.
+
+71
+00:06:06,220 --> 00:06:06,880
+Server.
+
+72
+00:06:11,040 --> 00:06:20,520
+Again, we have the source, which is module's web server, and then we have all these variables that
+
+73
+00:06:20,520 --> 00:06:21,380
+we need to set.
+
+74
+00:06:21,840 --> 00:06:23,880
+So I'm actually going to copy all this.
+
+75
+00:06:25,810 --> 00:06:31,820
+Just to save time, and obviously we don't need this variable.
+
+76
+00:06:32,770 --> 00:06:39,940
+OK, so I have removed the variable and curly braces so we can actually go ahead and set those values.
+
+77
+00:06:40,210 --> 00:06:48,070
+And let me actually check which of those variables I have already defined here so that I can reference
+
+78
+00:06:48,070 --> 00:06:48,340
+them.
+
+79
+00:06:48,640 --> 00:06:53,080
+So these are the variables defined in the root module.
+
+80
+00:06:53,380 --> 00:06:58,810
+So it means that I can reference them here using four dots and the variable name.
+
+81
+00:06:59,470 --> 00:06:59,740
+Right.
+
+82
+00:07:00,340 --> 00:07:03,280
+So let's assign the values one by one.
+
+83
+00:07:03,370 --> 00:07:06,000
+First of all, the ID we can reference from here.
+
+84
+00:07:06,220 --> 00:07:08,850
+Let's actually copy this one.
+
+85
+00:07:10,740 --> 00:07:20,460
+So we have the in my app, we have the variable defined here, so I'm going to reference it, then we
+
+86
+00:07:20,460 --> 00:07:24,720
+have the end prefix, which I'm also going to reference.
+
+87
+00:07:27,410 --> 00:07:33,410
+And this is also a good thing, because if you have same variable used in many modules like environmental
+
+88
+00:07:33,410 --> 00:07:40,610
+prefix or Liberty Zone, you don't want to hardcoded them multiple times in module declaration.
+
+89
+00:07:40,730 --> 00:07:47,540
+But if you reference it like this, you have to define its value, just the ones in the TerraForm Force
+
+90
+00:07:47,540 --> 00:07:47,860
+file.
+
+91
+00:07:48,200 --> 00:07:55,040
+And if it changes at some point, then you can just change it here and don't worry about fixing it in
+
+92
+00:07:55,190 --> 00:07:56,410
+a bunch of different places.
+
+93
+00:07:56,690 --> 00:08:02,510
+So that's why it's actually good to always reference values through variables and having them defined
+
+94
+00:08:02,510 --> 00:08:04,490
+in these two four words file.
+
+95
+00:08:06,080 --> 00:08:07,100
+And let's continue.
+
+96
+00:08:07,100 --> 00:08:11,850
+We have the image name, so let's define that here.
+
+97
+00:08:11,870 --> 00:08:13,610
+So I'm going to add this.
+
+98
+00:08:17,540 --> 00:08:18,500
+Is it value?
+
+99
+00:08:22,620 --> 00:08:29,390
+Public key location, we already have that instance type, we have that as well.
+
+100
+00:08:32,650 --> 00:08:41,080
+And now here we have the subnet I.D. reference again and the same way as we referenced it, when we
+
+101
+00:08:41,080 --> 00:08:45,280
+had to use it directly in the resource, we can do it exactly the same way.
+
+102
+00:08:45,310 --> 00:08:55,390
+So basically using module DOT, the module name DOT, the name of the outputs.
+
+103
+00:08:57,230 --> 00:08:58,490
+She's subnet.
+
+104
+00:09:01,840 --> 00:09:03,220
+That's actually close, this one.
+
+105
+00:09:04,520 --> 00:09:12,920
+OK, I have too many things open, right, so name of the output and the ID, the next one, we have
+
+106
+00:09:12,920 --> 00:09:19,150
+default security group ID, which let's actually go back to our Web server.
+
+107
+00:09:19,340 --> 00:09:23,780
+We don't actually need to reference it as a variable because.
+
+108
+00:09:25,950 --> 00:09:32,490
+We can reference it from the resource, so we have the default security group resource right here so
+
+109
+00:09:32,490 --> 00:09:37,890
+we can just reference it using the resource type and name.
+
+110
+00:09:39,820 --> 00:09:52,360
+And so that means that I'm going to remove that from here as well, and we don't need to define it in
+
+111
+00:09:52,360 --> 00:09:52,800
+the module.
+
+112
+00:09:53,140 --> 00:09:58,570
+So one less variable and then we have availability zone and the prefix.
+
+113
+00:09:58,930 --> 00:10:03,360
+So both are actually variables with the same names.
+
+114
+00:10:03,880 --> 00:10:06,540
+So I can just copy that.
+
+115
+00:10:07,600 --> 00:10:08,410
+And there you go.
+
+116
+00:10:08,620 --> 00:10:17,530
+We're referencing basically every value, either using a var or module or a resource name, which is
+
+117
+00:10:17,530 --> 00:10:23,680
+a good practice because we're not hard coding any values and now we have to make sure that all those
+
+118
+00:10:23,680 --> 00:10:28,560
+values are actually defined in our turf wars file.
+
+119
+00:10:29,110 --> 00:10:30,510
+So we have it right here.
+
+120
+00:10:30,530 --> 00:10:33,220
+Let's actually close it and let's go through them.
+
+121
+00:10:33,220 --> 00:10:36,070
+We have my IP defined in here.
+
+122
+00:10:37,540 --> 00:10:41,290
+We have the prefix, we actually have it twice.
+
+123
+00:10:54,980 --> 00:10:55,920
+OK, great.
+
+124
+00:10:56,540 --> 00:11:05,630
+So we have the prefix we need to set Veli for image name, we don't have it yet and this is going to
+
+125
+00:11:05,630 --> 00:11:08,220
+be the previous value that we had defined.
+
+126
+00:11:08,630 --> 00:11:15,080
+So now, for example, if you wanted to use another image, we can change this name or this regular
+
+127
+00:11:15,080 --> 00:11:16,300
+expression in here.
+
+128
+00:11:16,760 --> 00:11:20,420
+Then we have the public key location, which is already set here.
+
+129
+00:11:21,170 --> 00:11:22,220
+Then we have instant.
+
+130
+00:11:22,220 --> 00:11:31,010
+Stip also said we have subnet ID, which we're referencing from a module and we have the ability zone,
+
+131
+00:11:31,010 --> 00:11:32,330
+which is also said.
+
+132
+00:11:32,660 --> 00:11:36,200
+So that's great to have all the values that we need.
+
+133
+00:11:36,650 --> 00:11:40,550
+So now we are actually ready to execute this.
+
+134
+00:11:40,880 --> 00:11:48,100
+So let's go back to our terminal and know if I do it here for a plane.
+
+135
+00:11:51,350 --> 00:11:51,820
+There you go.
+
+136
+00:11:51,920 --> 00:11:53,630
+We should see a warning from terraformed.
+
+137
+00:11:53,630 --> 00:11:59,180
+That module is not installed because as I mentioned previously, whenever we create a new module or
+
+138
+00:11:59,180 --> 00:12:06,960
+we make changes to already initialized or installed module, we have to run terraform in it again.
+
+139
+00:12:07,430 --> 00:12:10,040
+So let's do terraform in it.
+
+140
+00:12:10,640 --> 00:12:11,480
+And there you go.
+
+141
+00:12:11,480 --> 00:12:15,080
+Now, my app server module is getting initialized.
+
+142
+00:12:16,070 --> 00:12:16,550
+Great.
+
+143
+00:12:16,580 --> 00:12:24,440
+So now let's do TerraForm Plan, which will also tell us whether we have any errors in the configuration
+
+144
+00:12:24,620 --> 00:12:29,850
+and also show us the changes it will make to our existing infrastructure.
+
+145
+00:12:30,170 --> 00:12:30,710
+And there you go.
+
+146
+00:12:30,710 --> 00:12:32,620
+We already see some errors.
+
+147
+00:12:32,930 --> 00:12:41,780
+First of all, we have this error here because we forgot to remove a wrong reference from the output
+
+148
+00:12:41,800 --> 00:12:49,460
+STF So this outputs ATF belongs to the root module and it actually doesn't have access to any of those
+
+149
+00:12:49,850 --> 00:12:53,870
+resources anymore because we have moved them into separate modules.
+
+150
+00:12:54,140 --> 00:12:54,380
+Right.
+
+151
+00:12:54,470 --> 00:12:57,390
+We don't have those resources declared in here.
+
+152
+00:12:57,560 --> 00:13:06,050
+However, if we still want to output that as a result of execution, what we could do is reference those
+
+153
+00:13:06,050 --> 00:13:09,630
+values through the module component.
+
+154
+00:13:09,830 --> 00:13:15,890
+So let's say we don't care about the image idea, but we want to output the public IP address of the
+
+155
+00:13:15,890 --> 00:13:16,960
+easy to instance.
+
+156
+00:13:17,270 --> 00:13:20,090
+So what we're going to do is do module.
+
+157
+00:13:24,090 --> 00:13:27,780
+Then we need the name of the module, which we called my observer,
+
+158
+00:13:31,350 --> 00:13:38,610
+and they will basically give us access to the module and inside the module, we need to access the E,
+
+159
+00:13:38,610 --> 00:13:39,920
+C to instance.
+
+160
+00:13:40,170 --> 00:13:48,450
+And as you learn previously, in order to access the resources and its attributes from a module, we
+
+161
+00:13:48,450 --> 00:13:56,640
+have to output that object first in the outpost otf of that module.
+
+162
+00:13:57,150 --> 00:14:09,030
+So right here, we're going to do output's, let's call it instance and a value will basically be.
+
+163
+00:14:14,520 --> 00:14:23,570
+Instance know is instance the type, and we have the server and let's actually put the whole object,
+
+164
+00:14:23,850 --> 00:14:29,850
+so this will give us the whole instance with all of its attributes and then we can decide which one
+
+165
+00:14:29,850 --> 00:14:30,620
+we want to access.
+
+166
+00:14:31,140 --> 00:14:40,230
+So we are now exporting the instance using the instance output, and this is how we can actually access
+
+167
+00:14:40,230 --> 00:14:40,530
+it.
+
+168
+00:14:43,210 --> 00:14:45,950
+And here so this is the module.
+
+169
+00:14:45,970 --> 00:14:55,150
+This is the output name and we need the public IP attribute, so again, gives us access to the whole
+
+170
+00:14:55,150 --> 00:15:00,010
+etc. instance because we have exported it or I'll put it here.
+
+171
+00:15:01,250 --> 00:15:09,890
+And then we can access any attribute on that object and the second warning we got was about the entry
+
+172
+00:15:09,900 --> 00:15:18,260
+script or S.H. it looks like on line 60 where we're referencing the file, it cannot find that file
+
+173
+00:15:18,740 --> 00:15:19,850
+in its location.
+
+174
+00:15:20,360 --> 00:15:21,380
+So let's fix that.
+
+175
+00:15:21,920 --> 00:15:28,100
+And the second error, which is referencing the entry script file, we can actually easily fix it by
+
+176
+00:15:28,100 --> 00:15:32,360
+just moving that entry script outside that module.
+
+177
+00:15:32,570 --> 00:15:36,140
+So basically having it in the root module will fix it.
+
+178
+00:15:36,440 --> 00:15:40,600
+So now let's actually do terraform plint again.
+
+179
+00:15:43,340 --> 00:15:48,670
+And there you go, terraform, refresh the state, it compared the current state with the desired state
+
+180
+00:15:49,040 --> 00:15:55,310
+and this is the output, so let's grow up all the way.
+
+181
+00:15:56,120 --> 00:16:01,950
+So first of all, the BBC and Summernats are already created, so they will not be created again.
+
+182
+00:16:02,270 --> 00:16:11,450
+However, here we have security group, an existing one that will be destroyed, and my service, as
+
+183
+00:16:11,450 --> 00:16:16,710
+well as SFH key and new resources will be created in their place.
+
+184
+00:16:17,030 --> 00:16:21,530
+So security group will be created as well as the server itself.
+
+185
+00:16:21,540 --> 00:16:23,240
+And the key here.
+
+186
+00:16:24,650 --> 00:16:32,160
+And we also have change in the output, which is basically that Aimi ID will be removed as an output.
+
+187
+00:16:32,420 --> 00:16:36,050
+However, we are going to see a new public IP of easy to.
+
+188
+00:16:40,050 --> 00:16:42,840
+So now let's actually apply this.
+
+189
+00:16:47,040 --> 00:16:53,580
+And as you see from the error message itself, we have a duplicate keep here, which seems like a timing
+
+190
+00:16:53,580 --> 00:17:00,780
+issue because the SSA key was destroyed or removed like other components, and probably the new one
+
+191
+00:17:00,780 --> 00:17:02,260
+was created too soon.
+
+192
+00:17:02,430 --> 00:17:06,930
+So if we execute or reapply this, it should actually work.
+
+193
+00:17:07,170 --> 00:17:14,870
+And whenever we actually get an error in terraform, something called a crash log file gets created.
+
+194
+00:17:15,210 --> 00:17:22,150
+And this basically gets auto generated by TerraForm and it it gets created inside the root module.
+
+195
+00:17:22,470 --> 00:17:30,250
+So if you click inside, you see basically the logs of failures of terraform apply so you can see a
+
+196
+00:17:30,270 --> 00:17:31,050
+full lock here.
+
+197
+00:17:31,350 --> 00:17:37,830
+So Crestone log is actually one of the files that we also want to ignore and not check in.
+
+198
+00:17:38,130 --> 00:17:43,810
+So in the Dawngate ignore, we just going to add these crash log files.
+
+199
+00:17:44,220 --> 00:17:54,330
+So just as a side note, so ignore crash logs and let's do this.
+
+200
+00:17:54,720 --> 00:17:59,560
+And as you see, it's great out as an ignored file.
+
+201
+00:18:00,000 --> 00:18:03,760
+So let's head back to our console.
+
+202
+00:18:04,380 --> 00:18:08,820
+Let's actually check our interview as we have one.
+
+203
+00:18:10,680 --> 00:18:14,310
+Syria, which is terminating otherwise, everything is clean.
+
+204
+00:18:14,550 --> 00:18:18,840
+So I'm going to try to execute this again and see what happens this time.
+
+205
+00:18:22,510 --> 00:18:23,410
+And there you go.
+
+206
+00:18:23,560 --> 00:18:32,860
+We have two resources that were created, and now if we go back to our management console, there you
+
+207
+00:18:32,860 --> 00:18:33,000
+go.
+
+208
+00:18:33,010 --> 00:18:37,570
+We have one instance which is running as well as the keep here God created.
+
+209
+00:18:39,670 --> 00:18:46,600
+And we have the public IP address printed out here as previously, since we're accessing it through
+
+210
+00:18:46,600 --> 00:18:50,200
+the module and all is actually try to access into it.
+
+211
+00:18:58,860 --> 00:19:08,370
+So we're inside of the server and we can actually now validate that the entry script shall script also
+
+212
+00:19:08,370 --> 00:19:09,470
+ran successfully.
+
+213
+00:19:09,810 --> 00:19:16,980
+And since our entry script basically installs Docker, we can just validate that there is Docker already
+
+214
+00:19:16,980 --> 00:19:18,110
+installed on the server.
+
+215
+00:19:18,360 --> 00:19:21,290
+So I'm just going to do Docker version.
+
+216
+00:19:21,300 --> 00:19:21,990
+And there you go.
+
+217
+00:19:21,990 --> 00:19:27,510
+We have Docker Command available, so the scripts ran successfully as well.

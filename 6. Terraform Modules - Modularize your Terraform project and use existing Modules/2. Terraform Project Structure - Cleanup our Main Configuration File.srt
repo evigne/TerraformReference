@@ -1,0 +1,179 @@
+1
+00:00:07,450 --> 00:00:15,070
+So now we are going to create modules in our project, so basically we are going to take this main road
+
+2
+00:00:15,070 --> 00:00:22,780
+T.F. file, which basically has this list of resources that we're creating here, and we're going to
+
+3
+00:00:23,020 --> 00:00:32,020
+basically divide that into reusable modules instead of having one single file with all the configuration
+
+4
+00:00:32,020 --> 00:00:32,390
+in it.
+
+5
+00:00:32,920 --> 00:00:36,850
+So the first thing we're going to do is create a branch for modules.
+
+6
+00:00:37,240 --> 00:00:43,040
+And currently I am actually inside the deploy too easy to branch.
+
+7
+00:00:43,390 --> 00:00:50,770
+This is where we have the clean state with our parishioners and I'm going to create a branch from here.
+
+8
+00:00:55,770 --> 00:00:57,900
+And I'm going to call it module's.
+
+9
+00:00:59,730 --> 00:01:01,390
+So now we are in a new branch.
+
+10
+00:01:01,410 --> 00:01:04,280
+We can do whatever here without breaking the other branches.
+
+11
+00:01:04,680 --> 00:01:13,970
+And what I'm going to do now first before creating modules is to start cleaning up my mind or file.
+
+12
+00:01:14,400 --> 00:01:23,070
+So it is actually a best practice and a common way of writing terraformed configuration file to separate
+
+13
+00:01:24,120 --> 00:01:35,430
+the outputs into output or to file variables into a variable dot to file as well as providers into provider
+
+14
+00:01:35,640 --> 00:01:36,420
+TFR.
+
+15
+00:01:36,690 --> 00:01:43,680
+So you basically end up with just the resource definitions inside your mind or T.F. And that is actually
+
+16
+00:01:43,830 --> 00:01:45,260
+a common practice.
+
+17
+00:01:45,570 --> 00:01:54,400
+So we're going to do that inside our root folder, which is also a root module, as we already learned.
+
+18
+00:01:54,930 --> 00:02:01,800
+So by default, we already have a root module, which is the folder where we are creating the terraformed
+
+19
+00:02:01,800 --> 00:02:02,840
+configuration files.
+
+20
+00:02:03,510 --> 00:02:09,480
+So inside here we're going to create outputs dot t.f..
+
+21
+00:02:11,070 --> 00:02:14,880
+And all of the outward configurations will basically leave their.
+
+22
+00:02:16,790 --> 00:02:25,850
+And this is a nice way of separating and listing the similar resources in one location, because, as
+
+23
+00:02:25,850 --> 00:02:31,640
+I said, it may not have actually gets really long and you're just looking for output.
+
+24
+00:02:31,640 --> 00:02:38,240
+In order to modify something, you have to scroll through this list and find your output definition
+
+25
+00:02:38,540 --> 00:02:41,240
+between those resource configurations.
+
+26
+00:02:41,240 --> 00:02:46,420
+So it actually makes sense to list them into a separate file so you know where to find the outputs.
+
+27
+00:02:46,980 --> 00:02:51,760
+Another thing that also can be extracted are the variable definitions.
+
+28
+00:02:52,010 --> 00:02:55,220
+So we already have the variables file, which is too fast.
+
+29
+00:02:55,520 --> 00:03:03,050
+So now we are going to create variables dot t.f. and this is going to be the place for the variable
+
+30
+00:03:03,050 --> 00:03:03,770
+definitions.
+
+31
+00:03:06,930 --> 00:03:12,410
+Like this, and the good thing in TerraForm is that we don't have to link these files to each other,
+
+32
+00:03:12,420 --> 00:03:19,440
+we don't have to actually reference the variables T.F. and output stative from the main T.F. file,
+
+33
+00:03:19,620 --> 00:03:27,060
+because Terraformed knows that these files belong together and it kind of grabs everything and interprets
+
+34
+00:03:27,060 --> 00:03:28,500
+everything and links them together.
+
+35
+00:03:28,500 --> 00:03:33,970
+So we don't have to cross-reference them like we do in some programming languages, for example.
+
+36
+00:03:34,020 --> 00:03:35,450
+This is more straightforward here.
+
+37
+00:03:35,790 --> 00:03:41,800
+And as I said, we could also have providers file that holds all the providers.
+
+38
+00:03:41,910 --> 00:03:47,190
+However, we just have one here so we can actually leave it at that and actually have it in the main
+
+39
+00:03:47,580 --> 00:03:47,950
+file.
+
+40
+00:03:48,390 --> 00:03:53,520
+And now we have a structure which is again common.
+
+41
+00:03:53,880 --> 00:04:03,180
+When you write Terraformed Configuration that gives us Mendo tough file as well as output start to file
+
+42
+00:04:03,180 --> 00:04:07,800
+in variables or to file the names are just the standard.
+
+43
+00:04:07,800 --> 00:04:10,200
+You can actually name all these files, whatever you want.
+
+44
+00:04:10,260 --> 00:04:12,780
+These are just standards to name them like this.
+
+45
+00:04:13,080 --> 00:04:19,950
+And these three files actually also happen to be the common way of structuring modules.

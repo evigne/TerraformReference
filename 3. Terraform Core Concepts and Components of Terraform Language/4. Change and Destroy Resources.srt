@@ -1,0 +1,383 @@
+1
+00:00:07,110 --> 00:00:13,920
+So now let's actually make some changes to our configuration, as you see, we haven't given names to
+
+2
+00:00:13,920 --> 00:00:21,540
+our resources, so basically our subnet doesn't have a name in our VPC, doesn't have a name either.
+
+3
+00:00:21,870 --> 00:00:26,760
+But it would be good to have a name to differentiate it from other resources.
+
+4
+00:00:27,060 --> 00:00:29,940
+So let's make the change in our configuration.
+
+5
+00:00:29,970 --> 00:00:31,560
+So again, we're telling TerraForm.
+
+6
+00:00:31,830 --> 00:00:38,760
+We want the desired state to be subnet with this configuration and a certain name and another subnet
+
+7
+00:00:38,760 --> 00:00:45,420
+with this configuration in some name and VPC and TerraForm needs to figure out what changes it needs
+
+8
+00:00:45,420 --> 00:00:51,420
+to apply to the current state to give us the new desired end result.
+
+9
+00:00:51,870 --> 00:00:55,370
+So how do we give names to the resources?
+
+10
+00:00:55,680 --> 00:01:04,650
+We do that by adding a parameter called Tiggs and as you know, takes our key value pairs in HWC and
+
+11
+00:01:04,650 --> 00:01:10,580
+you can agree to any resource in eight of us and you can have arbitrary key value pairs.
+
+12
+00:01:10,620 --> 00:01:17,520
+So basically you have the TEG key value here being my key, my value.
+
+13
+00:01:17,730 --> 00:01:21,930
+So basically these are the names that you can decide yourself.
+
+14
+00:01:22,440 --> 00:01:29,530
+For example, this is the VPC environment for developers, whatever.
+
+15
+00:01:29,880 --> 00:01:35,590
+However, there is one key attribute reserved for a name, and that is name.
+
+16
+00:01:35,910 --> 00:01:44,540
+So if we specify a name tag and set it to some value, that's Sedita development.
+
+17
+00:01:44,910 --> 00:01:51,210
+Basically, this will be assigned as a name and it will appear right here.
+
+18
+00:01:52,890 --> 00:01:56,090
+And we're going to do the same for the subnets as well.
+
+19
+00:01:56,550 --> 00:02:00,570
+And takes are basically something that you can define for any resource.
+
+20
+00:02:00,870 --> 00:02:12,090
+So this attribute exists for all the resources and let's say subnet one, then.
+
+21
+00:02:16,100 --> 00:02:23,240
+And let's say they is subnets default, whatever, this is, the default subnet.
+
+22
+00:02:24,390 --> 00:02:30,300
+In actual scenarios, you will have maybe more descriptive names here, and we can also add another
+
+23
+00:02:30,300 --> 00:02:40,470
+take here and let's actually call it VPC Environment and Death and save it.
+
+24
+00:02:42,330 --> 00:02:44,820
+And now if we do terraform it put.
+
+25
+00:02:50,410 --> 00:02:56,170
+We have a bunch of output here, so let's actually go through the changes and see what happened here.
+
+26
+00:02:56,950 --> 00:03:05,720
+So first of all, you see another icon here with a slightly yellowish color, which is the tilt character.
+
+27
+00:03:06,460 --> 00:03:12,640
+So basically plus was for creating a resource untilled is for a change.
+
+28
+00:03:13,180 --> 00:03:21,910
+So this means that we are changing an existing resource and a subnet resource with the subnet one name.
+
+29
+00:03:22,360 --> 00:03:31,390
+And inside that resource, we're changing the text attribute and we're adding a new tech, which is
+
+30
+00:03:31,390 --> 00:03:31,870
+a name.
+
+31
+00:03:32,290 --> 00:03:38,230
+And you also see that we have eight other attributes that will be unchanged.
+
+32
+00:03:38,680 --> 00:03:44,200
+And the same goes for this resource and for VPC we are adding to text.
+
+33
+00:03:44,530 --> 00:03:47,290
+So tilt is for change, right?
+
+34
+00:03:47,360 --> 00:03:49,600
+We're changing an existing resource.
+
+35
+00:03:50,830 --> 00:03:53,410
+And if we enter.
+
+36
+00:03:53,440 --> 00:03:54,010
+Yes.
+
+37
+00:03:58,180 --> 00:04:05,650
+TerraForm will execute all the changes, and now if we go back to our areas, console and refresh,
+
+38
+00:04:06,160 --> 00:04:12,750
+you see the name development appeared here as well as in the Tiggs section.
+
+39
+00:04:12,760 --> 00:04:12,980
+Right.
+
+40
+00:04:13,240 --> 00:04:18,840
+So these are list of takes that we can assign as many takes as we want.
+
+41
+00:04:19,210 --> 00:04:26,590
+And also in the VPC, we have a subnet name which also has text.
+
+42
+00:04:27,190 --> 00:04:32,890
+Now, what happens if we want to remove something from an existing resource?
+
+43
+00:04:33,370 --> 00:04:39,010
+Let's say we want to remove this take here and now if we apply.
+
+44
+00:04:43,800 --> 00:04:52,110
+You see another character, which is minus and it is in red color, so basically, again, TerraForm
+
+45
+00:04:52,110 --> 00:04:55,700
+went ahead and calculated what is the current state?
+
+46
+00:04:56,040 --> 00:04:58,890
+The current state was basically this.
+
+47
+00:04:58,890 --> 00:04:59,280
+Right.
+
+48
+00:04:59,520 --> 00:05:02,150
+And it gets the current state from us.
+
+49
+00:05:02,430 --> 00:05:11,250
+And since we remove these terraform correctly decided that the current state needs to be updated by
+
+50
+00:05:11,250 --> 00:05:15,960
+removing this tag from the VPC resource on Adewusi.
+
+51
+00:05:16,290 --> 00:05:20,100
+And the minus basically means removal or deletion.
+
+52
+00:05:20,370 --> 00:05:23,520
+And this is again where we are changing a resource.
+
+53
+00:05:23,760 --> 00:05:28,700
+And inside that resource we're removing a tick so we can apply that as well.
+
+54
+00:05:31,550 --> 00:05:37,040
+And if we refresh our VPC.
+
+55
+00:05:39,110 --> 00:05:39,830
+And go to.
+
+56
+00:05:40,760 --> 00:05:42,530
+The text has been removed.
+
+57
+00:05:46,370 --> 00:05:53,810
+Now, what if we wanted to remove the whole resource, let's say we don't want this subnets to anymore?
+
+58
+00:05:54,140 --> 00:05:59,480
+Now, there are two ways of removing a resource that we don't need any more.
+
+59
+00:05:59,750 --> 00:06:05,020
+One option is to remove the resource from terraform file.
+
+60
+00:06:05,450 --> 00:06:05,730
+Right.
+
+61
+00:06:06,020 --> 00:06:16,010
+So if we basically just remove this again, TerraForm will compare the current state, which is we have
+
+62
+00:06:16,310 --> 00:06:24,740
+a subnet in default VPC and the desired DRC, which is no subnet resource specified for default.
+
+63
+00:06:24,740 --> 00:06:29,110
+VPC TerraForm will decide this resource need to be removed.
+
+64
+00:06:29,330 --> 00:06:32,750
+So if we do terraform, play again.
+
+65
+00:06:36,810 --> 00:06:44,910
+Here you see that the whole resource is marked with minus because this resource will be removed, of
+
+66
+00:06:44,910 --> 00:06:46,830
+course, including all the attributes.
+
+67
+00:06:47,430 --> 00:06:58,020
+Now let's actually type in whatever something other than yes and apply will be canceled and revert this.
+
+68
+00:07:00,090 --> 00:07:06,210
+Now, the second option to remove a resource is using TerraForm Command.
+
+69
+00:07:08,640 --> 00:07:15,130
+Terraformed, destroyed in passing in the resource name, right?
+
+70
+00:07:15,360 --> 00:07:24,990
+So we are specifically removing this resource right here and we are passing in a target because we are
+
+71
+00:07:25,080 --> 00:07:27,180
+dealing with a single resource.
+
+72
+00:07:27,720 --> 00:07:34,590
+And the way we provide the target name is by the resource type.
+
+73
+00:07:37,280 --> 00:07:49,700
+And resource me, all right, so we have the resource type given by provider and the name that we gave
+
+74
+00:07:49,700 --> 00:07:57,820
+resource ourselves and this will tell terraformed to destroy this one specific resource.
+
+75
+00:07:58,250 --> 00:08:00,410
+So let's actually execute this.
+
+76
+00:08:00,890 --> 00:08:10,670
+And again, similar to terraformed a play, we see the same output, which tells us that the subnets
+
+77
+00:08:10,670 --> 00:08:12,650
+to resource will be destroyed.
+
+78
+00:08:13,370 --> 00:08:15,860
+Again, in summary, one to destroy.
+
+79
+00:08:16,340 --> 00:08:19,190
+And we have to confirm this action.
+
+80
+00:08:19,430 --> 00:08:22,490
+Let's actually confirm and say yes.
+
+81
+00:08:24,690 --> 00:08:34,480
+And destroy comp. So if we refresh this list, here we go, the fourth subnet is gone.
+
+82
+00:08:34,890 --> 00:08:40,140
+Now, you're probably asking which of these two options is the way to go?
+
+83
+00:08:40,290 --> 00:08:41,580
+Which one you should use?
+
+84
+00:08:41,970 --> 00:08:45,060
+And the answer to that is actually terraform.
+
+85
+00:08:46,230 --> 00:08:46,690
+Why?
+
+86
+00:08:47,070 --> 00:08:56,970
+Because if you destroy specific targets using TerraForm, Destroy Command and with target tech, you
+
+87
+00:08:56,970 --> 00:09:05,400
+end up with a configuration file that doesn't actually correspond to the current state because you still
+
+88
+00:09:05,400 --> 00:09:08,000
+have that resource inside your configuration file.
+
+89
+00:09:08,310 --> 00:09:17,400
+And especially if you're working with a team and you destroy or change resources using commands and
+
+90
+00:09:17,400 --> 00:09:24,960
+not the configuration file, you basically have a difference between the current state and what's in
+
+91
+00:09:24,960 --> 00:09:26,060
+the configuration file.
+
+92
+00:09:26,340 --> 00:09:30,060
+And again, is a best practice of infrastructure is code.
+
+93
+00:09:30,300 --> 00:09:37,170
+Code should represent the changes made to the infrastructure and the resources.
+
+94
+00:09:37,380 --> 00:09:41,470
+So all the changes should be made through the configuration files.
+
+95
+00:09:41,700 --> 00:09:48,630
+So I would suggest you to use terraform apply and to make the changes through configuration files instead
+
+96
+00:09:48,630 --> 00:09:50,040
+of comments directly.

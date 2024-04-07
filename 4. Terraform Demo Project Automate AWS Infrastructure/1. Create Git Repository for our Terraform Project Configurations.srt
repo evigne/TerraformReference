@@ -1,0 +1,343 @@
+1
+00:00:07,030 --> 00:00:13,360
+Now, what we're going to do as the next step is create a good repository for our TerraForm project,
+
+2
+00:00:13,660 --> 00:00:19,870
+so whatever changes we make to artier from configuration, we can actually work with the repository.
+
+3
+00:00:19,870 --> 00:00:28,330
+So we have a history of the changes and also other team members can check out the code and work on the
+
+4
+00:00:28,330 --> 00:00:29,440
+same project as well.
+
+5
+00:00:29,650 --> 00:00:37,990
+So first of all, I'm going to go to get Lip UI and here I'm just going to create a new blank project.
+
+6
+00:00:38,320 --> 00:00:39,610
+Let's call it TerraForm
+
+7
+00:00:43,480 --> 00:00:43,990
+Learn.
+
+8
+00:00:45,130 --> 00:00:48,700
+So inside the company will be probably a private repository.
+
+9
+00:00:48,860 --> 00:00:52,930
+I'm going to make it public so that others can access my project here.
+
+10
+00:00:57,490 --> 00:01:06,190
+The remote repository exists in Ditlev, so we can connect our local project to the remote repository,
+
+11
+00:01:06,580 --> 00:01:09,950
+so it means that we are going to make it into a good project.
+
+12
+00:01:10,300 --> 00:01:14,620
+So even here, I mean the root folder of the project.
+
+13
+00:01:16,090 --> 00:01:17,730
+So we're going to do it in it.
+
+14
+00:01:18,070 --> 00:01:20,630
+And this will initialize an empty repository.
+
+15
+00:01:21,100 --> 00:01:27,670
+And what we're going to do is we are going to connect it to the remote.
+
+16
+00:01:27,670 --> 00:01:27,930
+Right.
+
+17
+00:01:27,970 --> 00:01:29,200
+Put an existing folder.
+
+18
+00:01:29,200 --> 00:01:32,800
+So you already have a existing repository.
+
+19
+00:01:33,430 --> 00:01:41,620
+So our existing code and what you need to do is get remote at origin and it will point to the remote
+
+20
+00:01:42,130 --> 00:01:43,730
+project, which is this one right here.
+
+21
+00:01:44,890 --> 00:01:46,320
+So I'm going to execute it.
+
+22
+00:01:47,650 --> 00:01:53,770
+And now if I do get status, it tells me that I have to check in all these code.
+
+23
+00:01:57,780 --> 00:02:02,480
+Right now is the next step before we actually check in everything that we have.
+
+24
+00:02:02,520 --> 00:02:09,150
+We're going to create a get ignore file because the thing is, we don't need to check all of this information
+
+25
+00:02:09,150 --> 00:02:11,540
+or all of these files to the repository.
+
+26
+00:02:11,760 --> 00:02:15,260
+Some of the files shouldn't be checked into the repository.
+
+27
+00:02:15,630 --> 00:02:22,370
+And let me create a kit, ignore file, and then we're going to see what these files are.
+
+28
+00:02:22,680 --> 00:02:24,210
+So get ignored.
+
+29
+00:02:25,110 --> 00:02:28,350
+So the first thing we're going to ignore in the changes.
+
+30
+00:02:28,380 --> 00:02:34,040
+So what we're not going to check into the repository is this DOD terraform folder here.
+
+31
+00:02:34,350 --> 00:02:39,630
+This basically just stores the providers that are installed locally.
+
+32
+00:02:39,630 --> 00:02:43,710
+So it doesn't have to be part of the code when you do terraform in it.
+
+33
+00:02:43,920 --> 00:02:47,280
+This will be downloaded on your computer locally.
+
+34
+00:02:47,280 --> 00:02:50,490
+So we don't have to check that in and we're going to ignore it.
+
+35
+00:02:50,520 --> 00:02:52,230
+Let's actually add a comment here.
+
+36
+00:02:52,470 --> 00:02:56,580
+Local terraformed directory.
+
+37
+00:02:57,000 --> 00:02:58,230
+And we are going to.
+
+38
+00:03:01,550 --> 00:03:03,380
+And we're going to ignore the whole folder.
+
+39
+00:03:04,880 --> 00:03:10,670
+Another thing we want to ignore is not chicken is terraformed state because obviously terraformed state
+
+40
+00:03:10,670 --> 00:03:15,070
+is a generated file that gets updated every time we do terraform a play.
+
+41
+00:03:15,230 --> 00:03:19,180
+And this is a local state when you are playing around and doing a play.
+
+42
+00:03:19,340 --> 00:03:25,900
+So we're going to ignore this one as well to our form states file or files.
+
+43
+00:03:26,420 --> 00:03:27,380
+We have two of them.
+
+44
+00:03:27,380 --> 00:03:29,780
+We have the current state and we have the previous one.
+
+45
+00:03:29,790 --> 00:03:31,730
+So we're going to ignore both of them.
+
+46
+00:03:32,690 --> 00:03:33,740
+So let's do.
+
+47
+00:03:35,020 --> 00:03:41,340
+He stayed so every file with this extension as well as dot pick up.
+
+48
+00:03:43,370 --> 00:03:51,740
+What we also going to ignore is the terraform variable files, and the reason why is that, as I said,
+
+49
+00:03:51,740 --> 00:03:59,240
+terraformed variables are basically a way to give users of terraform, maybe other team members a way
+
+50
+00:03:59,240 --> 00:04:03,440
+to set the parameters for the configuration file.
+
+51
+00:04:03,530 --> 00:04:08,550
+And these parameters will be different based on which environment you are using.
+
+52
+00:04:08,570 --> 00:04:10,580
+So changes depending on the environment.
+
+53
+00:04:10,820 --> 00:04:18,350
+And also these variables file may actually contain some sensitive data, could be password, private
+
+54
+00:04:18,350 --> 00:04:21,480
+keys of the users themselves.
+
+55
+00:04:21,500 --> 00:04:28,190
+So, for example, you may be pointing to your private SSL keys or some certificates and other secrets
+
+56
+00:04:28,520 --> 00:04:31,060
+could be different for different team members.
+
+57
+00:04:31,250 --> 00:04:38,570
+So we're going to ignore the terraformed variables file so each user of this reform project should have
+
+58
+00:04:38,570 --> 00:04:40,220
+their own copy locally.
+
+59
+00:04:40,580 --> 00:04:50,300
+So they're able, let's say to your variable files may include sensitive data,
+
+60
+00:04:52,970 --> 00:04:54,260
+T.F. Vast.
+
+61
+00:04:54,290 --> 00:04:54,600
+Right.
+
+62
+00:04:54,830 --> 00:05:00,440
+So all the files that are ending with dotted bars extension.
+
+63
+00:05:00,800 --> 00:05:08,740
+And as I saved this configuration, you see that those ignored files or folders actually became great.
+
+64
+00:05:09,200 --> 00:05:13,370
+So they're automatically removed from git def.
+
+65
+00:05:13,370 --> 00:05:20,000
+So basically it just ignores any changes made to these files and they're not displayed as something
+
+66
+00:05:20,000 --> 00:05:20,690
+to be checked in.
+
+67
+00:05:21,110 --> 00:05:23,960
+So now if I do get status.
+
+68
+00:05:25,430 --> 00:05:25,990
+There you go.
+
+69
+00:05:26,000 --> 00:05:32,120
+You see all these files that we ignored are not on the list here, but we have to ignore file.
+
+70
+00:05:32,330 --> 00:05:35,600
+So we're going to check these remaining stuff in basic.
+
+71
+00:05:35,610 --> 00:05:39,680
+We just have maned or T.F. And we have terraform look files.
+
+72
+00:05:39,680 --> 00:05:39,930
+Right.
+
+73
+00:05:40,160 --> 00:05:45,620
+And this one should be checked in, actually, because this is a list of providers that you have installed
+
+74
+00:05:45,830 --> 00:05:50,530
+locally with their versions and this should be in the repository.
+
+75
+00:05:51,380 --> 00:05:53,260
+So we're going to add all of these.
+
+76
+00:05:53,600 --> 00:05:55,430
+We're going to do initial commit.
+
+77
+00:05:57,530 --> 00:06:07,030
+And now if we go back to the repository for the first push, we're going to do upstream Origin Master.
+
+78
+00:06:07,370 --> 00:06:09,020
+So we're pushing to Master Branch.
+
+79
+00:06:11,470 --> 00:06:18,490
+From local to and you only have to do it first time when you're pushing the branch changes for the first
+
+80
+00:06:18,490 --> 00:06:23,600
+time to any branch for the very first time after that, you can just do it push.
+
+81
+00:06:24,670 --> 00:06:27,520
+So we have pushed our changes repository.
+
+82
+00:06:27,550 --> 00:06:28,600
+If I refresh it.
+
+83
+00:06:28,870 --> 00:06:29,440
+There you go.
+
+84
+00:06:29,440 --> 00:06:38,260
+You see three files checked in here so we can now work in the repository and make changes, create branches
+
+85
+00:06:38,260 --> 00:06:41,320
+for trying out different use cases, etc..
+
+86
+00:06:41,470 --> 00:06:43,390
+So we have all the history in here.

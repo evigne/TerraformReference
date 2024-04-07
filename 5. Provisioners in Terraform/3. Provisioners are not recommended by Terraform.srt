@@ -1,0 +1,331 @@
+1
+00:00:06,420 --> 00:00:12,600
+And you might think that provisionals are a great way of executing those use cases.
+
+2
+00:00:12,780 --> 00:00:21,120
+However, if we go to the provisional documentation of terraformed here, you see that it says provisions
+
+3
+00:00:21,120 --> 00:00:25,200
+are a last resort and this is just the headline.
+
+4
+00:00:25,290 --> 00:00:32,340
+But Terraformed actually highlights the fact that provisions are a sort of a workaround.
+
+5
+00:00:32,700 --> 00:00:40,340
+If you absolutely have to use terraform in order to execute scripts and execute commands on your provision
+
+6
+00:00:40,350 --> 00:00:41,260
+infrastructure.
+
+7
+00:00:41,580 --> 00:00:49,160
+However, it is not recommended and it is not something that TerraForm advises to do.
+
+8
+00:00:49,440 --> 00:00:55,040
+So here it says that there are lots of use cases and situations where provisions can be used.
+
+9
+00:00:55,350 --> 00:01:01,560
+However, there are better solutions and we do not recommend using provisions for any of the use cases
+
+10
+00:01:01,860 --> 00:01:03,460
+described in the following sections.
+
+11
+00:01:03,810 --> 00:01:11,840
+Now there is actually or there are actually good reasons for why terrorism doesn't recommend using provisions
+
+12
+00:01:12,120 --> 00:01:14,100
+and why you shouldn't be using them.
+
+13
+00:01:14,250 --> 00:01:18,210
+Just generally speaking, provisions do not work very well.
+
+14
+00:01:18,420 --> 00:01:18,730
+Right.
+
+15
+00:01:18,870 --> 00:01:26,160
+So there might be some unexpected behavior or some parts of the script or command may not actually execute
+
+16
+00:01:26,760 --> 00:01:28,210
+and you may have some problems.
+
+17
+00:01:28,740 --> 00:01:31,940
+So from my experience, it doesn't actually work that well.
+
+18
+00:01:31,950 --> 00:01:40,170
+So I would personally also not suggest using a remote exec, for example, in order to remotely execute
+
+19
+00:01:40,410 --> 00:01:42,930
+the comments on an instance.
+
+20
+00:01:43,200 --> 00:01:50,610
+So user data, if it's available for that specific cloud provider for us, for example.
+
+21
+00:01:50,610 --> 00:01:58,710
+It is and available attribute is much better to use as sort of an initial script or initial command
+
+22
+00:01:58,950 --> 00:02:03,360
+to be executed on the virtual machine instead of using the remote exec.
+
+23
+00:02:03,630 --> 00:02:09,040
+However, there are actual reasons why Terraformed itself doesn't actually recommend using provisionals.
+
+24
+00:02:09,360 --> 00:02:17,560
+First of all, provisionary concept actually breaks the concept of IDE impotency in terraform in item
+
+25
+00:02:17,610 --> 00:02:18,300
+potency.
+
+26
+00:02:18,420 --> 00:02:25,590
+If you remember, it is a word that describes something that always gives you the same output no matter
+
+27
+00:02:25,590 --> 00:02:28,000
+how many times you execute a command.
+
+28
+00:02:28,230 --> 00:02:35,430
+So when we do terraform apply with the same exact configuration, it always gives us the same output.
+
+29
+00:02:35,460 --> 00:02:42,420
+So the problem with provisions is that because we're using scripts that are just basic shell scripts
+
+30
+00:02:42,420 --> 00:02:50,550
+or shell commands that are not actually part of TerraForm itself, TerraForm has no way of knowing what
+
+31
+00:02:50,550 --> 00:02:52,080
+you are executing in that script.
+
+32
+00:02:52,260 --> 00:03:00,030
+Terraformed doesn't know or has no way of knowing whether these commands actually executed successfully.
+
+33
+00:03:00,080 --> 00:03:03,600
+What is the current state or if we change something in here?
+
+34
+00:03:03,810 --> 00:03:10,040
+TerraForm cannot tell whether this change actually deviates from the current state.
+
+35
+00:03:10,230 --> 00:03:17,370
+So what needs to be actually done in order to apply the changes that you made in your commands or in
+
+36
+00:03:17,370 --> 00:03:18,150
+your Shell script?
+
+37
+00:03:18,420 --> 00:03:27,000
+So it kind of breaks the tear forms concept of how the current state and the desired state comparison
+
+38
+00:03:27,000 --> 00:03:33,390
+happens, how TerraForm calculates the difference between the two in order to decide what action is
+
+39
+00:03:33,390 --> 00:03:36,030
+to be taken and also terraformed.
+
+40
+00:03:36,030 --> 00:03:42,060
+Cannot control the way you write those scripts, write the scripts themselves may not be as important
+
+41
+00:03:42,210 --> 00:03:43,440
+like TerraForm is.
+
+42
+00:03:43,890 --> 00:03:51,990
+So for these use cases, they're actually alternatives that TerraForm also recommends using and they're
+
+43
+00:03:51,990 --> 00:03:53,630
+also best practices.
+
+44
+00:03:53,940 --> 00:04:04,350
+So first of all, if you want to execute commands remotely or configure a remote server, you actually
+
+45
+00:04:04,620 --> 00:04:07,620
+should use some configuration management tool.
+
+46
+00:04:07,920 --> 00:04:10,980
+Could be Chev or Puppet Ansible sold.
+
+47
+00:04:10,980 --> 00:04:13,580
+There are actually multiple tools out there.
+
+48
+00:04:13,890 --> 00:04:22,380
+So basically what you can do is once the server is provisioned with terraform, you can hand over the
+
+49
+00:04:22,380 --> 00:04:25,980
+process to one of those configuration management tools.
+
+50
+00:04:26,280 --> 00:04:34,110
+So using terraform you can pass the Init data or some initial data to this config manager tool and then
+
+51
+00:04:34,110 --> 00:04:41,640
+config manager basically takes over and configures the server and does all the stuff that it can do
+
+52
+00:04:42,120 --> 00:04:48,210
+because the config manager tools have more visibility inside the VM and they can actually compare the
+
+53
+00:04:48,210 --> 00:04:54,300
+state and they can actually manage and control how the things get executed there while terraformed,
+
+54
+00:04:54,300 --> 00:04:55,350
+cannot do this.
+
+55
+00:04:55,660 --> 00:05:02,730
+As for the local exec, if you want to locally create files, for example, there is a provider called
+
+56
+00:05:02,730 --> 00:05:05,760
+Loku that is maintained by Hoshide Corp and.
+
+57
+00:05:05,800 --> 00:05:15,580
+This is a recommended way of handling local files in TerraForm, the local provider, which is for handling
+
+58
+00:05:15,580 --> 00:05:19,540
+local files, and you have a bunch of configuration in here.
+
+59
+00:05:20,770 --> 00:05:28,840
+So advantage of using local provider instead of local exec will be that the provider actually has a
+
+60
+00:05:28,840 --> 00:05:35,500
+way of comparing if something changed and with the current and desired states are so we can detect the
+
+61
+00:05:35,500 --> 00:05:36,160
+changes.
+
+62
+00:05:36,530 --> 00:05:40,740
+So the declarative model is kind of maintained this way.
+
+63
+00:05:41,110 --> 00:05:48,190
+And as for any type of other script execution, generally, whether it's copying files to the remote
+
+64
+00:05:48,370 --> 00:05:55,180
+or executing some scripts instead of using the configuration manager, especially if you're building
+
+65
+00:05:55,180 --> 00:06:02,830
+this whole thing up, using a suicide pipeline where you integrate, terraform, you can actually execute
+
+66
+00:06:02,830 --> 00:06:12,730
+this script as a separate part from Jenkins' or your SkyCity tool instead of having it executed using
+
+67
+00:06:12,730 --> 00:06:13,360
+terraformed.
+
+68
+00:06:13,750 --> 00:06:21,160
+So I hope this makes clear that provisionary is actually a workaround for most of the use cases where
+
+69
+00:06:21,160 --> 00:06:26,140
+you need to execute some code, either locally or remotely or copy files to it.
+
+70
+00:06:26,380 --> 00:06:30,640
+And it is actually not a recommended way of doing it.
+
+71
+00:06:31,210 --> 00:06:35,920
+However, if you still come across provisionary, maybe in somebody else's terraformed config file,
+
+72
+00:06:36,070 --> 00:06:40,870
+you should know what the concept is and what it does and how it can be used.
+
+73
+00:06:45,170 --> 00:06:52,040
+And one final note on parishioners is that if provision or fails, for example, if you forgot to copy
+
+74
+00:06:52,040 --> 00:06:59,480
+the script and if it's not found on a remote machine and the file cannot be executed, then terraformed
+
+75
+00:06:59,480 --> 00:07:07,080
+will actually taint or mark the resource where the provisionary is getting executed is failed.
+
+76
+00:07:07,250 --> 00:07:09,350
+So we have to recreate it, actually.
+
+77
+00:07:10,310 --> 00:07:17,240
+So even though the easy two incidents may get created initialised, you will get an error status from
+
+78
+00:07:17,420 --> 00:07:21,500
+TerraForm and the easy to instance will be marked for deletion.
+
+79
+00:07:22,190 --> 00:07:23,870
+So if I believe this.
+
+80
+00:07:25,140 --> 00:07:27,840
+And we do terraform, employ.
+
+81
+00:07:32,620 --> 00:07:39,700
+And here is a see, we have an error message that the file could not be open because the file doesn't
+
+82
+00:07:39,700 --> 00:07:47,350
+exist on remote and basically we don't have any success output, even though the instance has been created
+
+83
+00:07:47,350 --> 00:07:49,480
+and it is being initialized now.

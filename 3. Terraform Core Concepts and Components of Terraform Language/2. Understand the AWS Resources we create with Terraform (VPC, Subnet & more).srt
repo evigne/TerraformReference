@@ -1,0 +1,467 @@
+1
+00:00:03,350 --> 00:00:11,150
+Now that we have an AWB provider configured, we can actually start creating AWB resources using that
+
+2
+00:00:11,150 --> 00:00:19,010
+provider and throughout this course we will actually create a couple of these resources using terraform.
+
+3
+00:00:19,230 --> 00:00:25,160
+So before you move on with this tutorial, it's important to understand this AWB resources first.
+
+4
+00:00:25,350 --> 00:00:32,720
+So in this video, we're going to go through and understand what VPC and subnet resources are on us,
+
+5
+00:00:33,140 --> 00:00:37,610
+as well as Internet Gateway, Resource Security Group and so on.
+
+6
+00:00:37,910 --> 00:00:42,050
+If you already know these resources, then you can skip this video and go to the next one.
+
+7
+00:00:44,700 --> 00:00:52,220
+Now, whenever you create an account in each region, you will have something called a VPC.
+
+8
+00:00:52,530 --> 00:00:56,910
+So VPC actually stands for virtual private cloud.
+
+9
+00:00:57,220 --> 00:01:00,930
+So if you go through the service this year, all services list.
+
+10
+00:01:02,520 --> 00:01:11,490
+In the networking and content delivery part, we have this VPC service, and right now I'm in the Frankford
+
+11
+00:01:11,490 --> 00:01:19,230
+region and here you see I have a VPC, a default one that gets created with some other configuration
+
+12
+00:01:19,230 --> 00:01:19,590
+as well.
+
+13
+00:01:20,340 --> 00:01:25,620
+And if I switch to another region, for example, Europe, Perry's.
+
+14
+00:01:27,270 --> 00:01:31,230
+Here I also see a VPC, so I haven't created any of this.
+
+15
+00:01:31,470 --> 00:01:35,300
+This is out of the box by default in each region.
+
+16
+00:01:35,700 --> 00:01:41,270
+So VPC in Adewusi is basically your private network, right?
+
+17
+00:01:41,430 --> 00:01:48,720
+When you create resources, virtual servers and so on on us, you obviously don't want other US users
+
+18
+00:01:48,720 --> 00:01:53,520
+or other abuse accounts to have access to your resources.
+
+19
+00:01:53,520 --> 00:01:53,780
+Right.
+
+20
+00:01:53,940 --> 00:01:58,010
+You want to protect them and you want only you to have access to them.
+
+21
+00:01:58,020 --> 00:02:05,490
+So because of that, you can create this virtual private cloud on Adewusi infrastructure that only you
+
+22
+00:02:05,490 --> 00:02:10,870
+have access to and you create this VPC in a specific region.
+
+23
+00:02:11,220 --> 00:02:17,660
+So again, region is basically one of those regions in at least.
+
+24
+00:02:17,910 --> 00:02:25,270
+So, for example, in Perry's region, in the US three, I can create as many pieces as I want.
+
+25
+00:02:25,770 --> 00:02:32,280
+However, region in Adewusi consists of multiple availability zones.
+
+26
+00:02:32,700 --> 00:02:40,710
+Availability zone, in very simple words, is basically a data center of interviews with all those servers
+
+27
+00:02:40,710 --> 00:02:42,570
+that runs the whole infrastructure.
+
+28
+00:02:43,050 --> 00:02:51,360
+So the virtual machines that you spin up in your area will actually run in one of those, Azeez, because
+
+29
+00:02:51,390 --> 00:02:55,400
+these are the actual physical locations where the servers will run.
+
+30
+00:02:55,950 --> 00:03:02,380
+So VPC will actually spend all the availability zones in that specific region.
+
+31
+00:03:03,300 --> 00:03:10,050
+So here you see Perry's has three zones and VPC actually spends all of these three zones.
+
+32
+00:03:10,650 --> 00:03:18,540
+So in each region, basically, VPC isolates a space where you are creating your virtual instances,
+
+33
+00:03:18,540 --> 00:03:25,530
+your servers, maybe database instance, some other components from different services, because obviously
+
+34
+00:03:25,530 --> 00:03:31,320
+this is a data center where others also rent virtual servers, create components.
+
+35
+00:03:31,770 --> 00:03:39,060
+So they might actually be running on the same physical machine, same computer, but they will be isolated
+
+36
+00:03:39,360 --> 00:03:43,260
+in private networks with the PC's.
+
+37
+00:03:44,490 --> 00:03:53,340
+And for bigger corporations that have much more complex application setups, they can actually use multiple
+
+38
+00:03:53,410 --> 00:03:58,470
+vortices and manage multiple of these private networks in different regions.
+
+39
+00:03:59,220 --> 00:04:03,190
+Now, what does this VPC include here?
+
+40
+00:04:03,350 --> 00:04:06,060
+You see, we are in the VPC dashboard.
+
+41
+00:04:07,540 --> 00:04:16,240
+And we have a bunch of other stuff in here, it is basically a virtual representation of network infrastructure.
+
+42
+00:04:16,720 --> 00:04:22,960
+When you have servers physically in your company, which was a traditional way of hosting servers and
+
+43
+00:04:22,960 --> 00:04:29,350
+applications before cloud, you have CIS administrators that set up configure and manage this whole
+
+44
+00:04:29,350 --> 00:04:29,920
+network.
+
+45
+00:04:30,250 --> 00:04:36,630
+They set up the router, they do all the network configuration, configure firewall and so on.
+
+46
+00:04:37,060 --> 00:04:45,940
+So all of this physical network infrastructure is basically now moved in cloud and VPC is the representation
+
+47
+00:04:45,940 --> 00:04:46,330
+of this.
+
+48
+00:04:46,900 --> 00:04:54,100
+And the reason why you have this default VPC in each region is that whenever you create a new instance,
+
+49
+00:04:54,370 --> 00:04:59,110
+it has to run inside a VPC or whatever component you're launching.
+
+50
+00:04:59,140 --> 00:05:02,630
+It has to run, it has to start inside a VPC.
+
+51
+00:05:03,110 --> 00:05:06,010
+Another thing you see here is subnets.
+
+52
+00:05:07,290 --> 00:05:15,660
+So we have three summits in summits are subnetwork, so VPC is the whole private network and summits
+
+53
+00:05:15,660 --> 00:05:25,920
+are basically component's or sub networks of the VPC, while VPC spends the whole region, all the availability
+
+54
+00:05:25,920 --> 00:05:31,740
+zones, subnets spend individual availability zones.
+
+55
+00:05:31,960 --> 00:05:36,290
+So for each three zones, you have their own subnet.
+
+56
+00:05:36,810 --> 00:05:39,690
+So it's like a private network inside a network.
+
+57
+00:05:40,410 --> 00:05:49,440
+In other interesting thing in the BBC part is that obviously whenever you create a virtual server,
+
+58
+00:05:49,440 --> 00:05:59,220
+it has to get an IP address and in VPC you have a range of private or internal IP addresses in that
+
+59
+00:05:59,220 --> 00:06:04,460
+range is actually also defined by default and you can even change it.
+
+60
+00:06:04,470 --> 00:06:10,460
+So if I go inside VPC, you have a range of IP addresses.
+
+61
+00:06:10,470 --> 00:06:18,390
+So whenever you create a new instance, a new AC2 instance, an IP address will be assigned to it from
+
+62
+00:06:18,390 --> 00:06:19,350
+this range.
+
+63
+00:06:19,740 --> 00:06:28,710
+So internal or private IP address is not for Internet traffic, but rather for traffic inside the VPC.
+
+64
+00:06:28,720 --> 00:06:35,040
+So when you have multiple servers, multiple components inside the VPC, they need to communicate with
+
+65
+00:06:35,040 --> 00:06:35,370
+each other.
+
+66
+00:06:35,370 --> 00:06:35,660
+Right.
+
+67
+00:06:35,910 --> 00:06:42,060
+So you have an instance with Web application, in other instance with database application, maybe a
+
+68
+00:06:42,060 --> 00:06:43,830
+third one with some other service.
+
+69
+00:06:43,980 --> 00:06:45,300
+They all need to communicate.
+
+70
+00:06:45,310 --> 00:06:50,010
+So private IP address is what allows them to talk to each other.
+
+71
+00:06:50,610 --> 00:06:59,580
+So the IP address range is defined on a VPC level and then each subnet then gets its own IP address
+
+72
+00:06:59,580 --> 00:07:00,210
+range.
+
+73
+00:07:00,210 --> 00:07:04,440
+The private IP address range from that total range.
+
+74
+00:07:04,640 --> 00:07:10,050
+It gets like a sub range, so to say you see those sub ranges defined.
+
+75
+00:07:10,380 --> 00:07:16,890
+Now, obviously, when we deploy our Web application on Isleta instance, we want it to be accessible
+
+76
+00:07:16,890 --> 00:07:19,650
+from Internet right from outside.
+
+77
+00:07:19,980 --> 00:07:26,940
+And for that, in addition to private IP address, we need to assign it a public IP address.
+
+78
+00:07:27,240 --> 00:07:32,000
+And this is also configured in VPC service.
+
+79
+00:07:32,460 --> 00:07:39,900
+So when we create an easy to instance, it will get a private IP address from the range of the subnets
+
+80
+00:07:40,050 --> 00:07:42,930
+inside which that instance will start.
+
+81
+00:07:43,080 --> 00:07:50,250
+And it will also get a public IP address, internal one for internal communication inside the VPC and
+
+82
+00:07:50,250 --> 00:07:57,990
+a public IP address for accessing it through the browser for allowing Internet connectivity with your
+
+83
+00:07:57,990 --> 00:07:58,910
+VPC.
+
+84
+00:07:59,160 --> 00:08:02,230
+You also have an Internet gateway component.
+
+85
+00:08:02,400 --> 00:08:10,230
+So this basically connects VPC to Internet, to the outside world so that you can get traffic inside
+
+86
+00:08:10,230 --> 00:08:16,920
+your PC to your Web servers, for example, and then you can also send traffic outside if you want to
+
+87
+00:08:16,920 --> 00:08:21,390
+download some stuff from Internet on your components, et cetera.
+
+88
+00:08:21,780 --> 00:08:29,010
+Now, obviously, in addition to all of these network configuration, you need to secure your components,
+
+89
+00:08:29,010 --> 00:08:29,320
+right.
+
+90
+00:08:29,520 --> 00:08:37,620
+So, for example, you want to control what traffic enters your PC or what traffic reaches individual
+
+91
+00:08:37,620 --> 00:08:41,640
+instances and components in your PC or in your subnets.
+
+92
+00:08:41,790 --> 00:08:43,860
+And you want to control what traffic goes out.
+
+93
+00:08:43,900 --> 00:08:44,160
+Right.
+
+94
+00:08:44,250 --> 00:08:51,100
+So this is a firewall configuration basically for your PC and for individual instances.
+
+95
+00:08:51,450 --> 00:08:57,540
+Now, you can configure that security control on multiple levels in VPC.
+
+96
+00:08:58,020 --> 00:09:06,270
+And Adewusi makes it actually pretty flexible and granular of how you can configure all of this stuff,
+
+97
+00:09:06,270 --> 00:09:12,290
+not just security, but the IP address ranges, the row tables and so on.
+
+98
+00:09:12,570 --> 00:09:16,930
+And that's why you have this pretty big list of things that you can configure.
+
+99
+00:09:17,280 --> 00:09:23,930
+However, in many cases you will not need some advanced network configuration.
+
+100
+00:09:24,150 --> 00:09:30,750
+Most of the stuff is configured by default, as you see here, because you have these components already
+
+101
+00:09:30,750 --> 00:09:34,110
+created and configured with some default configuration.
+
+102
+00:09:34,230 --> 00:09:41,430
+And in most simple applications, you will not need to do any crazy configurations here.
+
+103
+00:09:41,940 --> 00:09:48,330
+And since this whole network is private and by default closed to the outside world.
+
+104
+00:09:48,810 --> 00:09:55,170
+So no access from Internet, of course, for your Web applications, you want to configure some Internet
+
+105
+00:09:55,170 --> 00:09:55,880
+access, right.
+
+106
+00:09:56,070 --> 00:10:00,260
+As well as you want to S.H. into your servers from your laptop.
+
+107
+00:10:00,450 --> 00:10:05,160
+So you want to configure some kind of external access.
+
+108
+00:10:05,430 --> 00:10:06,270
+And for that.
+
+109
+00:10:07,130 --> 00:10:17,840
+You have components inside that VPC service called Network ECLSS, which are basically firewalls or
+
+110
+00:10:17,840 --> 00:10:22,610
+firewall rules for subnets, so you can configure this per subnet.
+
+111
+00:10:23,030 --> 00:10:31,940
+And in addition to that, you have security groups which are, again, firewall rules, but on a virtual
+
+112
+00:10:31,940 --> 00:10:32,990
+machine level.
+
+113
+00:10:33,200 --> 00:10:39,740
+So inside the BBC, we have the subnet and inside subnets, we're going to have easy two instances,
+
+114
+00:10:39,740 --> 00:10:47,180
+which are basically the virtual servers, and we can configure firewall rules on that virtual server
+
+115
+00:10:47,180 --> 00:10:49,970
+level using security groups.
+
+116
+00:10:50,390 --> 00:10:57,110
+So you create both of these components on a VPC level and then you assign the Nichols' to individual
+
+117
+00:10:57,110 --> 00:11:04,530
+subnets and assign security groups to individual instances or components inside that VPC.

@@ -1,0 +1,191 @@
+1
+00:00:07,030 --> 00:00:14,620
+So now that we understand some of the basics of TerraForm and how to use its configuration file and
+
+2
+00:00:14,740 --> 00:00:21,790
+the basic syntax of terraform to create resources, fetch data, create variables and so on, let's
+
+3
+00:00:21,790 --> 00:00:26,790
+actually now see some realistic use case with TerraForm in NYC.
+
+4
+00:00:27,220 --> 00:00:35,340
+So what we're going to do is we're going to deploy and you see two instance of virtual server on each
+
+5
+00:00:35,350 --> 00:00:40,640
+of us and we're going to run a simple docker container on it.
+
+6
+00:00:41,140 --> 00:00:47,110
+However, in order to create that instance, we're going to create the whole infrastructure on us.
+
+7
+00:00:47,350 --> 00:00:50,790
+So first, we're going to need and own VPC.
+
+8
+00:00:50,890 --> 00:00:58,050
+So we're going to create our own VPC instead of using the default one from the region inside our APC,
+
+9
+00:00:58,060 --> 00:01:03,150
+we're going to create one subnet in one of the availability zones.
+
+10
+00:01:03,490 --> 00:01:07,240
+Know that we can create multiple subnets in each AC.
+
+11
+00:01:07,690 --> 00:01:12,880
+In our case, we're just going to create one subnet in one of the pieces, right.
+
+12
+00:01:12,970 --> 00:01:20,950
+Because we just want a simple use case with one server and we're going to connect this VPC to Internet
+
+13
+00:01:21,400 --> 00:01:23,980
+using Internet gateway on enable us.
+
+14
+00:01:24,190 --> 00:01:29,800
+So basically we want to allow traffic to and from VPC with Internet.
+
+15
+00:01:29,800 --> 00:01:30,040
+Right.
+
+16
+00:01:30,060 --> 00:01:39,610
+So outside of VPC, we want to be able to connect to our Isleta server inside VPC or resources, and
+
+17
+00:01:40,240 --> 00:01:42,400
+we want requests to go out to Internet.
+
+18
+00:01:42,640 --> 00:01:50,560
+And then in this configured VPC, inside the subnet that we create, we're going to deploy our AC to
+
+19
+00:01:50,590 --> 00:01:56,640
+instance, and this is a two instance, will basically run a very simple docker container.
+
+20
+00:01:56,650 --> 00:01:59,700
+We're going to deploy Ingenix Docker container on it.
+
+21
+00:01:59,980 --> 00:02:06,820
+And because we want to simulate kind of Web application deployment on institue server, we're going
+
+22
+00:02:06,820 --> 00:02:09,690
+to want to access it from the browser.
+
+23
+00:02:09,700 --> 00:02:09,990
+Right.
+
+24
+00:02:10,030 --> 00:02:17,050
+And that means that we're going to need to open firewall rules in order to access the Ingenix server
+
+25
+00:02:17,200 --> 00:02:18,760
+running on the SC, too.
+
+26
+00:02:18,980 --> 00:02:23,290
+And we also want to S.H. into our server.
+
+27
+00:02:23,650 --> 00:02:28,750
+And that means we're going to open the SSA each port on the server as well.
+
+28
+00:02:28,780 --> 00:02:34,930
+And for that, we're going to create a security group with those two ports configured.
+
+29
+00:02:34,930 --> 00:02:35,260
+Right.
+
+30
+00:02:35,290 --> 00:02:38,800
+So we're going to open up these ports through security group.
+
+31
+00:02:38,980 --> 00:02:41,750
+So we're going to do all of this one by one.
+
+32
+00:02:42,100 --> 00:02:49,810
+Now, it may sound like we're doing a lot because we're creating a lot of components to deploy a simple
+
+33
+00:02:49,810 --> 00:02:51,170
+server inside.
+
+34
+00:02:51,520 --> 00:02:58,000
+However, when you have a multi server deployment, basically you just have to create this whole network
+
+35
+00:02:58,180 --> 00:03:00,670
+and infrastructure configuration once.
+
+36
+00:03:00,830 --> 00:03:08,710
+So you basically have just one VPC, maybe multiple subnets, and you just deploy all the servers inside.
+
+37
+00:03:09,190 --> 00:03:15,160
+And generally, when working with a command line interface or even management console, you can create
+
+38
+00:03:15,160 --> 00:03:21,030
+the easy two instances in the default be PC that comes out of the box with every region.
+
+39
+00:03:21,220 --> 00:03:21,520
+Right.
+
+40
+00:03:21,530 --> 00:03:27,430
+So you don't have to create a new PC and a new subnet to launch your Ishita instance there.
+
+41
+00:03:27,730 --> 00:03:34,450
+However, in TerraForm, it is a best practice to create new resources rather than use the default components
+
+42
+00:03:34,450 --> 00:03:36,510
+that AWB provides us with.
+
+43
+00:03:36,520 --> 00:03:42,910
+So that also when we clean up all the resources, basically we can remove the components that we created
+
+44
+00:03:42,910 --> 00:03:46,890
+because we can remove the default VPC component from Adewusi.
+
+45
+00:03:47,260 --> 00:03:50,740
+So that means that we want to create our own.
+
+46
+00:03:50,740 --> 00:03:55,600
+We obviously want to work with our own VPC and leave the default one.
+
+47
+00:03:55,600 --> 00:03:58,990
+Basically, as is, we're not going to make any changes inside.
+
+48
+00:03:59,170 --> 00:04:02,620
+So with that overview, let's actually get started.

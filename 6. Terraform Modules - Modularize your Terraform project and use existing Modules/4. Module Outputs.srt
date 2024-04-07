@@ -1,0 +1,347 @@
+1
+00:00:07,310 --> 00:00:11,310
+So now this is another concept about modules that you have to learn.
+
+2
+00:00:11,540 --> 00:00:19,930
+So how do we access the resource that will be created by a module in another module?
+
+3
+00:00:19,940 --> 00:00:20,180
+Right.
+
+4
+00:00:20,390 --> 00:00:30,290
+So basically, we want to access the subnet ID of the summit resource that is being created by this
+
+5
+00:00:30,290 --> 00:00:31,130
+module here.
+
+6
+00:00:31,700 --> 00:00:37,580
+And the way we do that is, first of all, let's go back to our subnet module.
+
+7
+00:00:38,570 --> 00:00:45,920
+And the first thing we need to do, we need to basically output the subnet object.
+
+8
+00:00:46,010 --> 00:00:46,350
+Right.
+
+9
+00:00:46,550 --> 00:00:53,990
+So it's kind of like exporting the subnet object so that it can be used by other modules.
+
+10
+00:00:54,440 --> 00:00:58,440
+In the way we do that is very simple, using the output component.
+
+11
+00:00:58,730 --> 00:01:06,770
+So in the output otf of our subnet module, we are going to define output and we can call it whatever
+
+12
+00:01:06,770 --> 00:01:07,260
+we want.
+
+13
+00:01:07,730 --> 00:01:14,600
+I'm going to call it subnet because we are exporting the whole subnet object or we are outputting the
+
+14
+00:01:14,600 --> 00:01:15,620
+whole subnet object.
+
+15
+00:01:16,010 --> 00:01:24,620
+And the value is going to be in underscore subnet dot the name of our subnet.
+
+16
+00:01:27,400 --> 00:01:38,020
+So this will basically output's the whole object, right, that will be created in this module and now
+
+17
+00:01:38,050 --> 00:01:47,470
+that we have defined this output here, we can actually access the subnet object by referencing the
+
+18
+00:01:47,470 --> 00:01:47,960
+output.
+
+19
+00:01:48,190 --> 00:01:54,510
+So, again, it is like exporting the object and then referencing that object by the export name.
+
+20
+00:01:54,850 --> 00:01:59,710
+So I'm going to grab that name of the output that we defined could be anything.
+
+21
+00:01:59,710 --> 00:02:00,850
+I just called it subnet.
+
+22
+00:02:01,330 --> 00:02:10,150
+And now we can reference that subnet in the instance resource, which is in another module using the
+
+23
+00:02:10,150 --> 00:02:11,390
+following syntax.
+
+24
+00:02:11,740 --> 00:02:20,860
+So right here in subnet ID, this is basically the object that we need, which is exported here, and
+
+25
+00:02:20,860 --> 00:02:26,080
+we can reference that object using the output name.
+
+26
+00:02:26,470 --> 00:02:34,790
+However, because it's being created by module defined here, which is called my EBP subnet, the Syntex
+
+27
+00:02:34,840 --> 00:02:36,570
+is going to be module.
+
+28
+00:02:37,150 --> 00:02:45,970
+So we're referencing one of the resources of a module and then we need the name of the module that's
+
+29
+00:02:45,970 --> 00:02:47,320
+actually just copy that.
+
+30
+00:02:50,030 --> 00:02:52,640
+The name that we assigned the module.
+
+31
+00:02:53,530 --> 00:03:03,190
+So module the name and no, we want to reference the output name like this.
+
+32
+00:03:04,230 --> 00:03:12,660
+And this will basically give us the object, right, so it will go to the module with this name and
+
+33
+00:03:12,660 --> 00:03:19,290
+one of its resources is exported as an output using the subnet.
+
+34
+00:03:19,530 --> 00:03:26,460
+And then this will give us the subnet object and we can call all the attributes on that subnet object
+
+35
+00:03:26,760 --> 00:03:28,280
+and we need its ID.
+
+36
+00:03:28,650 --> 00:03:30,520
+So we are referencing the ID.
+
+37
+00:03:30,930 --> 00:03:41,120
+So this is how you can access the attributes or objects created from resources defined in another module.
+
+38
+00:03:41,460 --> 00:03:49,620
+And let's now actually check whether we have any other references to subnet or insert gateway or the
+
+39
+00:03:49,630 --> 00:03:50,450
+row table.
+
+40
+00:03:51,360 --> 00:03:53,140
+So I'm going to screw up.
+
+41
+00:03:53,160 --> 00:03:59,780
+Let's see, the security group actually just has the VPC, which we have available right here.
+
+42
+00:04:01,200 --> 00:04:02,480
+So that's fine.
+
+43
+00:04:02,520 --> 00:04:09,260
+The AI doesn't have any dependencies and it's just the instance.
+
+44
+00:04:09,270 --> 00:04:09,580
+Right.
+
+45
+00:04:10,020 --> 00:04:13,260
+So everything actually looks fine.
+
+46
+00:04:13,620 --> 00:04:23,460
+It was just the subnet that needed referencing because we have some that defined in the module and it
+
+47
+00:04:23,460 --> 00:04:24,090
+looks good.
+
+48
+00:04:24,930 --> 00:04:32,400
+And now with these changes, let's actually apply this configuration and see that everything still works.
+
+49
+00:04:37,070 --> 00:04:42,340
+So in order to run this, no, first we'll have to do terraformed in it.
+
+50
+00:04:42,800 --> 00:04:49,160
+And the reason is that whenever we change something in the module, an existing module, or create a
+
+51
+00:04:49,160 --> 00:04:53,150
+new module, for example, we have to run terraform in it.
+
+52
+00:04:53,480 --> 00:04:57,890
+So before we do terraform apply, we're going to do terraform in it.
+
+53
+00:04:59,800 --> 00:05:06,460
+And as you see initializing modules, my app subnet in modules, slash subnet.
+
+54
+00:05:08,440 --> 00:05:16,920
+And it's done now you see that there is no output for the Web server module that we also created, right.
+
+55
+00:05:17,440 --> 00:05:22,660
+The reason for that is because we're not referencing the Web server module here.
+
+56
+00:05:22,870 --> 00:05:24,790
+So basically Terraformed detects that.
+
+57
+00:05:24,790 --> 00:05:32,650
+We are referring to a module called my app Tesch Subnet, and this is where the module actually leaves.
+
+58
+00:05:32,680 --> 00:05:34,520
+So that's where we're specifying.
+
+59
+00:05:34,810 --> 00:05:41,560
+So it basically only tries to find and initialize that module, but it doesn't know anything about the
+
+60
+00:05:41,560 --> 00:05:45,360
+Web server module and the initialization was successful.
+
+61
+00:05:45,700 --> 00:05:52,090
+It actually also says as a note here that if you ever set or change modules or beacon configuration
+
+62
+00:05:52,090 --> 00:05:57,510
+for TerraForm Rehren, these come in to reinitialize you're working directory.
+
+63
+00:05:57,730 --> 00:06:04,000
+So basically, if you forget to do terraform in it and do it here from apply, you will be reminded.
+
+64
+00:06:04,000 --> 00:06:04,240
+Right.
+
+65
+00:06:04,240 --> 00:06:08,200
+Terraformed will tell you first initialize because you have module changes.
+
+66
+00:06:10,030 --> 00:06:17,410
+And now let's actually execute terraformed plan so we can see a preview of what TerraForm will do or
+
+67
+00:06:17,410 --> 00:06:23,080
+what changes, and we shouldn't see any errors, hopefully.
+
+68
+00:06:24,180 --> 00:06:33,690
+And there you go, we see the preview again, I have deleted everything in my account, so.
+
+69
+00:06:35,100 --> 00:06:37,380
+We see a bunch of resources that will be created.
+
+70
+00:06:38,850 --> 00:06:40,380
+So we have the security group.
+
+71
+00:06:41,840 --> 00:06:53,120
+My observer, VPC, and here are the resources from the subnet module, right, we have the round table
+
+72
+00:06:53,120 --> 00:06:57,650
+configuration Internet Gateway and here is our subnet.
+
+73
+00:06:59,300 --> 00:07:04,730
+Let's actually execute this and also make sure that all of this works.
+
+74
+00:07:08,910 --> 00:07:16,740
+And there you go, we have the output and successful outputs that seven resources got created.
+
+75
+00:07:18,120 --> 00:07:22,020
+Let's actually refresh our instances.
+
+76
+00:07:23,160 --> 00:07:30,150
+And there you go, we have one server that is up and running and being currently initialized and we
+
+77
+00:07:30,150 --> 00:07:31,910
+see the two outputs.
+
+78
+00:07:32,190 --> 00:07:38,970
+Now, again, important to note here that we are seeing outputs of the root module.
+
+79
+00:07:38,970 --> 00:07:39,300
+Right.
+
+80
+00:07:39,540 --> 00:07:41,280
+So let's actually do list here.
+
+81
+00:07:41,910 --> 00:07:49,470
+This is the root module that we are in and this is our main T.F. where we executed the terraform apply
+
+82
+00:07:49,470 --> 00:07:49,860
+from.
+
+83
+00:07:50,130 --> 00:07:54,500
+And we actually see the outputs defined in this module right from this file.
+
+84
+00:07:54,750 --> 00:08:03,600
+So the outputs that we define in the module is actually a way to export values of different resources
+
+85
+00:08:03,600 --> 00:08:12,210
+defined in those modules if you want to access them and their attributes in the main module, which
+
+86
+00:08:12,210 --> 00:08:14,650
+is great because they kept it consistent.
+
+87
+00:08:14,670 --> 00:08:22,850
+So you have the same syntax for doing that use case as well as just outputting the values as a result.

@@ -1,0 +1,399 @@
+1
+00:00:02,730 --> 00:00:09,720
+Welcome to the TerraForm course, since TerraForm is an infrastructure as code tool before jumping into
+
+2
+00:00:09,720 --> 00:00:10,800
+the TerraForm itself.
+
+3
+00:00:11,040 --> 00:00:16,950
+First, let's understand what exactly the infrastructure as code concept means.
+
+4
+00:00:17,280 --> 00:00:23,250
+What are the different infrastructure as code tools and how is TerraForm different from them in the
+
+5
+00:00:23,250 --> 00:00:23,850
+past?
+
+6
+00:00:24,240 --> 00:00:30,360
+Way, way back before automation, when you wrote an application and wanted to deploy that on server
+
+7
+00:00:30,570 --> 00:00:36,270
+for that, you would go and get some servers, set them up, configure networking on those servers,
+
+8
+00:00:36,270 --> 00:00:42,360
+create round tables, install all the necessary software, configure the software and maybe install
+
+9
+00:00:42,360 --> 00:00:48,450
+the Java version you needed if you had Java application installed, database for application and do
+
+10
+00:00:48,450 --> 00:00:56,130
+all sorts of things to prepare the servers in order to make your application able to run on that server.
+
+11
+00:00:56,760 --> 00:01:00,540
+And all these things would be done manually by system administrators.
+
+12
+00:01:00,960 --> 00:01:07,560
+So you had a high human resources cost, as well as more effort and time and also a higher chance of
+
+13
+00:01:07,560 --> 00:01:08,280
+human error.
+
+14
+00:01:08,670 --> 00:01:11,160
+No, that will be just the setup fees, right?
+
+15
+00:01:11,160 --> 00:01:13,470
+But after the setup, you also have the maintenance.
+
+16
+00:01:13,770 --> 00:01:18,300
+Maybe you need to update the Java version and deploy the new release of your application.
+
+17
+00:01:18,300 --> 00:01:25,800
+Do database backups where updates recover your application after it crashed its servers or recover servers
+
+18
+00:01:25,800 --> 00:01:26,640
+after they crashed.
+
+19
+00:01:27,000 --> 00:01:28,770
+Changed networking configuration.
+
+20
+00:01:28,770 --> 00:01:29,790
+All sorts of things.
+
+21
+00:01:30,120 --> 00:01:36,810
+Again, all these would have been manual effort, and if you had test and production environments,
+
+22
+00:01:37,230 --> 00:01:41,700
+you would of course then have to do all these things on both environments.
+
+23
+00:01:42,210 --> 00:01:48,030
+Now, instead, in today's DevOps world, you don't have to do all this manually, and you can actually
+
+24
+00:01:48,030 --> 00:01:55,440
+automate the complete process thanks to infrastructure as code also abbreviated as a C.
+
+25
+00:01:56,160 --> 00:01:57,390
+So what is infrastructure?
+
+26
+00:01:57,390 --> 00:01:57,940
+Is code?
+
+27
+00:01:58,370 --> 00:01:59,310
+It's super simple.
+
+28
+00:01:59,310 --> 00:02:05,460
+It's a way of automating all of these tasks end to end instead of doing it manually.
+
+29
+00:02:06,270 --> 00:02:12,840
+So all the knowledge and expertise of system administrators and operations team packed into various
+
+30
+00:02:12,840 --> 00:02:16,980
+programs or applications that carry out all these tasks.
+
+31
+00:02:17,670 --> 00:02:24,810
+So infrastructure is code is a concept and their infrastructure is code tools or these specific programs
+
+32
+00:02:25,020 --> 00:02:31,230
+like Instable Puppet TerraForm Cloud Formation and many more that you can use for different tasks.
+
+33
+00:02:31,770 --> 00:02:35,470
+You may be asking Why do we have so many different tools?
+
+34
+00:02:35,490 --> 00:02:39,840
+Can we just use one infrastructure as code tool that does everything?
+
+35
+00:02:40,530 --> 00:02:42,450
+Well, currently there is no one.
+
+36
+00:02:42,450 --> 00:02:46,710
+Infrastructure is code tool that can do everything from start to finish.
+
+37
+00:02:47,430 --> 00:02:54,900
+So each tool can do parts of this automation tasks, which means each one is good in their own specific
+
+38
+00:02:54,900 --> 00:02:55,350
+area.
+
+39
+00:02:55,710 --> 00:03:00,540
+So to get an overview, there are three main categories of such tasks.
+
+40
+00:03:01,440 --> 00:03:05,610
+One, there is provisioning of infrastructure, which is the very first step.
+
+41
+00:03:06,090 --> 00:03:12,600
+This is spinning up fresh new servers, doing the network configuration on them, creating load balancers
+
+42
+00:03:13,080 --> 00:03:16,380
+and configuring all this other stuff on the infrastructure level.
+
+43
+00:03:16,950 --> 00:03:23,250
+The next step or category would be configuring the already provisioned infrastructure, like installing
+
+44
+00:03:23,250 --> 00:03:27,780
+applications and software on the servers and managing those applications.
+
+45
+00:03:28,200 --> 00:03:34,290
+This step would be needed to prepare the infrastructure or the servers with all the necessary stuff
+
+46
+00:03:34,440 --> 00:03:36,300
+to deploy your own application.
+
+47
+00:03:36,510 --> 00:03:42,630
+As I mentioned at the beginning, this could be installing Java or a database or any other service or
+
+48
+00:03:42,630 --> 00:03:44,670
+process your application needs.
+
+49
+00:03:45,090 --> 00:03:51,540
+And the third step would be actually deploying your application on that provisioned and configured infrastructure,
+
+50
+00:03:51,540 --> 00:03:55,800
+which is actually the main reason why you were doing all this setup.
+
+51
+00:03:56,160 --> 00:04:02,400
+I must mention here that with Docker container technology, the configuration and deployment steps kind
+
+52
+00:04:02,400 --> 00:04:09,060
+of merged together because with Docker, you basically take your application and all the configuration
+
+53
+00:04:09,060 --> 00:04:12,690
+it needs and package it together with the needed environment.
+
+54
+00:04:13,170 --> 00:04:16,350
+So you have the configuration already in the image itself.
+
+55
+00:04:16,800 --> 00:04:22,110
+So if you provisioning infrastructure and installed Docker runtime, you don't need to configure much
+
+56
+00:04:22,110 --> 00:04:24,870
+on the servers or install some services there.
+
+57
+00:04:25,050 --> 00:04:27,210
+You just run Docker containers, and that's it.
+
+58
+00:04:27,510 --> 00:04:33,900
+Another important point here is the distinction between initial setup and maintaining phases in these
+
+59
+00:04:33,900 --> 00:04:34,620
+categories.
+
+60
+00:04:35,430 --> 00:04:39,660
+So you provision and configure infrastructure the first time.
+
+61
+00:04:40,140 --> 00:04:41,790
+That's the first initial setup.
+
+62
+00:04:42,000 --> 00:04:44,970
+And afterwards you have the maintenance phase.
+
+63
+00:04:45,180 --> 00:04:47,580
+So you do adjustments to the infrastructure.
+
+64
+00:04:47,850 --> 00:04:49,140
+You change stuff.
+
+65
+00:04:49,170 --> 00:04:50,430
+You edit servers.
+
+66
+00:04:50,430 --> 00:04:51,780
+You remove servers.
+
+67
+00:04:51,780 --> 00:04:54,570
+You change network configuration, cetera.
+
+68
+00:04:55,080 --> 00:05:01,380
+Same way you do initial installation and configuration of software and then you have the maintenance
+
+69
+00:05:01,380 --> 00:05:02,000
+phase of that.
+
+70
+00:05:02,090 --> 00:05:06,950
+Software updates, changes, reconfiguration, all sorts of things.
+
+71
+00:05:07,550 --> 00:05:14,240
+So the difference between the infrastructure as code tools is that they automate tasks in different
+
+72
+00:05:14,240 --> 00:05:18,020
+categories for different phases in those categories.
+
+73
+00:05:18,950 --> 00:05:25,090
+So in most cases, you would use a combination of two or more tools to automate the whole process into
+
+74
+00:05:25,100 --> 00:05:25,340
+end.
+
+75
+00:05:25,670 --> 00:05:32,030
+So, for example, TerraForm is a tool to provision and then manage the infrastructure, but can also
+
+76
+00:05:32,030 --> 00:05:38,630
+be used for the initial installation or configuration of software on that infrastructure, but not for
+
+77
+00:05:38,840 --> 00:05:40,730
+further maintenance of that software.
+
+78
+00:05:41,150 --> 00:05:49,010
+On the other hand, Zibo chef puppet tools can be used to configure and deploy applications and also
+
+79
+00:05:49,040 --> 00:05:55,550
+manage them afterwards, as well as do some tasks of configuring an already provisioned infrastructure.
+
+80
+00:05:55,790 --> 00:05:59,930
+But it can be used to provision the initial set up of servers.
+
+81
+00:06:00,240 --> 00:06:07,010
+Therefore, a common example is people using TerraForm to provision infrastructure and configure it
+
+82
+00:06:07,280 --> 00:06:12,050
+and then use instable to install and deploy applications on that provisioned infrastructure.
+
+83
+00:06:12,650 --> 00:06:17,930
+There's also a difference between those tools in the way they work, among others.
+
+84
+00:06:18,170 --> 00:06:23,600
+These differences are declarative versus procedural approach with procedural.
+
+85
+00:06:23,600 --> 00:06:25,400
+You're right, step by step.
+
+86
+00:06:25,610 --> 00:06:33,110
+What you need to be executed like create a server in a server, etc. with declarative approach, you
+
+87
+00:06:33,110 --> 00:06:36,620
+declare what you want as an end result.
+
+88
+00:06:37,250 --> 00:06:38,870
+I want to servers.
+
+89
+00:06:39,400 --> 00:06:44,210
+Another difference is mutable infrastructure versus immutable, immutable being.
+
+90
+00:06:44,240 --> 00:06:48,250
+You create three servers, then you edit one change network configuration.
+
+91
+00:06:48,260 --> 00:06:51,140
+Maybe you remove two servers, whatever.
+
+92
+00:06:51,290 --> 00:06:58,520
+So you make those changes with immutable infrastructure instead of adding and removing or doing changes.
+
+93
+00:06:58,910 --> 00:07:04,730
+You always create a new one and discard the old so you always replace instead of changing.
+
+94
+00:07:04,820 --> 00:07:11,210
+There are also agents versus agent list tools, master versus master list and some other differences.
+
+95
+00:07:11,480 --> 00:07:16,370
+So maybe depending on your preferences and needs, you can choose the right tool.
+
+96
+00:07:16,700 --> 00:07:22,880
+And that is essentially the reason why we have multiple infrastructure as code tools instead of just
+
+97
+00:07:22,880 --> 00:07:23,570
+having one.
+
+98
+00:07:24,200 --> 00:07:29,720
+And in this course, we're going to learn about the most popular infrastructure provisioning tool,
+
+99
+00:07:29,900 --> 00:07:30,560
+TerraForm.
+
+100
+00:07:30,890 --> 00:07:31,940
+So let's get started.

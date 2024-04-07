@@ -1,0 +1,567 @@
+1
+00:00:07,020 --> 00:00:07,440
+Great.
+
+2
+00:00:07,470 --> 00:00:13,850
+So we have an easy to server configured, we have all the networking around it configured.
+
+3
+00:00:14,070 --> 00:00:17,330
+However, there is nothing running on the server yet, right?
+
+4
+00:00:18,060 --> 00:00:19,920
+We have no docker installed.
+
+5
+00:00:19,950 --> 00:00:23,060
+We have no docker containers running.
+
+6
+00:00:23,070 --> 00:00:25,860
+So basically the server is empty.
+
+7
+00:00:26,190 --> 00:00:29,400
+Now, we can, of course, S.A.G. into the server.
+
+8
+00:00:29,400 --> 00:00:34,310
+We can install Docker on it, we can start docker container and so on.
+
+9
+00:00:34,680 --> 00:00:41,880
+However, again, we want to automate as much of a work as possible and we don't want to do manual work
+
+10
+00:00:42,150 --> 00:00:46,740
+and we want that configuration to be a part of the code.
+
+11
+00:00:46,740 --> 00:00:47,090
+Right.
+
+12
+00:00:47,310 --> 00:00:52,460
+We want that to be in the file that we can execute as many times as we want.
+
+13
+00:00:53,190 --> 00:01:03,360
+So with the terraformed, there is a way to execute commands on a server, on ISATOU server in this
+
+14
+00:01:03,360 --> 00:01:05,420
+case at the time of creation.
+
+15
+00:01:05,430 --> 00:01:05,710
+Right.
+
+16
+00:01:05,940 --> 00:01:13,740
+So as soon as the instance is ready, we can define a set of commands that terraform will execute on
+
+17
+00:01:13,740 --> 00:01:14,250
+the server.
+
+18
+00:01:15,000 --> 00:01:21,500
+And the way to do that is using an attribute called user data.
+
+19
+00:01:23,430 --> 00:01:32,670
+So user data is basically like an entry point script that gets executed on is it, for instance, whenever
+
+20
+00:01:32,670 --> 00:01:34,290
+the server is instantiated.
+
+21
+00:01:34,290 --> 00:01:34,540
+Right.
+
+22
+00:01:34,860 --> 00:01:43,140
+So this is the initial script and we can provide the script actually using multiline string and we can
+
+23
+00:01:43,140 --> 00:01:45,120
+define it using the syntax.
+
+24
+00:01:45,120 --> 00:01:48,210
+So we have this block.
+
+25
+00:01:51,540 --> 00:01:57,630
+And inside that blog, we can actually define the whole Shell script, right, just like you would write
+
+26
+00:01:57,630 --> 00:02:01,370
+it in a normal script file, right.
+
+27
+00:02:01,380 --> 00:02:05,160
+In a bashful and since it's Linux, we can write Besch comments.
+
+28
+00:02:05,490 --> 00:02:12,120
+So exactly like you would executed on the server itself with Linux commands the same way.
+
+29
+00:02:12,120 --> 00:02:13,850
+We're going to write the commands in here.
+
+30
+00:02:14,220 --> 00:02:22,680
+So we're going to start with a shebang, first of all, so that it's a best script and then we're going
+
+31
+00:02:22,680 --> 00:02:24,010
+to start the comments.
+
+32
+00:02:24,270 --> 00:02:26,640
+Now, obviously, you have to know these commands.
+
+33
+00:02:26,640 --> 00:02:30,510
+You have to try this out to make sure that they work.
+
+34
+00:02:30,790 --> 00:02:34,440
+But I have tried them out, so I'm just going to write them.
+
+35
+00:02:34,440 --> 00:02:36,560
+They're actually not very difficult.
+
+36
+00:02:36,900 --> 00:02:41,990
+So what are we going to do is on our fresh new server, we are going to do youm update.
+
+37
+00:02:42,090 --> 00:02:46,050
+So we're going to update all the packages, the repositories first.
+
+38
+00:02:46,680 --> 00:02:52,410
+And since it's not an interactive mode, we can't confirm the input.
+
+39
+00:02:52,410 --> 00:02:52,790
+Right.
+
+40
+00:02:53,070 --> 00:02:55,530
+We're going to do automatic confirmation.
+
+41
+00:02:55,750 --> 00:02:58,870
+That's what minus Y stands for.
+
+42
+00:02:58,920 --> 00:03:00,620
+So I'm inside the server now.
+
+43
+00:03:00,990 --> 00:03:05,310
+So basically you can check which package manager you have.
+
+44
+00:03:05,310 --> 00:03:08,850
+We have here in Amazon Linux image.
+
+45
+00:03:09,210 --> 00:03:14,080
+And when you do update, you get this prompt here.
+
+46
+00:03:14,080 --> 00:03:14,290
+Right.
+
+47
+00:03:14,310 --> 00:03:17,730
+So we have to confirm whether to continue or not.
+
+48
+00:03:18,030 --> 00:03:19,830
+So in this case, we click.
+
+49
+00:03:19,830 --> 00:03:20,370
+Yes.
+
+50
+00:03:20,520 --> 00:03:24,000
+And this is basically the same confirmation that we are writing.
+
+51
+00:03:24,120 --> 00:03:35,290
+So this confirms and then we can do again sudo yum install Docker.
+
+52
+00:03:35,700 --> 00:03:40,230
+So after the update, we're going to install Docker so that we can execute Docker commence.
+
+53
+00:03:40,800 --> 00:03:48,300
+And once the doctor is installed, we have to start it and we can do it using system control.
+
+54
+00:03:48,840 --> 00:03:50,070
+Start Docker.
+
+55
+00:03:51,720 --> 00:03:58,530
+And these are all Suda comments, because easy to a user doesn't have permission to install stuff,
+
+56
+00:03:58,560 --> 00:04:08,340
+so we're going to have to do that with Stuto and then we want to execute documents without Suda comment.
+
+57
+00:04:08,340 --> 00:04:08,770
+Right.
+
+58
+00:04:08,790 --> 00:04:17,820
+And for that, we're going to need to add the issue to a user, to Tokura Group, and we're going to
+
+59
+00:04:17,820 --> 00:04:24,090
+do that using user mode or modifying the user, adding it to a group.
+
+60
+00:04:24,540 --> 00:04:25,680
+That's what it stands for.
+
+61
+00:04:26,100 --> 00:04:30,570
+Group name, Docker, user name, easy to user.
+
+62
+00:04:30,990 --> 00:04:38,760
+This is the user that we are SSA checking into as this is a default Linux user that we have available
+
+63
+00:04:39,150 --> 00:04:40,830
+on this Linux images.
+
+64
+00:04:41,520 --> 00:04:41,830
+Right.
+
+65
+00:04:41,850 --> 00:04:49,320
+So as I said, this command will basically at our user in Docker group, and that will make it possible
+
+66
+00:04:49,320 --> 00:04:53,940
+for us to run Docker commands on that server without.
+
+67
+00:04:54,780 --> 00:04:56,330
+So now we can do Docker run.
+
+68
+00:04:58,230 --> 00:05:07,080
+And as I mentioned, we can start a very simple engine X container on port eighty or eighty eighty on
+
+69
+00:05:07,080 --> 00:05:13,270
+the host and Bindy to Port 80 on Ingenix and this will be resupplied.
+
+70
+00:05:13,440 --> 00:05:19,350
+So these are the commands we want to execute right away after server is created.
+
+71
+00:05:19,860 --> 00:05:25,380
+And this will make Engine X basically available on the server.
+
+72
+00:05:25,860 --> 00:05:34,800
+And we are saving manual effort for SSA into the server, installing all this running container and
+
+73
+00:05:34,800 --> 00:05:35,170
+so on.
+
+74
+00:05:35,400 --> 00:05:38,580
+So this should all be executed automatically by terraformed.
+
+75
+00:05:38,880 --> 00:05:40,200
+So let's save it.
+
+76
+00:05:40,200 --> 00:05:46,650
+And now let's actually do terraform plan to see the changes that will be made.
+
+77
+00:05:47,250 --> 00:05:48,820
+So let's clean this up.
+
+78
+00:05:48,870 --> 00:05:57,930
+I have too many chips open, so terraformed plane and just kind of close to this.
+
+79
+00:06:02,090 --> 00:06:11,780
+And let's see, so some are here, one resource will be destroyed, one resource will be added, and
+
+80
+00:06:11,780 --> 00:06:20,960
+that scroll up and you see that the change that we just made, which is adding this user data execution
+
+81
+00:06:20,960 --> 00:06:28,900
+here, actually forces the previous server or previous U.S. to instance, this one to be destroyed and
+
+82
+00:06:28,940 --> 00:06:30,300
+you one to be created.
+
+83
+00:06:30,650 --> 00:06:37,900
+So this is a change that will recreate the whole instance, which is fine for us.
+
+84
+00:06:37,910 --> 00:06:40,010
+So we are going to just apply.
+
+85
+00:06:42,200 --> 00:06:49,890
+So while this is applying, note that this blog here will only get executed once, right?
+
+86
+00:06:50,090 --> 00:06:57,020
+So, for example, if we make changes to the text, which will be basically just modifying existing
+
+87
+00:06:57,020 --> 00:07:07,000
+server, like we just add another key player here, something else, and the whole thing gets executed.
+
+88
+00:07:07,370 --> 00:07:12,030
+This will only be executed once right on initial run.
+
+89
+00:07:12,470 --> 00:07:14,240
+So just keep that in mind.
+
+90
+00:07:15,770 --> 00:07:20,860
+So let's go back and you see that server, the previous one is getting destroyed.
+
+91
+00:07:21,410 --> 00:07:26,210
+And let's wait a couple of seconds until the new one comes up.
+
+92
+00:07:26,360 --> 00:07:31,120
+And this time we actually added output SC to public IP.
+
+93
+00:07:31,280 --> 00:07:37,190
+So we should see that in output here instead of going to the management console to get the public IP
+
+94
+00:07:37,190 --> 00:07:41,180
+address of the new AC2 instance, it will just save us some time.
+
+95
+00:07:43,510 --> 00:07:52,150
+And there you go, as you see, the new public IP address is printed out here and now if we grab this
+
+96
+00:07:52,150 --> 00:08:01,690
+public IP address and S.H. into the server and now hopefully all of these comments should have executed.
+
+97
+00:08:02,140 --> 00:08:05,650
+And if we do, yes, there you go.
+
+98
+00:08:05,650 --> 00:08:11,890
+We see our Ingenix container already up and running and the port building is already in place.
+
+99
+00:08:12,250 --> 00:08:16,560
+Now, we already configured security group for that.
+
+100
+00:08:16,810 --> 00:08:21,500
+So Port 80 80 should be accessible from Browsr as well.
+
+101
+00:08:22,000 --> 00:08:25,960
+So that means that on this public IP address.
+
+102
+00:08:28,740 --> 00:08:33,000
+Import 80 80, we should see engineers welcome page.
+
+103
+00:08:34,780 --> 00:08:38,270
+So everything is working, our setup is done.
+
+104
+00:08:38,500 --> 00:08:48,640
+So this is a very simple but realistic configuration of creating a new PC with all the different configurations
+
+105
+00:08:49,150 --> 00:08:57,880
+connecting to Internet, configuring the firewall rules, deploying easy to instance, and also running
+
+106
+00:08:57,880 --> 00:09:04,780
+some entry point scripts so that docker gets installed and docker container starts running on it.
+
+107
+00:09:08,620 --> 00:09:16,150
+Now, of course, if you have a much longer and maybe more complicated script that you want to execute
+
+108
+00:09:16,330 --> 00:09:21,520
+as an entry point script, when the server starts, maybe you installing a couple of different tools
+
+109
+00:09:21,520 --> 00:09:27,430
+and configuring lots of different stuff, you can also reference it from a file instead of having it
+
+110
+00:09:27,430 --> 00:09:29,830
+inside the terraformed configuration file.
+
+111
+00:09:30,100 --> 00:09:30,430
+Right.
+
+112
+00:09:30,610 --> 00:09:32,080
+So I'm just going to.
+
+113
+00:09:33,290 --> 00:09:42,710
+Do it this or copy this, and just like we did right here, we can very simply reference a file here
+
+114
+00:09:43,010 --> 00:09:45,500
+and we can pass in the file location.
+
+115
+00:09:45,740 --> 00:09:49,580
+And let's say this is an entry entry script.
+
+116
+00:09:49,580 --> 00:09:50,700
+That is H.
+
+117
+00:09:51,110 --> 00:09:56,170
+So this is going to be a shell script that TerraForm will execute on the server.
+
+118
+00:09:56,960 --> 00:10:02,840
+And this is actually a location or relative path.
+
+119
+00:10:03,200 --> 00:10:12,500
+So we can create a file called into script entry script to S.H. inside our terraformed folder.
+
+120
+00:10:13,400 --> 00:10:23,450
+So I'm going to do an entry script that is H and I'm going to paste in what I copied.
+
+121
+00:10:24,050 --> 00:10:26,440
+And obviously we don't need this block here.
+
+122
+00:10:27,260 --> 00:10:33,950
+It was just, um, to have a multiline string right here in TerraForm.
+
+123
+00:10:34,280 --> 00:10:40,930
+This is just a very normal shell script and this will work as well.
+
+124
+00:10:41,450 --> 00:10:47,750
+So if I save it and do terraform PLEN.
+
+125
+00:10:52,480 --> 00:10:53,890
+And let's actually see.
+
+126
+00:10:56,220 --> 00:11:03,780
+The terraformed action, as you see this change also will cause is it, for instance, to be recreated
+
+127
+00:11:04,650 --> 00:11:06,100
+or a new one to be created?
+
+128
+00:11:06,120 --> 00:11:07,620
+Let's actually go ahead and do that.
+
+129
+00:11:13,520 --> 00:11:20,360
+And let's actually check out the new public IP address real quick to make sure it is working.
+
+130
+00:11:21,800 --> 00:11:22,570
+And there you go.
+
+131
+00:11:22,940 --> 00:11:25,220
+We get the same welcome to engineers speech.
+
+132
+00:11:25,620 --> 00:11:33,920
+So this is actually cleaner because we're separating the Shell script from terraformed configuration
+
+133
+00:11:33,920 --> 00:11:40,910
+file by just referencing the file instead of having the whole script inside the configuration file in
+
+134
+00:11:40,910 --> 00:11:41,180
+here.
+
+135
+00:11:41,420 --> 00:11:48,290
+So, as I said, we can write a bunch of more stuff in here that installs, configures, deployers applications
+
+136
+00:11:48,290 --> 00:11:49,840
+and stuff on the server.
+
+137
+00:11:53,640 --> 00:12:01,050
+And now is a final step, we can actually check all this code into a separate feature branch and push
+
+138
+00:12:01,050 --> 00:12:08,850
+it to the remote repository so we can do it, check out and we're going to create a new branch and let's
+
+139
+00:12:08,850 --> 00:12:13,050
+call it feature deploy, too easy to do with different components.
+
+140
+00:12:13,590 --> 00:12:19,500
+And now we have all the changes that we made in the master branch transferred to this new branch.
+
+141
+00:12:19,770 --> 00:12:24,930
+And here we can just add everything and commit the new configuration.
+
+142
+00:12:30,170 --> 00:12:35,150
+And finally, we can just push the whole branch to a remote repository.

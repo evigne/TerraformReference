@@ -1,0 +1,651 @@
+1
+00:00:07,090 --> 00:00:17,320
+The second required attribute is instance type, and this is is, you know, basically just the type
+
+2
+00:00:17,320 --> 00:00:20,150
+of the server defined right here.
+
+3
+00:00:20,290 --> 00:00:26,080
+So based on how much resources you want, you can choose all of the types if you want the free tier
+
+4
+00:00:26,080 --> 00:00:26,890
+eligible one.
+
+5
+00:00:27,160 --> 00:00:29,230
+Let's go with T two micro.
+
+6
+00:00:30,010 --> 00:00:36,640
+And instead of hard coding the type here, maybe you want to deploy different types in different environments.
+
+7
+00:00:37,020 --> 00:00:42,550
+We can also make this configurable and actually reference it as a variable.
+
+8
+00:00:42,760 --> 00:00:46,200
+So let's create instance type variable.
+
+9
+00:00:46,210 --> 00:00:47,980
+Let's define it up here
+
+10
+00:00:52,210 --> 00:01:01,220
+and let's assign its value right away and set it to T to T to micro.
+
+11
+00:01:03,700 --> 00:01:05,680
+It's this value right here.
+
+12
+00:01:09,130 --> 00:01:12,490
+So we have the two required attributes set.
+
+13
+00:01:13,000 --> 00:01:14,680
+Now the rest are optional.
+
+14
+00:01:14,680 --> 00:01:23,470
+However, we want to set some of the configuration so that our easy to instant's actually ends up in
+
+15
+00:01:23,470 --> 00:01:24,400
+the subnet.
+
+16
+00:01:25,430 --> 00:01:29,570
+That we created in the BBC and gets the.
+
+17
+00:01:31,810 --> 00:01:38,860
+Security group that we defined right here now, as I said, these attributes or the rest of the attributes
+
+18
+00:01:38,860 --> 00:01:43,500
+are optional, like subnet ID and security group I.D., et cetera.
+
+19
+00:01:44,020 --> 00:01:53,680
+And it means that if we do not specify them explicitly, then the ISATOU instance that we define here
+
+20
+00:01:53,950 --> 00:02:01,510
+will actually be launched in a default VPC in one of the azeez in that region.
+
+21
+00:02:01,540 --> 00:02:09,040
+In one of the subnets, however, we have created our own VPC and we want this easy to to end up in
+
+22
+00:02:09,040 --> 00:02:18,670
+our VPC, in the subnet that we created and be assigned the security group that we created in our VPC.
+
+23
+00:02:18,670 --> 00:02:18,990
+Right.
+
+24
+00:02:19,210 --> 00:02:26,650
+So because we don't want the instance to be launched in the default VPC, but rather in ours, we have
+
+25
+00:02:26,650 --> 00:02:29,020
+to specify all these values.
+
+26
+00:02:29,020 --> 00:02:29,350
+Right.
+
+27
+00:02:29,560 --> 00:02:33,910
+So optional just means that the default components will be used.
+
+28
+00:02:34,300 --> 00:02:36,240
+However, we want to override that.
+
+29
+00:02:36,700 --> 00:02:39,520
+So let's specify some of these values.
+
+30
+00:02:39,820 --> 00:02:52,420
+First, we have the subnet ID and we want our InSitu to end up in our subnet again.
+
+31
+00:02:52,420 --> 00:02:54,520
+If we had multiple of them, we could.
+
+32
+00:02:56,160 --> 00:02:59,260
+Choose whichever one.
+
+33
+00:02:59,310 --> 00:03:04,080
+We just have one, so that's easy to choose from, and that's our summit.
+
+34
+00:03:04,110 --> 00:03:06,810
+It is the next one.
+
+35
+00:03:06,810 --> 00:03:12,300
+We have VPC security group.
+
+36
+00:03:12,310 --> 00:03:12,960
+It is.
+
+37
+00:03:14,550 --> 00:03:21,840
+And this is actually a list because we can assign and configure multiple security groups for our AC2
+
+38
+00:03:21,840 --> 00:03:24,120
+instance, not just one.
+
+39
+00:03:24,750 --> 00:03:25,800
+We just have one.
+
+40
+00:03:26,010 --> 00:03:34,230
+So I'm going to reference that it's a serious default security group.
+
+41
+00:03:38,950 --> 00:03:43,160
+Default is cheap, and I almost forgot.
+
+42
+00:03:43,690 --> 00:03:46,550
+We need to use the I.D. and not the whole object.
+
+43
+00:03:46,570 --> 00:03:51,370
+Otherwise, Terraformed will give us a warning when we execute terraformed plan.
+
+44
+00:03:51,910 --> 00:03:59,440
+So we have the Senate ID and we have the security group I.D. and now we can said the event is on.
+
+45
+00:04:01,030 --> 00:04:08,680
+And you remember that we have actually configured the availability zone as a variable and we used it
+
+46
+00:04:08,680 --> 00:04:09,640
+in subnet as well.
+
+47
+00:04:09,850 --> 00:04:13,560
+So we can just grab that variable and use it here as well.
+
+48
+00:04:14,560 --> 00:04:22,670
+And this will basically tell terraformed to spin up the server in the subnet and assign it the security
+
+49
+00:04:22,670 --> 00:04:23,980
+group we defined for it.
+
+50
+00:04:24,310 --> 00:04:27,580
+And since the subnet is also in this specific AC.
+
+51
+00:04:28,700 --> 00:04:39,770
+This will basically do the same in other attribute to set is associate public IP address because we
+
+52
+00:04:39,770 --> 00:04:45,820
+want to be able to access this from browser and as well as research into it.
+
+53
+00:04:45,980 --> 00:04:49,610
+So we need a public IP address of the server.
+
+54
+00:04:50,000 --> 00:04:52,280
+So associated public IP address will be true.
+
+55
+00:04:52,670 --> 00:04:59,500
+And one final thing again, for ECES, reaching into the server is the keys.
+
+56
+00:05:00,830 --> 00:05:07,580
+And if I go back to the U.S. to actually leave this wizard, we don't want this anymore.
+
+57
+00:05:08,480 --> 00:05:09,650
+Let's go to Isatou.
+
+58
+00:05:10,430 --> 00:05:16,430
+And in this overview, you see key players and these are basically this is empty right now.
+
+59
+00:05:16,730 --> 00:05:28,010
+But these are the key players that allow you to S.H. into the server by creating public private keep
+
+60
+00:05:28,010 --> 00:05:36,370
+here or SFH keep here so we can actually create a keep here manually in the UI here.
+
+61
+00:05:36,800 --> 00:05:40,970
+Let's call it server key player.
+
+62
+00:05:43,300 --> 00:05:46,700
+And the truth PEM format is a file format.
+
+63
+00:05:47,110 --> 00:05:50,530
+This is the one that you're going to need if you're working with Windows.
+
+64
+00:05:51,790 --> 00:05:59,830
+But I believe Panfilo also works for Windows, so let's create the one with him file, and as soon as
+
+65
+00:05:59,830 --> 00:06:02,680
+we created the PIN file, it's downloaded.
+
+66
+00:06:03,010 --> 00:06:13,150
+So basically what happens is that it has created a private public keep here and we have the private
+
+67
+00:06:13,150 --> 00:06:15,270
+key part in this file.
+
+68
+00:06:15,640 --> 00:06:23,470
+So we have to keep this file securely because this basically holds the information that we need to connect
+
+69
+00:06:23,470 --> 00:06:24,770
+or access the server.
+
+70
+00:06:25,060 --> 00:06:25,390
+Right.
+
+71
+00:06:25,630 --> 00:06:32,020
+So if you give it to someone else who shouldn't have access to S.H., they will actually be able to
+
+72
+00:06:32,020 --> 00:06:33,030
+access the server.
+
+73
+00:06:33,250 --> 00:06:41,290
+So you have to keep it in a secure place and you need to restrict the access and permissions on that
+
+74
+00:06:41,290 --> 00:06:41,680
+file.
+
+75
+00:06:42,160 --> 00:06:46,330
+So a best practice for keeping this pen file.
+
+76
+00:06:46,330 --> 00:06:57,220
+Actually, this private key is to move it from the downloads folder to your SSL dot SSL folder inside
+
+77
+00:06:57,220 --> 00:06:58,750
+your user folder.
+
+78
+00:06:59,200 --> 00:07:05,050
+So we can do that in terminal actually, so we can move.
+
+79
+00:07:05,560 --> 00:07:08,280
+And I know that it's in the downloads folder.
+
+80
+00:07:08,380 --> 00:07:13,750
+So wherever it got downloaded, basically you find it and this is the PIN file and we're going to move
+
+81
+00:07:13,750 --> 00:07:19,960
+it into this folder and.
+
+82
+00:07:25,800 --> 00:07:35,070
+So we have it and this is basically a secure place on your Internet to store private keys, basically
+
+83
+00:07:35,070 --> 00:07:39,780
+anything that should be restricted and not easily accessible for other users.
+
+84
+00:07:39,990 --> 00:07:44,940
+And another thing we should do on it is restrict the permissions.
+
+85
+00:07:44,940 --> 00:07:45,750
+So right now,
+
+86
+00:07:50,040 --> 00:07:53,990
+you see that he has read permission and write permission as well.
+
+87
+00:07:54,240 --> 00:08:04,730
+What we need to do is set it permission to be stricter and we're going to say it to four hundred and
+
+88
+00:08:04,740 --> 00:08:05,610
+let's execute.
+
+89
+00:08:06,230 --> 00:08:07,020
+Let's do it again.
+
+90
+00:08:07,050 --> 00:08:07,740
+And there you go.
+
+91
+00:08:07,980 --> 00:08:16,440
+We just let the permission for the owner, which is my user, and it is unacceptable for everybody else
+
+92
+00:08:16,740 --> 00:08:21,260
+and know that this step here is actually not optional.
+
+93
+00:08:21,300 --> 00:08:31,380
+It is required because whenever you use a pen file that doesn't have this strict access, eight of us
+
+94
+00:08:31,560 --> 00:08:35,390
+will actually reject the SSA request to the server.
+
+95
+00:08:35,700 --> 00:08:39,820
+So you will have to modify the permission of the pen file.
+
+96
+00:08:40,110 --> 00:08:41,700
+It is a required step.
+
+97
+00:08:42,210 --> 00:08:47,280
+So basically we just created a key player in us.
+
+98
+00:08:47,910 --> 00:08:56,520
+It got downloaded locally and we have saved it into a secure location in the age and we have restricted
+
+99
+00:08:56,520 --> 00:09:05,250
+its permission so that we only our user has a read only access to it so that we can use it for connecting
+
+100
+00:09:05,580 --> 00:09:07,670
+and researching into Isatou server.
+
+101
+00:09:08,250 --> 00:09:08,670
+Great.
+
+102
+00:09:08,940 --> 00:09:10,620
+So that step is done.
+
+103
+00:09:12,060 --> 00:09:16,590
+And no, we can use that key reference right here.
+
+104
+00:09:16,710 --> 00:09:18,350
+Right, because we have the key.
+
+105
+00:09:18,360 --> 00:09:21,810
+However, we have to associate that key with the server.
+
+106
+00:09:21,820 --> 00:09:22,130
+Right.
+
+107
+00:09:22,770 --> 00:09:25,860
+And we're going to do that using key name.
+
+108
+00:09:27,570 --> 00:09:35,030
+And the key name is basically the reference to this name right here.
+
+109
+00:09:35,190 --> 00:09:35,470
+Right.
+
+110
+00:09:35,790 --> 00:09:40,890
+So we are telling us associate the key called server.
+
+111
+00:09:40,890 --> 00:09:41,400
+Keep here.
+
+112
+00:09:42,660 --> 00:09:49,210
+With this specific instance, so we're going to hardcoded and there you go.
+
+113
+00:09:50,070 --> 00:10:00,360
+So in this association will basically make it possible for us to use that pen file to S.H. into our
+
+114
+00:10:00,360 --> 00:10:01,020
+instance.
+
+115
+00:10:01,890 --> 00:10:02,330
+Great.
+
+116
+00:10:02,340 --> 00:10:07,650
+And the only thing missing is the tag for named.
+
+117
+00:10:08,970 --> 00:10:10,470
+It's copied from here.
+
+118
+00:10:14,040 --> 00:10:23,220
+And let's call it the server, and now it's time to execute our configuration and create the easy two
+
+119
+00:10:23,220 --> 00:10:26,130
+instance with all of these attributes set.
+
+120
+00:10:26,580 --> 00:10:28,920
+So first, let's do a terraformed PLEN.
+
+121
+00:10:31,470 --> 00:10:36,880
+And again, terraformed plan basically tells us where we have an issue.
+
+122
+00:10:37,290 --> 00:10:42,450
+It seems like on one hundred five I forgot to put equal sign here.
+
+123
+00:10:42,540 --> 00:10:43,580
+So let's try again.
+
+124
+00:10:48,530 --> 00:10:56,150
+And these are bunch of attributes, for our instance, that we're creating right now, most of them
+
+125
+00:10:56,150 --> 00:11:02,540
+are not said, obviously, because they will be generated by abuse like public and private IP addresses,
+
+126
+00:11:02,960 --> 00:11:05,660
+host ID and bunch of other stuff.
+
+127
+00:11:06,260 --> 00:11:07,100
+But it looks good.
+
+128
+00:11:07,100 --> 00:11:12,980
+So we can do it here from a play and create the ISATOU instance.
+
+129
+00:11:19,720 --> 00:11:27,550
+And it will take some time because the server will be initializing what's actually called dashboard.
+
+130
+00:11:28,570 --> 00:11:32,320
+And refresh, and we have.
+
+131
+00:11:33,420 --> 00:11:40,840
+A running server which is still initializing and it's in the creation is complete.
+
+132
+00:11:41,280 --> 00:11:43,580
+However, it's still initializing.
+
+133
+00:11:43,590 --> 00:11:45,650
+So let's actually wait for that.
+
+134
+00:11:46,500 --> 00:11:48,330
+And if I click inside.
+
+135
+00:11:49,710 --> 00:11:57,150
+We're going to already see a bunch of values that have been generated, so in the summer you see the
+
+136
+00:11:57,150 --> 00:12:00,690
+IP addresses like private IP address and public IP address.
+
+137
+00:12:01,060 --> 00:12:11,310
+And as you see here, the private IP address, for Ishita instance, is from the range of subnet Seiter
+
+138
+00:12:11,310 --> 00:12:11,640
+block.
+
+139
+00:12:11,650 --> 00:12:11,940
+Right.
+
+140
+00:12:12,120 --> 00:12:23,730
+So our subnet has sided block defined at 10 zero, 10 zero and every ISATOU server, every instance
+
+141
+00:12:24,150 --> 00:12:27,960
+inside the summit will get IP address from that range.
+
+142
+00:12:27,970 --> 00:12:34,120
+And as you see or is it, for instance, has one of the IP addresses taken from that ranch.
+
+143
+00:12:34,140 --> 00:12:35,280
+So this is how it works.
+
+144
+00:12:35,550 --> 00:12:45,030
+And then we also have the public IP address because we defined the attributes to assign public IP address
+
+145
+00:12:45,420 --> 00:12:46,470
+to the instance.
+
+146
+00:12:47,190 --> 00:12:53,310
+And this will basically allow us to access the agent in that instance as well as access it from the
+
+147
+00:12:53,310 --> 00:12:53,840
+browser.
+
+148
+00:12:54,240 --> 00:12:57,360
+So it's refreshing in and there you go.
+
+149
+00:12:57,690 --> 00:13:00,020
+Status check is green.
+
+150
+00:13:00,420 --> 00:13:02,310
+It is fully initialized.
+
+151
+00:13:02,700 --> 00:13:08,910
+So now we can actually just SNH into it using our Peñafiel.
+
+152
+00:13:09,540 --> 00:13:16,620
+So I'm going to do it as a search and then we have to specify the PEM file using this flag.
+
+153
+00:13:16,920 --> 00:13:23,700
+This is the PIN file that got downloaded and then we have the user, which is the default user.
+
+154
+00:13:23,700 --> 00:13:31,860
+Obviously two instances on this Eversole Linux images and then we have the public IP address, which
+
+155
+00:13:31,860 --> 00:13:33,060
+we can grab from here.
+
+156
+00:13:37,460 --> 00:13:38,150
+And.
+
+157
+00:13:39,280 --> 00:13:46,420
+This is the end point, this is the key to the private key we associated with that instance, and if
+
+158
+00:13:46,420 --> 00:13:50,860
+I execute it, we'll have to prove and.
+
+159
+00:13:52,560 --> 00:13:53,050
+There you go.
+
+160
+00:13:53,340 --> 00:14:02,010
+And again, this is the private IP address, because we're inside the server right now, which is defined
+
+161
+00:14:02,010 --> 00:14:02,390
+here.
+
+162
+00:14:02,910 --> 00:14:11,640
+So two instance got created, it got initialized and we were able to access into it because we have
+
+163
+00:14:12,150 --> 00:14:15,270
+defined the key name association right here.

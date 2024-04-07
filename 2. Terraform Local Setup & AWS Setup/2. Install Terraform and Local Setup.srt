@@ -1,0 +1,123 @@
+1
+00:00:03,780 --> 00:00:11,130
+Now is a first step we need to install TerraForm locally so we can start using it, and obviously based
+
+2
+00:00:11,130 --> 00:00:15,450
+on which operating system you're using, the installation will be a bit different.
+
+3
+00:00:16,290 --> 00:00:25,440
+So either you can install it using a package manager tool on Linux or make or you can just download
+
+4
+00:00:25,440 --> 00:00:32,070
+TerraForm Binary from TerraForm official page and then set it up locally yourself.
+
+5
+00:00:32,310 --> 00:00:40,620
+And this applies to Windows, Linux and Mic, and you will find links to how to install TerraForm on
+
+6
+00:00:40,620 --> 00:00:41,970
+different operating systems.
+
+7
+00:00:42,210 --> 00:00:47,460
+In the video description So check it out there and do the installation on your OS.
+
+8
+00:00:47,910 --> 00:00:51,270
+And once you have TerraForm, then you can move on with the tutorial.
+
+9
+00:00:52,320 --> 00:00:55,080
+Now, if you're on, make the easiest way to install.
+
+10
+00:00:55,080 --> 00:01:03,440
+TerraForm is using Prew package manager used to brew install tier form.
+
+11
+00:01:04,710 --> 00:01:12,420
+And this will install TerraForm, and once you have it installed, then you can use TerraForm version.
+
+12
+00:01:15,460 --> 00:01:22,570
+And if you have an output of TerraForm version, it means it is correctly installed and configured.
+
+13
+00:01:25,840 --> 00:01:31,900
+Since TerraForm is widely used to automate energy use infrastructure, and because E.W. is is the most
+
+14
+00:01:31,900 --> 00:01:39,640
+popular cloud platform out there, we will use IWC as an example to learn all TerraForm concepts.
+
+15
+00:01:40,000 --> 00:01:47,050
+However, note that all these will be very similar to using TerraForm for other platforms and technologies.
+
+16
+00:01:47,860 --> 00:01:54,940
+In this part, I'm going to show you how to write TerraForm File that connects to your A.W. account,
+
+17
+00:01:55,510 --> 00:02:02,740
+and we will create a VPC and subnet in our account just to learn the basic concepts of TerraForm and
+
+18
+00:02:02,740 --> 00:02:03,520
+its syntax.
+
+19
+00:02:03,850 --> 00:02:09,880
+So the first thing we need is we're going to create a project folder called TerraForm.
+
+20
+00:02:10,540 --> 00:02:14,350
+So let's create a folder called TerraForm,
+
+21
+00:02:18,460 --> 00:02:22,090
+and we're going to start creating files in that folder.
+
+22
+00:02:22,570 --> 00:02:26,820
+Now that's actually open visual studio code and create a new file here.
+
+23
+00:02:27,010 --> 00:02:31,120
+And let's say it into our TerraForm folder that we just created.
+
+24
+00:02:31,330 --> 00:02:38,020
+And let's call it Main Dot Taf T.f, since whatever form and main is just the name we give.
+
+25
+00:02:38,050 --> 00:02:39,610
+You can name it whatever you want.
+
+26
+00:02:39,880 --> 00:02:46,060
+This is just a standard for calling the main TerraForm file window to t.f.
+
+27
+00:02:46,540 --> 00:02:47,920
+So let's create this file.
+
+28
+00:02:48,460 --> 00:02:54,670
+And if you're working in Visual Studio, you can actually install a plugin for TerraForm.
+
+29
+00:02:54,680 --> 00:02:57,580
+There is actually the official one from Hershey Corp TerraForm.
+
+30
+00:02:57,850 --> 00:03:02,980
+However, I have installed another one, which actually looks pretty good because of syntax highlighting.
+
+31
+00:03:03,340 --> 00:03:11,860
+But whichever plugin you want, just install one so that we have a nice syntax highlighting in our file.

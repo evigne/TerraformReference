@@ -1,0 +1,83 @@
+1
+00:00:07,450 --> 00:00:14,680
+Now, when you're working with TerraForm in a team where basically different team members may be executed,
+
+2
+00:00:14,690 --> 00:00:22,840
+terraformed comments locally or you're integrating terraformed in a SkyCity pipeline, you have multiple
+
+3
+00:00:22,840 --> 00:00:25,690
+places where state can be created.
+
+4
+00:00:25,690 --> 00:00:25,990
+Right.
+
+5
+00:00:26,410 --> 00:00:32,770
+So, for example, if we execute TerraForm Applied from Jenkins' Pipeline, it would create the terraformed
+
+6
+00:00:32,770 --> 00:00:34,300
+state file on Jenkins'.
+
+7
+00:00:34,570 --> 00:00:39,180
+So the terraformed state file would be only available inside the jenkins' server.
+
+8
+00:00:39,430 --> 00:00:41,610
+So we don't have access to it locally.
+
+9
+00:00:42,040 --> 00:00:48,370
+So if I wanted to do TerraForm applied locally to apply some changes on top of that, Tearfund will
+
+10
+00:00:48,370 --> 00:00:55,720
+actually try to create everything again because it will think that I am starting from an empty or fresh
+
+11
+00:00:55,720 --> 00:00:56,930
+state, basically.
+
+12
+00:00:57,760 --> 00:01:04,480
+So how do we actually share the terraformed state between different environments, maybe different team
+
+13
+00:01:04,480 --> 00:01:05,020
+members?
+
+14
+00:01:05,860 --> 00:01:08,500
+And there is actually a very simple way to do that.
+
+15
+00:01:08,500 --> 00:01:13,930
+And it's also a best practice is to configure a remote terraformed state.
+
+16
+00:01:14,140 --> 00:01:18,370
+So basically a remote storage where this terraformed state file will be stored.
+
+17
+00:01:18,730 --> 00:01:26,200
+It's also good for data backup in case something happens to the server and the state file basically
+
+18
+00:01:26,200 --> 00:01:27,580
+gets removed.
+
+19
+00:01:27,580 --> 00:01:27,890
+Right.
+
+20
+00:01:28,060 --> 00:01:33,360
+So to storage in a remote place, security is actually a good way to do that.
+
+21
+00:01:33,730 --> 00:01:37,780
+So how do we configure a remote storage for TerraForm State file?

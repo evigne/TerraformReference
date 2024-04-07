@@ -1,0 +1,607 @@
+1
+00:00:07,270 --> 00:00:17,170
+Great, so let's review we have a BBC that has a subnet inside, we have connected the BBC to Internet
+
+2
+00:00:17,170 --> 00:00:21,790
+using the Internet gateway and configured it in the round table.
+
+3
+00:00:22,240 --> 00:00:31,540
+And we have also created a security group that opens Port 22 in Port 80 that we will later configure
+
+4
+00:00:31,690 --> 00:00:33,850
+for our Ishita instance.
+
+5
+00:00:34,420 --> 00:00:40,690
+Now, the question is, what else or what other configuration or what other information do we actually
+
+6
+00:00:40,690 --> 00:00:43,450
+need in order to create an ISA to instant's?
+
+7
+00:00:43,750 --> 00:00:51,970
+So I'm going to write the configuration for creating and it was easy to instance and let's see what
+
+8
+00:00:51,970 --> 00:00:53,680
+information are is still missing.
+
+9
+00:00:54,070 --> 00:01:03,850
+So first of all, the resource in this instance is the resource type and let's call it my Web server.
+
+10
+00:01:06,710 --> 00:01:17,990
+And there are two required attributes, for instance, the first required attribute is, am I Aimi is
+
+11
+00:01:18,230 --> 00:01:22,870
+the image which the easy server will be based on.
+
+12
+00:01:22,880 --> 00:01:24,890
+This is the operating system image.
+
+13
+00:01:25,430 --> 00:01:25,780
+Right.
+
+14
+00:01:26,000 --> 00:01:34,430
+So if we go back to our console and let's look for AC2 and by the way, this is actually a new user
+
+15
+00:01:34,430 --> 00:01:38,390
+interface of us, maybe experimental, actually.
+
+16
+00:01:38,960 --> 00:01:41,710
+So right now there are no running instances.
+
+17
+00:01:41,900 --> 00:01:52,340
+So here, if we launch instance, the very first selection we have to make is to choose an Amazon machine
+
+18
+00:01:52,340 --> 00:01:52,840
+image.
+
+19
+00:01:53,390 --> 00:01:59,000
+And as I said, this is the operating system that the server will start with so we can choose between
+
+20
+00:01:59,000 --> 00:02:08,000
+distributions of Linux and Windows and the image that we're going to use for our Web server is Amazon
+
+21
+00:02:08,000 --> 00:02:13,420
+Linux, which is optimized for working with Amazon and its services.
+
+22
+00:02:13,670 --> 00:02:17,660
+So this is also the one that we're going to use in this one.
+
+23
+00:02:18,110 --> 00:02:27,560
+So the Aimi the value of this Aimi attribute is actually the idea of the image.
+
+24
+00:02:27,950 --> 00:02:30,280
+So basically this part right here.
+
+25
+00:02:30,290 --> 00:02:30,570
+Right.
+
+26
+00:02:30,830 --> 00:02:40,190
+So each Aimi has this ID, which starts with my dash, and then comes the ID and each one has a unique
+
+27
+00:02:40,190 --> 00:02:40,510
+one.
+
+28
+00:02:40,910 --> 00:02:42,830
+And this is the value that we need.
+
+29
+00:02:43,310 --> 00:02:49,330
+Now, note that this ID can actually be different across regions.
+
+30
+00:02:49,490 --> 00:02:55,830
+So in your region, the ID might be actually different for the same image, for the same machine image.
+
+31
+00:02:56,120 --> 00:02:57,890
+So keep that in mind.
+
+32
+00:02:58,160 --> 00:03:00,770
+And also this can be dynamic.
+
+33
+00:03:00,800 --> 00:03:05,350
+So this can actually change when the new image gets released.
+
+34
+00:03:05,360 --> 00:03:12,830
+And that means that if we hardcoded this value for copy this and basically just hardcoded as a string
+
+35
+00:03:12,830 --> 00:03:19,260
+here, we may need to change it later when the idea isn't correct anymore.
+
+36
+00:03:19,370 --> 00:03:27,410
+So instead, we actually want to dynamically set it or rather get this value from Adewusi programmatically
+
+37
+00:03:27,710 --> 00:03:31,910
+from TerraForm and then set it as a value here.
+
+38
+00:03:32,510 --> 00:03:33,730
+So how do we do that?
+
+39
+00:03:34,340 --> 00:03:40,730
+You know that in order to fetch the existing resources to basically query the data from us, we use
+
+40
+00:03:40,730 --> 00:03:43,620
+not resource, but rather data type.
+
+41
+00:03:43,640 --> 00:03:43,970
+Right.
+
+42
+00:03:44,480 --> 00:03:50,370
+So what we're going to do is we're going to create a data and we're going to call it a.
+
+43
+00:03:53,590 --> 00:04:01,010
+And we want this image to be the latest Amazon links to image.
+
+44
+00:04:01,330 --> 00:04:04,570
+So this one right here, but with the latest version.
+
+45
+00:04:05,320 --> 00:04:11,050
+So let's call the latest Amazon Linux.
+
+46
+00:04:12,200 --> 00:04:19,530
+Image, so instead of hard coating it here, we're going to clear it from us.
+
+47
+00:04:20,210 --> 00:04:23,870
+So first attribute is going to be most recent.
+
+48
+00:04:26,040 --> 00:04:27,210
+Equals true.
+
+49
+00:04:29,080 --> 00:04:36,570
+We want to get the most recent image version, the second one will be Bonar's.
+
+50
+00:04:39,100 --> 00:04:43,910
+So what is the owners value for an image?
+
+51
+00:04:44,410 --> 00:04:45,190
+Let's go back.
+
+52
+00:04:45,550 --> 00:04:50,640
+And here you see, this is just a quick start, but you have different takes.
+
+53
+00:04:50,650 --> 00:04:51,030
+You're right.
+
+54
+00:04:51,040 --> 00:04:59,530
+You have in a marketplace where different companies have created their own images.
+
+55
+00:04:59,530 --> 00:04:59,730
+Right.
+
+56
+00:04:59,740 --> 00:05:07,140
+So you can actually browse these ones and then you have owner is basically the one that released this
+
+57
+00:05:07,300 --> 00:05:10,570
+image or who makes this image available in the marketplace.
+
+58
+00:05:11,110 --> 00:05:17,440
+Then you have community images, which are four different operating systems with different distributions.
+
+59
+00:05:17,770 --> 00:05:18,900
+A whole list here.
+
+60
+00:05:19,420 --> 00:05:23,140
+And I'm actually going to open a new tab.
+
+61
+00:05:24,730 --> 00:05:35,110
+And let's go to E2 and in InSitu view here, you have images and images in this menu here and if we
+
+62
+00:05:35,110 --> 00:05:36,100
+click inside.
+
+63
+00:05:37,430 --> 00:05:39,050
+And that's the public images.
+
+64
+00:05:41,130 --> 00:05:50,730
+We have loads of them, right, and the way to search or see the owner is basically in this owner field
+
+65
+00:05:51,300 --> 00:05:59,070
+and for example, if I input's this ID here and search for it.
+
+66
+00:06:00,300 --> 00:06:00,930
+There you go.
+
+67
+00:06:00,960 --> 00:06:08,340
+We have owner fields that says Amazon, and because this is the image that I want to be using, this
+
+68
+00:06:08,340 --> 00:06:10,270
+is basically the same one is here.
+
+69
+00:06:11,580 --> 00:06:14,330
+This is the name and this is it.
+
+70
+00:06:14,890 --> 00:06:19,910
+So this tells me the owner of the image.
+
+71
+00:06:20,310 --> 00:06:25,190
+So this is the value that I want to enter in here.
+
+72
+00:06:26,040 --> 00:06:30,240
+And this is a lease so I can have multiple owners specified here.
+
+73
+00:06:30,640 --> 00:06:36,750
+I can also have my own images right again if I go back.
+
+74
+00:06:37,840 --> 00:06:48,430
+You have my in my section here, for example, if you create an easy two instance from this image and
+
+75
+00:06:48,430 --> 00:06:54,940
+then you make changes on top of that, like install some tools, etc., and just prepared for your own
+
+76
+00:06:54,940 --> 00:07:01,240
+needs, you can actually create your own image out of it and then reuse that for other deployments.
+
+77
+00:07:01,720 --> 00:07:07,410
+And then you're going to have them in this section and you can reference them here as well.
+
+78
+00:07:07,870 --> 00:07:09,500
+In this case, you will be the owner.
+
+79
+00:07:10,180 --> 00:07:15,640
+So we have the owners, which is Amazon, and then we have the filters.
+
+80
+00:07:16,090 --> 00:07:26,770
+So filter in data, basically filter blocks are what lets you define the criteria for these queries.
+
+81
+00:07:26,780 --> 00:07:35,110
+So basically you can tell Amazon, give me the most recent images that are owned by Amazon that have
+
+82
+00:07:35,560 --> 00:07:43,510
+the name that starts with this string, for example, or we can say that starts with this string or
+
+83
+00:07:43,510 --> 00:07:45,700
+this value and that ends with this.
+
+84
+00:07:45,700 --> 00:07:52,780
+And we don't care whatever is inside in case there are multiple images like that and we don't care which
+
+85
+00:07:52,780 --> 00:07:53,620
+one will be taken.
+
+86
+00:07:53,950 --> 00:07:56,110
+In fact, I'm going to choose Amazon Linux here.
+
+87
+00:07:56,530 --> 00:08:02,740
+And you see that we have two images that have the same prefix, same suffix.
+
+88
+00:08:02,740 --> 00:08:05,330
+Just the in between is different, right?
+
+89
+00:08:05,360 --> 00:08:06,850
+This value here is different.
+
+90
+00:08:07,240 --> 00:08:09,780
+So we can actually do that in filter.
+
+91
+00:08:10,180 --> 00:08:11,530
+So I'm going to copy that part.
+
+92
+00:08:12,100 --> 00:08:17,830
+And in filter we have name and values attributes for each filter.
+
+93
+00:08:17,830 --> 00:08:26,980
+We have the name attribute which basically is referencing which key we want to filter on in our case.
+
+94
+00:08:27,250 --> 00:08:29,200
+This is the name of the image.
+
+95
+00:08:29,560 --> 00:08:33,630
+So we want to filter or set criteria for name.
+
+96
+00:08:34,390 --> 00:08:36,400
+So we're going to specify a name.
+
+97
+00:08:36,550 --> 00:08:37,290
+In this case.
+
+98
+00:08:37,510 --> 00:08:38,410
+It's called the same.
+
+99
+00:08:38,740 --> 00:08:39,790
+Not to be confused.
+
+100
+00:08:41,650 --> 00:08:49,810
+And we have the values, so for this attribute or this column, basically what values we want to filter
+
+101
+00:08:49,810 --> 00:08:50,060
+out.
+
+102
+00:08:50,410 --> 00:08:56,740
+And as I said, we want the value to be this is a least so we can have multiple values.
+
+103
+00:08:57,070 --> 00:09:00,910
+And we want that to start with this string right here.
+
+104
+00:09:01,270 --> 00:09:03,670
+And then we want something in between.
+
+105
+00:09:03,680 --> 00:09:04,680
+We don't really care.
+
+106
+00:09:06,050 --> 00:09:07,720
+It's a regular expression for that.
+
+107
+00:09:07,990 --> 00:09:11,830
+And then we want it to end with this string.
+
+108
+00:09:13,640 --> 00:09:23,930
+And this will basically give us all the images that match images whose name matches this regular expression,
+
+109
+00:09:25,010 --> 00:09:26,720
+in this case, it will be those two.
+
+110
+00:09:27,320 --> 00:09:35,580
+And then give me the most recent of those images and we can actually define as many filters as we want.
+
+111
+00:09:35,600 --> 00:09:37,660
+In fact, we can do the second one.
+
+112
+00:09:38,210 --> 00:09:43,810
+And again, we have a name for the attribute we want to filter on.
+
+113
+00:09:44,150 --> 00:09:50,780
+Let's go back and let's say we want the virtualization type to be filtering on this time.
+
+114
+00:09:51,200 --> 00:09:52,910
+I'm going to copy that, actually.
+
+115
+00:09:53,510 --> 00:09:59,110
+And attributes is going to be like this.
+
+116
+00:09:59,450 --> 00:10:03,700
+So name virtualization type and values.
+
+117
+00:10:03,740 --> 00:10:09,320
+Again, we have a list and the value is each VM.
+
+118
+00:10:10,560 --> 00:10:17,540
+So I have another criteria, and this way you can add many multiple filters from whatever data you are
+
+119
+00:10:17,550 --> 00:10:27,630
+querying from us, and this will be this will basically give us the most recent Amazon image that matches
+
+120
+00:10:27,630 --> 00:10:28,190
+this name.
+
+121
+00:10:28,770 --> 00:10:35,100
+And this way, we don't have to worry about hard coding and updating the value manually.
+
+122
+00:10:35,260 --> 00:10:38,110
+It will be dynamically provided for us.
+
+123
+00:10:38,550 --> 00:10:50,490
+So now we can reference that Aimi from the data using data, the name of the data thoughts or the type
+
+124
+00:10:50,490 --> 00:10:52,360
+of the data in the name of the data.
+
+125
+00:10:52,980 --> 00:10:58,710
+However, again, this gives us the whole object, the whole image with all the attributes and we just
+
+126
+00:10:58,710 --> 00:11:04,500
+want the I.D. So we're going to access the ID attribute and set it to Aimi.
+
+127
+00:11:05,010 --> 00:11:13,260
+And before we do that, let's actually output the results of this query so that we can test whether
+
+128
+00:11:13,260 --> 00:11:16,590
+our filter criteria are set correctly and so on.
+
+129
+00:11:16,890 --> 00:11:27,060
+So what I'm going to do is I'm going to do output and let's call it and the value or database in my
+
+130
+00:11:27,060 --> 00:11:30,030
+ID and value is going to be.
+
+131
+00:11:34,110 --> 00:11:35,220
+This one right here.
+
+132
+00:11:36,300 --> 00:11:43,260
+Or we can also uproot the whole object, actually, so I'm going to do terraformed plan first.
+
+133
+00:11:47,470 --> 00:11:50,140
+And tearful PLEN will actually give us.
+
+134
+00:11:51,220 --> 00:11:59,710
+The Output's objects with all the attributes or the values that we get from each of us.
+
+135
+00:12:00,010 --> 00:12:07,030
+So in this case, terraform actually fetch the data and we see the results here without executing the
+
+136
+00:12:07,030 --> 00:12:07,630
+appli.
+
+137
+00:12:08,350 --> 00:12:12,570
+So we see the whole Aimi object attributes here.
+
+138
+00:12:12,970 --> 00:12:16,840
+So we see a bunch of attributes like creation, date, description.
+
+139
+00:12:17,020 --> 00:12:20,010
+And this actually matches the description right here.
+
+140
+00:12:26,400 --> 00:12:34,950
+These are filters and we have the ID as well as image I.D., which is the same value, have the image
+
+141
+00:12:34,950 --> 00:12:36,450
+location owner.
+
+142
+00:12:38,850 --> 00:12:46,290
+Name as we filtered, basically, and so on, so we have a bunch of those here, but we're just interested
+
+143
+00:12:46,290 --> 00:12:46,660
+in it.
+
+144
+00:12:46,740 --> 00:12:54,980
+However, with output is how you can actually validate what result you're getting with this data execution.
+
+145
+00:12:55,350 --> 00:12:58,170
+So I'm going to add it here.
+
+146
+00:12:58,170 --> 00:13:01,070
+And let's do terraformed planet again.
+
+147
+00:13:06,640 --> 00:13:17,920
+And this time I get just the idea, and this is actually with 039, the idea right here, so we're actually
+
+148
+00:13:17,920 --> 00:13:21,960
+getting the correct Aimi back from us.
+
+149
+00:13:22,420 --> 00:13:23,380
+This is the one here.
+
+150
+00:13:24,820 --> 00:13:25,350
+Great.
+
+151
+00:13:25,360 --> 00:13:26,770
+So we that configured.
+
+152
+00:13:28,130 --> 00:13:33,740
+Let's come in the scene again, so we have the first required attribute, which is.

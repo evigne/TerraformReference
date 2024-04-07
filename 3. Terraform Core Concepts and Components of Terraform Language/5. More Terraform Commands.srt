@@ -1,0 +1,183 @@
+1
+00:00:03,720 --> 00:00:12,120
+Now, let's say you have a configuration file and you want to check the difference between the current
+
+2
+00:00:12,120 --> 00:00:18,570
+state and your configured state, and basically you don't know what the current state is because there
+
+3
+00:00:18,600 --> 00:00:23,490
+are multiple people working on the project and you just want to see the difference.
+
+4
+00:00:23,790 --> 00:00:27,300
+And you don't want to do terraform a man.
+
+5
+00:00:27,310 --> 00:00:31,710
+You just want to see the difference between current and desired state.
+
+6
+00:00:31,980 --> 00:00:37,990
+For that, you can actually execute TerraForm PLEN Command, which is like a preview.
+
+7
+00:00:38,130 --> 00:00:44,180
+Same as what TerraForm Apply Command gives you, but without the actual applying it.
+
+8
+00:00:44,850 --> 00:00:51,630
+So here you see that just like with appli command, you get this list of actions that TerraForm will
+
+9
+00:00:51,780 --> 00:00:55,550
+execute in order to get you to the desired state.
+
+10
+00:00:55,560 --> 00:01:03,630
+And as we have deleted some to using terraformed destroy command, but we still have it in the configuration
+
+11
+00:01:03,630 --> 00:01:04,040
+file.
+
+12
+00:01:04,410 --> 00:01:12,690
+It basically tells us in terraformed plan that a new resource would be added if you would execute,
+
+13
+00:01:12,690 --> 00:01:13,820
+terraform, apply.
+
+14
+00:01:16,770 --> 00:01:24,300
+Now, if you are executing TerraForm, Play Command, however, you don't want to always confirm the
+
+15
+00:01:24,300 --> 00:01:32,760
+execution or wait for terraformed to calculate all the changes and then confirm the change.
+
+16
+00:01:33,210 --> 00:01:41,850
+You just want to automatically approve any change you can pass in order to approve Flik.
+
+17
+00:01:42,960 --> 00:01:44,340
+And this will basically.
+
+18
+00:01:46,720 --> 00:01:50,590
+Apply immediately without waiting for your confirmation.
+
+19
+00:01:54,860 --> 00:02:01,820
+And here, as you see, the preview wasn't given and I wasn't asked for confirmation and the change
+
+20
+00:02:01,820 --> 00:02:05,750
+got applied immediately, we have resources, one added.
+
+21
+00:02:06,850 --> 00:02:12,640
+So we have created back our subunit in a default VPC.
+
+22
+00:02:12,790 --> 00:02:21,100
+Now, what if I wanted to completely destroy my infrastructure and everything that I have created using
+
+23
+00:02:21,100 --> 00:02:22,270
+this configuration file?
+
+24
+00:02:22,450 --> 00:02:25,960
+I wanted to clean everything up for that.
+
+25
+00:02:25,960 --> 00:02:29,470
+We can actually execute, terraform, destroy command.
+
+26
+00:02:30,700 --> 00:02:38,830
+And if we do not provide any targets as parameter, it will basically fund our terraform configuration
+
+27
+00:02:38,830 --> 00:02:39,220
+file.
+
+28
+00:02:39,400 --> 00:02:46,570
+It will go through all the resources and destroy or basically just remove all the resources one by one
+
+29
+00:02:46,750 --> 00:02:49,930
+in the correct order that we have defined here.
+
+30
+00:02:51,040 --> 00:02:53,110
+So let's execute it now.
+
+31
+00:02:53,110 --> 00:02:54,520
+We get a preview of.
+
+32
+00:02:56,060 --> 00:03:04,220
+What gets destroyed so all three elements or resources will be removed and we can actually confirm this
+
+33
+00:03:04,220 --> 00:03:07,040
+action in TerraForm will clean everything up.
+
+34
+00:03:07,340 --> 00:03:15,800
+Now, this command is actually handy and can be used if you want to revert exactly what you have created
+
+35
+00:03:15,800 --> 00:03:17,900
+with this configuration file.
+
+36
+00:03:18,230 --> 00:03:25,220
+And unlike destroy with a specific target, terraform, destroy, which destroys the whole infrastructure
+
+37
+00:03:25,220 --> 00:03:32,060
+is actually pretty convenient because you don't have to worry about in which order and sequence you
+
+38
+00:03:32,060 --> 00:03:32,960
+have to destroy.
+
+39
+00:03:32,960 --> 00:03:33,650
+The resources.
+
+40
+00:03:33,650 --> 00:03:39,080
+TerraForm will figure out which one depends on which and it will basically clean everything up.
+
+41
+00:03:39,200 --> 00:03:45,830
+So if you're testing something with TerraForm, if you're playing around with resources, then terraform,
+
+42
+00:03:45,830 --> 00:03:46,290
+destroy.
+
+43
+00:03:46,290 --> 00:03:50,640
+It will be pretty handy way of just cleaning everything up that you have created.
+
+44
+00:03:50,900 --> 00:04:01,040
+So now if I go to my account and refresh the boxes, you see the VPC is gone as well as.
+
+45
+00:04:02,270 --> 00:04:07,110
+The subnet one def, if I refresh it here, is gone as well.
+
+46
+00:04:07,520 --> 00:04:10,240
+So all the resources have been removed.
