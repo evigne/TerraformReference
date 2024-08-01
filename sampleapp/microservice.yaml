@@ -293,7 +293,7 @@ kind: Deployment
 metadata:
   name: adservice
 spec:
-  replicas: 2
+  replicas: 60
   selector:
     matchLabels:
       app: adservice
